@@ -1,8 +1,9 @@
 import React from 'react';
+import SearchForm from '../components/SearchForm';
 
 function Search() {
     return (
-        <h1></h1>
+        <SearchForm />
     )
 }
 
