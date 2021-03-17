@@ -5,8 +5,7 @@ function DescriptionCell(props) {
     return (
         <Table.Cell colSpan={4} 
             singleLine
-            
-            ></Table.Cell>
+            ><span dangerouslySetInnerHTML={{ __html: props.description }}></span></Table.Cell>
     )
 }
 

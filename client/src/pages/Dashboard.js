@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import JobsList from '../components/JobsList';
 import SideMenu from '../components/SideMenu';
 import { Container, Grid } from 'semantic-ui-react';
@@ -8,8 +7,6 @@ function Dashboard() {
 
     return (
         <div>
-            
-            <Navbar />
             
             <Grid columns='equal'>
                 <Grid.Row>
