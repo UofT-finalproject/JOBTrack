@@ -40,7 +40,7 @@ function JobsList() {
           return (<Table.Row key={job._id}>
             <Table.Cell colSpan={2}>{title}</Table.Cell>
               <Table.Cell>{company}</Table.Cell>
-              <DescriptionCell description={description}></DescriptionCell>
+              <Table.Cell singleLine colSpan={4}>{description}</Table.Cell>
               <Table.Cell>{location}</Table.Cell>
               <Table.Cell>{created_at}</Table.Cell>
               <Table.Cell>{status}</Table.Cell>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { NavLink } from "react-router-dom";
 import { Menu, Container, Icon } from 'semantic-ui-react';
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
@@ -18,6 +19,7 @@ function Navbar() {
             {date}
             </Menu.Item>
           <Menu.Item
+            as={ NavLink } to="/dashboard"
             position='right'
             name='dashboard'
             active={activeItem === 'features'}
@@ -28,6 +30,7 @@ function Navbar() {
           </Menu.Item>
   
           <Menu.Item
+            as={ NavLink } to="/search"
             float='right'
             name='Job Search'
             active={activeItem === 'testimonials'}
