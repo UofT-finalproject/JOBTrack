@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Form } from 'semantic-ui-react'
+import API from '../../utils/API'
 
 class SearchForm extends Component {
   state = { title: '', location: '', fullTime: false }
@@ -8,9 +9,10 @@ class SearchForm extends Component {
 
   handleSubmit = () => {
     const { title, location } = this.state
-
     this.setState({ title: title, location: location });
-    console.log(this.state);
+    API.searchJobs(title, location)
+    .then(data => console.log(data))
+    .catch(err => console.log(err));
   }
 
   render() {
