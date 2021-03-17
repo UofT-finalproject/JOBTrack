@@ -11,7 +11,6 @@ function Navbar() {
 
     return (
         <Menu stackable color={'grey'} inverted size='huge' >
-        <Container>
           <Menu.Item>
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >
@@ -47,7 +46,6 @@ function Navbar() {
             <Icon name='user outline' />
             John Smith
           </Menu.Item>
-        </Container>
         </Menu>
       )
 }

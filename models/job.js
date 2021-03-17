@@ -13,6 +13,7 @@ const jobSchema = new Schema({
   applied: { type: Boolean, default: false },
   date_applied: Date,
   status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Archived']},
+  notes: String,
   attachments: String,
   date: { type: Date, default: Date.now }
 });
