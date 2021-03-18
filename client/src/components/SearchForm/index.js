@@ -1,47 +1,59 @@
-import React, { Component } from 'react'
-import { Container, Form } from 'semantic-ui-react'
-import API from '../../utils/API'
+import React, { useState } from 'react'
+import { Form, Grid } from 'semantic-ui-react'
+import { SAVE_SEARCH } from '../../utils/actions';
+import API from '../../utils/API';
+import { useStoreContext } from "../../utils/GlobalState";
+import './style.css'
 
-class SearchForm extends Component {
-  state = { title: '', location: '', fullTime: false }
+function SearchForm() {
+  const [state, dispatch] = useStoreContext();
+  // state = { title: '', location: '', fullTime: false }
+  const [search, setSearch] = useState({title: '', location: ''});
+  const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })
 
-  handleChange = (e, { name, value }) => this.setState({ [name]: value })
-
-  handleSubmit = () => {
-    const { title, location } = this.state
-    this.setState({ title: title, location: location });
-    API.searchJobs(title, location)
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (search) {
+      // setSearch({ title: title, location: location });
+      const { title, location } = search;
+      API.searchJobs(title, location)
+      .then(res => {
+        console.log(res.data);
+        dispatch({
+          type: SAVE_SEARCH,
+          searchedJobs: res.data
+        })
+      })
+      .catch(err => console.log(err));
+    }
   }
 
-  render() {
-    const { title, location, fullTime } = this.state;
+  const { title, location } = search;
 
     return (
       <div>
-        <Container>
-        <Form onSubmit={this.handleSubmit}>
-          <Form.Group>
+        <Grid centered>
+        <Form className='search-form' onSubmit={handleSubmit}>
+          <Form.Group widths='equal' >
             <Form.Input
               placeholder='Job Title'
               name='title'
               value={title}
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
             <Form.Input
               placeholder='Location'
               name='location'
               value={location}
-              onChange={this.handleChange}
+              onChange={handleChange}
             />
             <Form.Button content='Submit' />
           </Form.Group>
         </Form>
-        </Container>
+        </Grid>
       </div>
     )
-  }
+  
 }
 
 export default SearchForm;
