@@ -47,7 +47,7 @@ function SearchForm() {
               value={location}
               onChange={handleChange}
             />
-            <Form.Button content='Submit' />
+            <Form.Button content='Search' icon='search' />
           </Form.Group>
         </Form>
         </Grid>

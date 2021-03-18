@@ -1,16 +1,19 @@
 import React from 'react'
-import { Image, Item, Card, Button } from 'semantic-ui-react';
+import { Image, Card, Button } from 'semantic-ui-react';
 import { useStoreContext } from "../../utils/GlobalState";
 
 const SearchList = () => {
     const [state, dispatch] = useStoreContext();
+    const handleSave = (e) => {
+        console.log(e.target.id)
+    }
     const jobItems = state.searchedJobs.map( job => {
         return (
             <Card key={job.id}>
                 <Card.Content>
                     <Image
-                    floated='right'
-                    size='mini'
+                    floated='left'
+                    size='tiny'
                     src={job.company_logo}
                     as="a" href={job.company_url} 
                     target="blank"
@@ -31,7 +34,11 @@ const SearchList = () => {
                      >
                         View
                     </Button>
-                    <Button basic color='red'>
+                    <Button 
+                        basic color='red'
+                        id={job.id}
+                        onClick={handleSave}
+                        >
                         Save
                     </Button>
                     </div>

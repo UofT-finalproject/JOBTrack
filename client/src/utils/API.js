@@ -14,6 +14,4 @@ export default {
     console.log(query);
     return axios.get(query);
   },
-
-  
 }
