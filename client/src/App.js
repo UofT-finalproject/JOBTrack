@@ -1,22 +1,26 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
-import JOBTrackLogo from "./assets/images/jobTrack-logo.png"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
+import Dashboard from "./pages/Dashboard";
+import Navbar from "./components/Navbar";
+import Search from "./pages/Search";
+import { StoreProvider } from "./utils/GlobalState";
 
 function App() {
   return (
-    <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div><img src={JOBTrackLogo} style={{width: 150}}/></div>
-        <h2> is coming soon...</h2>
+    <Router>
+      <div>
+      <StoreProvider>
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Dashboard} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/search" component={Search} />
+        </Switch>
+        </StoreProvider>
       </div>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-    </div>
+    </Router>
   );
 }
-
 
 export default App;
