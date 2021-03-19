@@ -7,7 +7,15 @@ export default {
         return axios.get("/api/jobs");
     },
 
-    searchJobs: function(title, location, jobBoard) {
+  saveJob: function(job) {
+    return axios.post("/api/jobs", job);
+  },
+
+  deleteJob: function(id) {
+    return axios.delete(`/api/jobs/${id}`);
+  },
+    
+  searchJobs: function(title, location, jobBoard) {
         if (jobBoard === 'gh') {
             const descriptionQuery = title ? `description=${title}` : '';
             const locationQuery = location ? `&location=${location}` : '';

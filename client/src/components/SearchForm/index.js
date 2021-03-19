@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
-import { Form, Grid } from 'semantic-ui-react'
-import { SAVE_SEARCH } from '../../utils/actions';
+import React, { useEffect, useState } from 'react'
+import { Form, Grid, Button } from 'semantic-ui-react'
+import { SAVE_SEARCH, CLEAR_SEARCH, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
 import './style.css'
@@ -8,20 +8,40 @@ import './style.css'
 function SearchForm() {
   const [state, dispatch] = useStoreContext();
   // state = { title: '', location: '', fullTime: false }
-  const [search, setSearch] = useState({ title: '', location: '' });
-  const handleChange = (e, { name, value }) => setSearch({ ...search, [name]: value })
+  const [search, setSearch] = useState({title: '', location: ''});
+  const [clearBtn, setClearBtn] = useState(false);
   // radio button state
   const [radioValue, setRadioValue] = useState('');
+  // UseEffect to show or hide clear form and list button if form or list is empty
+  useEffect(() => {
+    if(search.title || state.searchedJobs.length) {
+      setClearBtn(true)
+    } else setClearBtn(false);
+  }  , [search]);// radio button state
+  const [radioValue, setRadioValue] = useState('');
+
+  const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })
+
   function handleRadioButtonChange(radioValue, e) {
     e.preventDefault();
     setRadioValue(radioValue);
   }
 
+  const handleClearSearch = (e) => {
+    e.preventDefault();
+    setSearch({title: '', location: ''});
+    dispatch({
+      type: CLEAR_SEARCH,
+    })
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (search) {
+    const { title, location } = search;
+    if (title || location) {
       // setSearch({ title: title, location: location });
       const { title, location } = search;
+      dispatch({type: LOADING});
       API.searchJobs(title, location, radioValue)
         .then(res => {
           console.log(res.data);
@@ -53,7 +73,8 @@ function SearchForm() {
               value={location}
               onChange={handleChange}
             />
-            <Form.Button content='Search' icon='search' />
+            <Form.Button content='Search' icon='search' loading={state.loading} />
+            {clearBtn && <Button basic hidden icon='close' onClick={handleClearSearch} />}
           </Form.Group>
           <Form.Group inline>
             <label>Job Site:</label>

@@ -1,18 +1,59 @@
-import React from 'react'
-import { Image, Card, Button } from 'semantic-ui-react';
+import React, { useState } from 'react'
+import { Image, Card, Button, Icon, Transition } from 'semantic-ui-react';
 import { useStoreContext } from "../../utils/GlobalState";
+import { ADD_JOB, LOADING } from '../../utils/actions';
+import moment from "moment";
+import API from '../../utils/API';
+import './style.css';
 
 const SearchList = () => {
     const [state, dispatch] = useStoreContext();
-    const handleSave = (e) => {
-        console.log(e.target.id)
+    const [clickedButtonId, setClickedButtonId] = useState('');
+    const [visible, setVisible] = useState(false)
+
+    const showSavedMessage = () => {
+        setVisible(true);
+        setInterval(() => setVisible(false), 3000);
     }
+
+    const handleSave = (e) => {
+        const id = e.target.id;
+        setClickedButtonId(id);
+        const jobToSave = state.searchedJobs.filter(job => job.id === id).pop();
+        const newJob = {
+            searchId: jobToSave.id,
+            title: jobToSave.title,
+            description: jobToSave.description,
+            type: jobToSave.type,
+            location: jobToSave.location,
+            company: jobToSave.company,
+            url: jobToSave.url,
+            created_at: jobToSave.created_at,
+            applied: false ,
+            status: 'None',
+            notes: '',
+            attachments: '',
+          };
+          dispatch({type: LOADING});
+          API.saveJob(newJob)
+          .then(res => {
+            dispatch({
+                type: ADD_JOB,
+                jobToSave: res
+            });
+            showSavedMessage();
+          })
+          .catch(err => console.log(err));
+        
+    }
+
     const jobItems = state.searchedJobs.map( job => {
+        const m = moment(job.created_at, "ddd MMM DD hh:mm:ss YYYY")
         return (
             <Card key={job.id}>
                 <Card.Content>
                     <Image
-                    floated='left'
+                    floated='right'
                     size='tiny'
                     src={job.company_logo}
                     as="a" href={job.company_url} 
@@ -22,24 +63,32 @@ const SearchList = () => {
                     <Card.Meta>{job.type}</Card.Meta>
                     <Card.Description>
                     {job.company} | <strong>{job.location}</strong>
-                    <Card.Meta>{job.created_at}</Card.Meta>
+                    <Card.Meta>added {m.fromNow()}</Card.Meta>
+                    <div className="saved-msg">
+                    <Transition visible={ (clickedButtonId === job.id) && visible } animation='slide right' duration={500}>
+                        <p className='green'>Saved</p>
+                    </Transition>
+                    </div>
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
                     <div className='ui two buttons'>
-                    <Button basic color='green' 
-                        as='a'
-                        as="a" href={job.url} 
+                    <Button 
+                        basic color='grey'
+                        id={job.id}
+                        onClick={handleSave}
+                        loading = {(clickedButtonId === job.id) && state.loading}
+                        >
+                        <Icon name='download' id={job.id} />
+                        Save
+                    </Button>
+                    <Button basic color='green'
+                        as="a" 
+                        href={job.url} 
                         target="blank"
                      >
                         View
-                    </Button>
-                    <Button 
-                        basic color='red'
-                        id={job.id}
-                        onClick={handleSave}
-                        >
-                        Save
+                        <Icon name='arrow right' />
                     </Button>
                     </div>
                 </Card.Content>
