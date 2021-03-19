@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Grid, Checkbox } from 'semantic-ui-react'
+import { Form, Grid } from 'semantic-ui-react'
 import { SAVE_SEARCH } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
@@ -22,7 +22,7 @@ function SearchForm() {
     if (search) {
       // setSearch({ title: title, location: location });
       const { title, location } = search;
-      API.searchJobs(title, location)
+      API.searchJobs(title, location, radioValue)
         .then(res => {
           console.log(res.data);
           dispatch({
@@ -56,7 +56,7 @@ function SearchForm() {
             <Form.Button content='Search' icon='search' />
           </Form.Group>
           <Form.Group inline>
-            <label>Job-board</label>
+            <label>Job Site:</label>
             <Form.Radio
               label='LinkedIn'
               value='li'
