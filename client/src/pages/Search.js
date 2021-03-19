@@ -1,8 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Container } from 'semantic-ui-react';
+import SearchForm from '../components/SearchForm';
+import SearchList from '../components/SearchList';
+
 
 function Search() {
-    return (
-        <h1></h1>
+    
+
+    return ( 
+        <Container >
+            <div>
+            <SearchForm />
+            <SearchList />
+            </div>
+            
+        </Container>
     )
 }
 
