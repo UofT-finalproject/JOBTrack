@@ -11,6 +11,10 @@ export default {
     return axios.post("/api/jobs", job);
   },
 
+  deleteJob: function(id) {
+    return axios.delete(`/api/jobs/${id}`);
+  },
+
   searchJobs: function(title, location) {
     const descriptionQuery = title ? `description=${title}`: '';
     const locationQuery = location ? `&location=${location}` : '';
