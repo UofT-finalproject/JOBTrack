@@ -1,15 +1,40 @@
 import React from 'react'
 import { Image, Card, Button, Icon } from 'semantic-ui-react';
 import { useStoreContext } from "../../utils/GlobalState";
+import { ADD_JOB } from '../../utils/actions';
 import moment from "moment";
+import API from '../../utils/API';
 
 const SearchList = () => {
     const [state, dispatch] = useStoreContext();
     const handleSave = (e) => {
-        console.log(e.target.id)
+        const id = e.target.id;
+        const jobToSave = state.searchedJobs.filter(job => job.id === id).pop();
+        const newJob = {
+            searchId: jobToSave.id,
+            title: jobToSave.title,
+            description: jobToSave.description,
+            type: jobToSave.type,
+            location: jobToSave.location,
+            company: jobToSave.company,
+            url: jobToSave.url,
+            created_at: jobToSave.created_at,
+            applied: false ,
+            status: 'None',
+            notes: '',
+            attachments: '',
+          }
+          API.saveJob(newJob)
+          .then(res => {
+            dispatch({
+                type: ADD_JOB,
+                jobToSave: res
+            })
+          })
+          .catch(err => console.log(err));
+        
     }
     const jobItems = state.searchedJobs.map( job => {
-        let diff = moment().diff(job.created_at, 'days')
         return (
             <Card key={job.id}>
                 <Card.Content>
@@ -24,9 +49,7 @@ const SearchList = () => {
                     <Card.Meta>{job.type}</Card.Meta>
                     <Card.Description>
                     {job.company} | <strong>{job.location}</strong>
-                    <Card.Meta>added {
-                        !diff ? 'today' : (diff === 1 ? '1 day ago' : `${diff} days ago`)
-                    }</Card.Meta>
+                    <Card.Meta>added {moment(job.created_at).fromNow()}</Card.Meta>
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>

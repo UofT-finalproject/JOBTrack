@@ -7,6 +7,10 @@ export default {
     return axios.get("/api/jobs");
   },
 
+  saveJob: function(job) {
+    return axios.post("/api/jobs", job);
+  },
+
   searchJobs: function(title, location) {
     const descriptionQuery = title ? `description=${title}`: '';
     const locationQuery = location ? `&location=${location}` : '';
