@@ -35,6 +35,7 @@ const SearchList = () => {
         
     }
     const jobItems = state.searchedJobs.map( job => {
+        const m = moment(job.created_at, "ddd MMM DD hh:mm:ss YYYY")
         return (
             <Card key={job.id}>
                 <Card.Content>
@@ -49,7 +50,7 @@ const SearchList = () => {
                     <Card.Meta>{job.type}</Card.Meta>
                     <Card.Description>
                     {job.company} | <strong>{job.location}</strong>
-                    <Card.Meta>added {moment(job.created_at).fromNow()}</Card.Meta>
+                    <Card.Meta>added {m.fromNow()}</Card.Meta>
                     </Card.Description>
                 </Card.Content>
                 <Card.Content extra>
@@ -63,8 +64,8 @@ const SearchList = () => {
                         Save  
                     </Button>
                     <Button basic color='green'
-                        as='a'
-                        as="a" href={job.url} 
+                        as="a" 
+                        href={job.url} 
                         target="blank"
                      >
                         View

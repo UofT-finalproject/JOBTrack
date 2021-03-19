@@ -8,7 +8,7 @@ module.exports = {
     const descriptionQuery = description ? `description=${description}`: '';
     const locationQuery = location ? `&location=${location}` : '';
     const query = `https://jobs.github.com/positions.json?${descriptionQuery}${locationQuery}`;
-    console.log('server:' , query);
+    // console.log('server:' , query);
     axios.get(query)
     .then(result => {
       res.json(result.data)

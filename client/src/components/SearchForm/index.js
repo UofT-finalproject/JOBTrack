@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Form, Grid, Button } from 'semantic-ui-react'
-import { SAVE_SEARCH, CLEAR_SEARCH } from '../../utils/actions';
+import { SAVE_SEARCH, CLEAR_SEARCH, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
 import './style.css'
@@ -21,15 +21,18 @@ function SearchForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (search) {
+    const { title, location } = search;
+    if (title || location) {
       // setSearch({ title: title, location: location });
       const { title, location } = search;
+      dispatch({type: LOADING});
       API.searchJobs(title, location)
       .then(res => {
         dispatch({
           type: SAVE_SEARCH,
           searchedJobs: res.data
-        })
+        });
+        setSearch({title: '', location: ''});
       })
       .catch(err => console.log(err));
     }
@@ -54,7 +57,7 @@ function SearchForm() {
               value={location}
               onChange={handleChange}
             />
-            <Form.Button content='Search' icon='search' />
+            <Form.Button content='Search' icon='search' loading={state.loading} />
             <Button basic icon='close' onClick={handleClearSearch} />
           </Form.Group>
         </Form>
