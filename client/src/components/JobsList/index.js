@@ -15,7 +15,6 @@ function JobsList() {
       .then(res => {
         
         setJobs(res.data)});
-        console.log(jobs);
     }
     
     return (

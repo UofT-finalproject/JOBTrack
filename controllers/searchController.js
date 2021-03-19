@@ -3,7 +3,7 @@ const axios = require('axios');
 // Defining methods for the searchController
 module.exports = {
   findAll: function(req, res) {
-    console.log('params here:',req.query);
+    // console.log('params here:',req.query);
     const { description, location } = req.query;
     const descriptionQuery = description ? `description=${description}`: '';
     const locationQuery = location ? `&location=${location}` : '';
