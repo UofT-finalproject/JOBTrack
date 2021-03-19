@@ -10,15 +10,22 @@ function SearchForm() {
   // state = { title: '', location: '', fullTime: false }
   const [search, setSearch] = useState({title: '', location: ''});
   const [clearBtn, setClearBtn] = useState(false);
-  
+  // radio button state
+  const [radioValue, setRadioValue] = useState('');
   // UseEffect to show or hide clear form and list button if form or list is empty
   useEffect(() => {
     if(search.title || state.searchedJobs.length) {
       setClearBtn(true)
     } else setClearBtn(false);
-  }  , [search]);
+  }  , [search]);// radio button state
+  const [radioValue, setRadioValue] = useState('');
 
   const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })
+
+  function handleRadioButtonChange(radioValue, e) {
+    e.preventDefault();
+    setRadioValue(radioValue);
+  }
 
   const handleClearSearch = (e) => {
     e.preventDefault();
@@ -35,23 +42,23 @@ function SearchForm() {
       // setSearch({ title: title, location: location });
       const { title, location } = search;
       dispatch({type: LOADING});
-      API.searchJobs(title, location)
-      .then(res => {
-        dispatch({
-          type: SAVE_SEARCH,
-          searchedJobs: res.data
-        });
-        setSearch({title: '', location: ''});
-      })
-      .catch(err => console.log(err));
+      API.searchJobs(title, location, radioValue)
+        .then(res => {
+          console.log(res.data);
+          dispatch({
+            type: SAVE_SEARCH,
+            searchedJobs: res.data
+          })
+        })
+        .catch(err => console.log(err));
     }
   }
 
   const { title, location } = search;
 
-    return (
-      <div>
-        <Grid centered>
+  return (
+    <div>
+      <Grid centered>
         <Form className='search-form' onSubmit={handleSubmit}>
           <Form.Group widths='equal' >
             <Form.Input
@@ -69,11 +76,26 @@ function SearchForm() {
             <Form.Button content='Search' icon='search' loading={state.loading} />
             {clearBtn && <Button basic hidden icon='close' onClick={handleClearSearch} />}
           </Form.Group>
+          <Form.Group inline>
+            <label>Job Site:</label>
+            <Form.Radio
+              label='LinkedIn'
+              value='li'
+              checked={radioValue === 'li'}
+              onChange={(e) => handleRadioButtonChange('li', e)}
+            />
+            <Form.Radio
+              label='GitHub'
+              value='gh'
+              checked={radioValue === 'gh'}
+              onChange={(e) => handleRadioButtonChange('gh', e)}
+            />
+          </Form.Group>
         </Form>
-        </Grid>
-      </div>
-    )
-  
+      </Grid>
+    </div>
+  )
+
 }
 
 export default SearchForm;
