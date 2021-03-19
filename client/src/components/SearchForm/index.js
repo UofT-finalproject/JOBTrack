@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Form, Grid, Button } from 'semantic-ui-react'
 import { SAVE_SEARCH, CLEAR_SEARCH, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
@@ -9,6 +9,15 @@ function SearchForm() {
   const [state, dispatch] = useStoreContext();
   // state = { title: '', location: '', fullTime: false }
   const [search, setSearch] = useState({title: '', location: ''});
+  const [clearBtn, setClearBtn] = useState(false);
+  
+  // UseEffect to show or hide clear form and list button if form or list is empty
+  useEffect(() => {
+    if(search.title || state.searchedJobs.length) {
+      setClearBtn(true)
+    } else setClearBtn(false);
+  }  , [search]);
+
   const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })
 
   const handleClearSearch = (e) => {
@@ -58,7 +67,7 @@ function SearchForm() {
               onChange={handleChange}
             />
             <Form.Button content='Search' icon='search' loading={state.loading} />
-            <Button basic icon='close' onClick={handleClearSearch} />
+            {clearBtn && <Button basic hidden icon='close' onClick={handleClearSearch} />}
           </Form.Group>
         </Form>
         </Grid>
