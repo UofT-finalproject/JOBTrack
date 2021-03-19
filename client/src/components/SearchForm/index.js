@@ -11,14 +11,14 @@ function SearchForm() {
   const [search, setSearch] = useState({title: '', location: ''});
   const [clearBtn, setClearBtn] = useState(false);
   // radio button state
-  const [radioValue, setRadioValue] = useState('');
+  const [radioValue, setRadioValue] = useState('gh');
+  
   // UseEffect to show or hide clear form and list button if form or list is empty
   useEffect(() => {
     if(search.title || state.searchedJobs.length) {
       setClearBtn(true)
     } else setClearBtn(false);
-  }  , [search]);// radio button state
-  const [radioValue, setRadioValue] = useState('');
+  }  , [search]);
 
   const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })
 
@@ -44,7 +44,6 @@ function SearchForm() {
       dispatch({type: LOADING});
       API.searchJobs(title, location, radioValue)
         .then(res => {
-          console.log(res.data);
           dispatch({
             type: SAVE_SEARCH,
             searchedJobs: res.data
