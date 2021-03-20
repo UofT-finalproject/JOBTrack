@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Container } from 'semantic-ui-react';
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';

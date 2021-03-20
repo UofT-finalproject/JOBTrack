@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Menu, Input, Label, Icon } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Menu, Input, Icon } from 'semantic-ui-react';
 import './style.css';
 
 function SideMenu() {

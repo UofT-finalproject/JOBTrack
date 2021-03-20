@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from "react-router-dom";
-import { Menu, Container, Icon } from 'semantic-ui-react';
+import { Menu, Icon } from 'semantic-ui-react';
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
 import './style.css';
@@ -8,7 +8,7 @@ import './style.css';
 function Navbar() {
     const activeItem = 'Dashboard';
     const [date, setDate] = useState(moment().format("LL"));
-    const handleItemClick = (e, { name }) => console.log( name );
+    const handleItemClick = (e, { name }) => {};
 
     return (
         <Menu stackable color={'grey'} inverted size='huge' >
