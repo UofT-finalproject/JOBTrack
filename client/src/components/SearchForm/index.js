@@ -128,7 +128,7 @@ function SearchForm() {
         Form.Group inline >
         <
         label > Job Site: < /label> <
-        Form.Radio label = 'LinkedIn'
+        Form.Radio label = 'The Muse'
         value = 'li'
         checked = { radioValue === 'li' }
         onChange = {
