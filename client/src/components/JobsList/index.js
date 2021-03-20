@@ -33,9 +33,10 @@ function JobsList() {
         loadJobs()})
       .catch(err => console.log(err));
     }
-    const jobs = state.savedJobs; 
+    const jobs = state.savedJobs;
+    console.log(jobs);
     return (
-      <Table celled fixed striped>
+      <Table celled fixed striped selectable>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan={2}>Title</Table.HeaderCell>
@@ -52,26 +53,27 @@ function JobsList() {
       </Table.Header>
 
     <Table.Body>
-      {jobs ? (jobs.map(job => {
+      {jobs.length > 0 ? (jobs.map(job => {
           const {_id, title, company, description, location, created_at, date_applied, status, notes } = job;
           let strippedDescription = description ? description.replace(/(<([^>]+)>)/gi, "") : "No description";
           const m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
-          return (<Table.Row key={_id}>
-            <Table.Cell colSpan={2}>{title}</Table.Cell>
-              <Table.Cell colSpan={2}>{company}</Table.Cell>
-              <Table.Cell singleLine colSpan={3}>{strippedDescription}</Table.Cell>
-              <Table.Cell>{location}</Table.Cell>
-              <Table.Cell colSpan={2}>{m.format('ll')}<br/>{m.fromNow()}</Table.Cell>
-              <Table.Cell>{status}</Table.Cell>
-              <Table.Cell>{ date_applied }</Table.Cell>
-              <Table.Cell>{ notes }</Table.Cell>
-              <Table.Cell> -- </Table.Cell>
-              <Table.Cell>
-              <Button icon id={_id} onClick={handleDelete} loading={(clickedButtonId === _id) && state.loading}>
-                  <Icon name ='delete' id={_id} />
-              </Button>
-              </Table.Cell>
-          </Table.Row>)
+          return (
+            <Table.Row key={_id}>
+              <Table.Cell colSpan={2}>{title}</Table.Cell>
+                <Table.Cell colSpan={2}>{company}</Table.Cell>
+                <Table.Cell singleLine colSpan={3}>{strippedDescription}</Table.Cell>
+                <Table.Cell>{location}</Table.Cell>
+                <Table.Cell colSpan={2}>{m.format('ll')}<br/>{m.fromNow()}</Table.Cell>
+                <Table.Cell>{status}</Table.Cell>
+                <Table.Cell>{ date_applied }</Table.Cell>
+                <Table.Cell>{ notes }</Table.Cell>
+                <Table.Cell> -- </Table.Cell>
+                <Table.Cell>
+                <Button icon id={_id} onClick={handleDelete} loading={(clickedButtonId === _id) && state.loading}>
+                    <Icon name ='delete' id={_id} />
+                </Button>
+                </Table.Cell>
+            </Table.Row>)
         }
         )) : (
           <Table.Row><Table.Cell colSpan={14}>No saved jobs yet...</Table.Cell></Table.Row>

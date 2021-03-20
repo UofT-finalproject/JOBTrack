@@ -14,17 +14,21 @@ function App() {
       <div>
       <StoreProvider>
         <Navbar />
-        <Container >
-            <Grid columns='equal'>
-                <Grid.Row>
-        <SideMenu />
-        <Switch>
-          <Route exact path="/" component={Dashboard} />
-          <Route exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/search" component={Search} />
-        </Switch>
-         </Grid.Row>
-         </Grid>
+        <Container fluid>
+          <Grid columns='equal' stackable>
+            <Grid.Row>
+              <Grid.Column width={3}>
+                <SideMenu />
+              </Grid.Column>
+              <Grid.Column width={13} >
+                <Switch>
+                  <Route exact path="/" component={Dashboard} />
+                  <Route exact path="/dashboard" component={Dashboard} />
+                  <Route exact path="/search" component={Search} />
+                </Switch>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
          </Container>
         </StoreProvider>
       </div>
