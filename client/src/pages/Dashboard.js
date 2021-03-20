@@ -11,7 +11,7 @@ function Dashboard() {
             <Grid columns='equal'>
                 <Grid.Row>
                     <Grid.Column width={3}>
-                        <SideMenu />
+                        
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <JobsList />
