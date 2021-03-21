@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, Input, Icon, Dropdown, Image } from 'semantic-ui-react';
+import { Menu, Input, Icon, Dropdown } from 'semantic-ui-react';
 import { NavLink } from "react-router-dom";
 import logo from '../../assets/images/jobTrack-logo.png';
 import './style.css';
@@ -41,6 +41,7 @@ function SideMenu() {
       </Menu.Item>
 
       <Menu.Item
+        as={ NavLink } to="/add"
         name='add'
         active={activeItem === 'add'}
         onClick={handleItemClick}

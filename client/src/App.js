@@ -7,6 +7,7 @@ import SideMenu from "./components/SideMenu"
 import Navbar from "./components/Navbar";
 import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
+import AddJob from "./components/AddJob";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
+                <Route exact path="/add" component={AddJob} />
               </Switch>
             </Grid.Column>
           </Grid.Row>
