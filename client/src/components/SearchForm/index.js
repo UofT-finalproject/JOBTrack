@@ -20,7 +20,7 @@ function SearchForm() {
         } else setClearBtn(false);
     }, [search]);
 
-    const handleChange = (e, { name, value }) => setSearch({...search, [name]: value })
+    const handleChange = (e, { name, value }) => setSearch({ ...search, [name]: value })
 
     function handleRadioButtonChange(radioValue, e) {
         e.preventDefault();
@@ -97,57 +97,47 @@ function SearchForm() {
 
     const { title, location } = search;
 
-    return ( <
-        div >
-        <
-        Grid centered >
-        <
-        Form className = 'search-form'
-        onSubmit = { handleSubmit } >
-        <
-        Form.Group widths = 'equal' >
-        <
-        Form.Input placeholder = 'Job Title'
-        name = 'title'
-        value = { title }
-        onChange = { handleChange }
-        /> <
-        Form.Input placeholder = 'Location'
-        name = 'location'
-        value = { location }
-        onChange = { handleChange }
-        /> <
-        Form.Button content = 'Search'
-        icon = 'search'
-        loading = { state.loading }
-        /> {
-        clearBtn && < Button basic hidden icon = 'close'
-        onClick = { handleClearSearch }
-        />} < /
-        Form.Group > <
-        Form.Group inline >
-        <
-        label > Job Site: < /label> <
-        Form.Radio label = 'The Muse'
-        value = 'li'
-        checked = { radioValue === 'li' }
-        onChange = {
-            (e) => handleRadioButtonChange('li', e)
-        }
-        /> <
-        Form.Radio label = 'GitHub'
-        value = 'gh'
-        checked = { radioValue === 'gh' }
-        onChange = {
-            (e) => handleRadioButtonChange('gh', e)
-        }
-        /> < /
-        Form.Group > <
-        /Form> < /
-        Grid > <
-        /div>
-    )
-
+    return (
+        <div>
+            <Grid centered>
+                <Form className="search-form" onSubmit={handleSubmit}>
+                    <Form.Group widths="equal">
+                        <Form.Input
+                            placeholder="Job Title"
+                            name="title"
+                            value={title}
+                            onChange={handleChange}
+                        />{" "}
+                        <Form.Input
+                            placeholder="Location"
+                            name="location"
+                            value={location}
+                            onChange={handleChange}
+                        />{" "}
+                        <Form.Button content="Search" icon="search" loading={state.loading} />{" "}
+                        {clearBtn && (
+                            <Button basic hidden icon="close" onClick={handleClearSearch} />
+                        )}{" "}
+                    </Form.Group>{" "}
+                    <Form.Group inline>
+                        <label> Job Site: </label>{" "}
+                        <Form.Radio
+                            label="The Muse"
+                            value="li"
+                            checked={radioValue === "li"}
+                            onChange={(e) => handleRadioButtonChange("li", e)}
+                        />{" "}
+                        <Form.Radio
+                            label="GitHub"
+                            value="gh"
+                            checked={radioValue === "gh"}
+                            onChange={(e) => handleRadioButtonChange("gh", e)}
+                        />{" "}
+                    </Form.Group>{" "}
+                </Form>{" "}
+            </Grid>{" "}
+        </div>
+    );
 }
 
 export default SearchForm;
