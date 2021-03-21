@@ -3,6 +3,7 @@ import { Form, Select, Input, TextArea, Button, Icon } from 'semantic-ui-react';
 import { OPEN_MODAL, SET_CURRENT_JOB, UPDATE_JOB } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
+import { DateInput } from 'semantic-ui-calendar-react';
 
 function DetailForm() {
   const [input, setInput] = useState({ status: '', date_applied: '', attachments: '', notes: '' });
@@ -57,7 +58,8 @@ function DetailForm() {
                 onChange={handleChange}
                 value={status}
             />
-            <Form.Field
+            
+            <DateInput
                 id='form-input-control-date-applied'
                 name='date_applied'
                 control={Input}

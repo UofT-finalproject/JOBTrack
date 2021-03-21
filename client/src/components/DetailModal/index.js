@@ -6,7 +6,6 @@ import moment from "moment";
 import './style.css'
 import DetailForm from '../DetailForm';
 
-
 function DetailModal(props) {
   const [state, dispatch] = useStoreContext();
     const {
@@ -14,10 +13,10 @@ function DetailModal(props) {
     const m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
   return (
     <Modal
-        dimmer='blurring'
-      onClose={() => dispatch({type: OPEN_MODAL, modal: false})}
-      onOpen={() => dispatch({type: OPEN_MODAL, modal: true})}
-      open={state.modal}
+        closeIcon
+        onClose={() => dispatch({type: OPEN_MODAL, modal: false})}
+        onOpen={() => dispatch({type: OPEN_MODAL, modal: true})}
+        open={state.modal}
     >
       <Modal.Header>
         {title} | { company } | { location } <br /> 
