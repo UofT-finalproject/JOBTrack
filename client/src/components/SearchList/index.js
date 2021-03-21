@@ -30,6 +30,7 @@ const SearchList = () => {
             url: jobToSave.url,
             created_at: jobToSave.created_at,
             applied: false ,
+            date_applied: '',
             status: 'None',
             notes: '',
             attachments: '',

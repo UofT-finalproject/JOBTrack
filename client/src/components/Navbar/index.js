@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { Menu, Icon } from 'semantic-ui-react';
 import logoWhite from '../../assets/images/jobTrack-white.png';
@@ -10,8 +10,13 @@ function Navbar() {
     const [date, setDate] = useState(moment().format("LL"));
     const handleItemClick = (e, { name }) => {};
 
+    useEffect(() => {
+      setDate(moment().format("LL"))
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     return (
-        <Menu stackable color={'grey'} inverted size='huge' >
+        <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
           <Menu.Item>
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >

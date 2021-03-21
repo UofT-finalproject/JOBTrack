@@ -14,6 +14,10 @@ export default {
   deleteJob: function(id) {
     return axios.delete(`/api/jobs/${id}`);
   },
+
+  updateJob: function(id, job) {
+    return axios.put(`/api/jobs/${id}`, job);
+  },
     
   searchJobs: function(title, location, jobBoard) {
         if (jobBoard === 'gh') {

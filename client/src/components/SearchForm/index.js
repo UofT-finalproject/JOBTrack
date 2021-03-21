@@ -18,6 +18,7 @@ function SearchForm() {
     if(search.title || state.searchedJobs.length) {
       setClearBtn(true)
     } else setClearBtn(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }  , [search]);
 
   const handleChange = (e, { name, value }) => setSearch({ ...search,[name]: value })

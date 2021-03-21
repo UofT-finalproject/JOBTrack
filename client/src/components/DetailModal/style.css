@@ -1,0 +1,14 @@
+.small {
+    color: grey;
+    font-weight: 200;
+    font-size: 1.2rem;
+}
+
+.header {
+    padding-top: 5!important;
+    padding-bottom: 0!important;
+}
+
+.form {
+    padding-bottom: 0!important;
+}

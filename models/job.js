@@ -11,8 +11,8 @@ const jobSchema = new Schema({
   url: String,
   created_at: String,
   applied: { type: Boolean, default: false },
-  date_applied: Date,
-  status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Archived']},
+  date_applied: String,
+  status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Declined', 'Archived']},
   notes: String,
   attachments: String,
   date: { type: Date, default: Date.now }
