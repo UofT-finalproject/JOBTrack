@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import { Button, Checkbox, Form, Header } from 'semantic-ui-react'
 
 const FormExampleForm = () => (
   <Form>
@@ -16,4 +16,11 @@ const FormExampleForm = () => (
   </Form>
 )
 
+const Header = () => (
+  <div>
+    <Header as='h1'>Track your job search - save applications!</Header>
+    </div>
+)
+
+export default Header
 export default FormExampleForm
