@@ -13,29 +13,30 @@ function JobsList() {
     loadJobs()
   }, []);
 
-    const loadJobs = () => {
-      dispatch({type: LOADING})
-      API.getSavedJobs()
+  const loadJobs = () => {
+    dispatch({ type: LOADING })
+    API.getSavedJobs()
       .then(res => {
         dispatch({
           type: UPDATE_JOBS,
           savedJobs: res.data
         })
       });
-    }
+  }
 
-    const handleDelete = (e) => {
-      setClickedButtonId(e.target.id);
-      dispatch({type: LOADING})
-      API.deleteJob(e.target.id)
+  const handleDelete = (e) => {
+    setClickedButtonId(e.target.id);
+    dispatch({ type: LOADING })
+    API.deleteJob(e.target.id)
       .then(res => {
         setClickedButtonId('');
-        loadJobs()})
+        loadJobs()
+      })
       .catch(err => console.log(err));
-    }
-    const jobs = state.savedJobs; 
-    return (
-      <Table celled fixed striped>
+  }
+  const jobs = state.savedJobs;
+  return (
+    <Table celled fixed striped>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan={2}>Title</Table.HeaderCell>
@@ -51,36 +52,44 @@ function JobsList() {
         </Table.Row>
       </Table.Header>
 
-    <Table.Body>
-      {jobs ? (jobs.map(job => {
-          const {_id, title, company, description, location, created_at, date_applied, status, notes } = job;
+      <Table.Body>
+        {jobs ? (jobs.map(job => {
+          const { _id, title, company, description, location, created_at, date_applied, status, notes, searchId } = job;
           let strippedDescription = description ? description.replace(/(<([^>]+)>)/gi, "") : "No description";
-          const m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
+          const pattern = /\D/g;
+          let m;
+          if (pattern.test(searchId)) {
+            // if we get here then API is GitHub
+            m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
+          } else {
+            // it's The Muse
+            m = moment(created_at, "YYYY-MM-DDThh:mm:ssZ");
+          }
           return (<Table.Row key={_id}>
             <Table.Cell colSpan={2}>{title}</Table.Cell>
-              <Table.Cell colSpan={2}>{company}</Table.Cell>
-              <Table.Cell singleLine colSpan={3}>{strippedDescription}</Table.Cell>
-              <Table.Cell>{location}</Table.Cell>
-              <Table.Cell colSpan={2}>{m.format('ll')}<br/>{m.fromNow()}</Table.Cell>
-              <Table.Cell>{status}</Table.Cell>
-              <Table.Cell>{ date_applied }</Table.Cell>
-              <Table.Cell>{ notes }</Table.Cell>
-              <Table.Cell> -- </Table.Cell>
-              <Table.Cell>
+            <Table.Cell colSpan={2}>{company}</Table.Cell>
+            <Table.Cell singleLine colSpan={3}>{strippedDescription}</Table.Cell>
+            <Table.Cell>{location}</Table.Cell>
+            <Table.Cell colSpan={2}>{m.format('ll')}<br />{m.fromNow()}</Table.Cell>
+            <Table.Cell>{status}</Table.Cell>
+            <Table.Cell>{date_applied}</Table.Cell>
+            <Table.Cell>{notes}</Table.Cell>
+            <Table.Cell> -- </Table.Cell>
+            <Table.Cell>
               <Button icon id={_id} onClick={handleDelete} loading={(clickedButtonId === _id) && state.loading}>
-                  <Icon name ='delete' id={_id} />
+                <Icon name='delete' id={_id} />
               </Button>
-              </Table.Cell>
+            </Table.Cell>
           </Table.Row>)
         }
         )) : (
           <Table.Row><Table.Cell colSpan={14}>No saved jobs yet...</Table.Cell></Table.Row>
         )}
-      
-    </Table.Body>
-  </Table>
-        
-      )
+
+      </Table.Body>
+    </Table>
+
+  )
 }
 
 export default JobsList;
