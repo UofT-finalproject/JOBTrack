@@ -56,7 +56,6 @@ const SearchList = () => {
         } else {
             // it's The Muse
             m = moment(job.created_at, "YYYY-MM-DDThh:mm:ssZ");
-            console.log(`For job creation date of ${job.created_at}, this was ${m.fromNow()} ago`);
         }
         return (
             <Card key={job.id}>

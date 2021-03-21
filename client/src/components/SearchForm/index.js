@@ -74,7 +74,7 @@ function SearchForm() {
                                 created_at: item.publication_date,
                                 description: item.contents,
                                 how_to_apply: item.refs.landing_page,
-                                id: item.id,
+                                id: item.id.toString(),
                                 location: item.locations[0].name,
                                 title: item.name,
                                 type: item.type,
