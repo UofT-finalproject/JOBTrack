@@ -2,6 +2,7 @@ import React from 'react';
 import JobsList from '../components/JobsList';
 import SideMenu from '../components/SideMenu';
 import { Container, Grid } from 'semantic-ui-react';
+import JobDetail from '../components/JobDetail';
 
 function Dashboard() {
 
@@ -17,6 +18,7 @@ function Dashboard() {
                         <JobsList />
                     </Grid.Column>
                 </Grid.Row>
+                <JobDetail />
             </Grid>
             
         </div>

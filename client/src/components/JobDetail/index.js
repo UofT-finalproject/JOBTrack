@@ -1,60 +1,47 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
+import { Item } from "semantic-ui-react";
 
-const AppContext = React.createContext("");
+const title = ["Title"].join(" ");
 
-async function getJobById(id, token) {
-  let response;
-  try {
-    response = await axiosInstance.get(`/api/jobs/${id}/`, tokenConfig(token));
-  } catch (error) {
-    response = error.response;
-  }
-  return response.data;
-}
+const company = ["Company"].join(" ");
 
-export default function JobDetail() {
-  const [job, setJob] = useState(null);
-  const { token } = useContext(AppContext);
-  let { jobid } = useParams();
+const description = ["Description"].join(" ");
 
-  useEffect(() => {
-    async function getJob() {
-      const APIresponse = await getJobById(jobid, token);
-      const { success, job, error } = APIresponse;
-      if (success) {
-        setJob(job);
-      } else if (error) {
-        console.log("Error loading job by id");
-      }
-    }
-    getJob();
-  }, [jobid, token]);
+const location = ["Location"].join(" ");
 
-  return (
-    <div>
-      {job ? (
-        <div className="mx-10 flex flex-col items-center">
-          <div className="flex flex-col space-y-5 p-5">
-            <div className="flex-1 flex flex-row border-t border-b p-2 border-blue-300 shadow">
-              <h2 className="flex-grow text-3xl text-center font-playfair">
-                {job.title}
-              </h2>
-            </div>
-            <p className="flex-1 shadow border-t border-b border-blue-300 p-5">
-              {job.description}
-            </p>
-            <div className="flex-1 flex flex-row border-t border-b px-4 py-2 border-blue-300 justify-between shadow">
-              <p className="flex-1 text-left">{job.employer}</p>
-              <p className="flex-1 text-right">
-                {job.city}, {job.state}
-              </p>
-            </div>
-          </div>
-        </div>
-      ) : (
-        <h2>Loading</h2>
-      )}
-    </div>
-  );
-}
+const created_at = ["Date Posted"].join(" ");
+
+const status = ["Status"].join(" ");
+
+const date_applied = ["Date Applied"].join(" ");
+
+const notes = ["Notes"].join(" ");
+
+const attachments = ["Attachments"].join(" ");
+
+const JobDetail = () => (
+  <Item.Group>
+    <Item>
+      <Item.Image
+        size="small"
+        src="https://react.semantic-ui.com/images/wireframe/image.png"
+      />
+
+      <Item.Content>
+        <Item.Header as="a">{title}</Item.Header>
+        <Item.Description>
+          <p>{company}</p>
+          <p>{description}</p>
+          <p>{location}</p>
+          <p>{created_at}</p>
+          <p>{status}</p>
+          <p>{date_applied}</p>
+          <p>{notes}</p>
+          <p>{attachments}</p>
+        </Item.Description>
+      </Item.Content>
+    </Item>
+  </Item.Group>
+);
+
+export default JobDetail;
