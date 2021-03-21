@@ -45,7 +45,7 @@ function JobsList() {
   const jobs = state.savedJobs;
     return (
       <div>
-      <Table celled fixed striped selectable>
+      <Table celled fixed striped selectable >
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell colSpan={2}>Title</Table.HeaderCell>
@@ -91,7 +91,7 @@ function JobsList() {
             </Table.Row>)
         }
         )) : (
-          <Table.Row><Table.Cell colSpan={14}>No saved jobs yet...</Table.Cell></Table.Row>
+          <Table.Row><Table.Cell colSpan={13}>No saved jobs yet...</Table.Cell></Table.Row>
         )}
       
     </Table.Body>

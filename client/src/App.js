@@ -12,13 +12,12 @@ function App() {
   return (
     <Router>
       <StoreProvider>
-        <Navbar />
-        <Grid columns='equal' stackable>
-          <Grid.Row>
-            <Grid.Column width={3}>
-              <SideMenu />
-            </Grid.Column>
-            <Grid.Column width={13} >
+        
+        <Grid >
+            <Navbar />
+          <Grid.Row style={{marginTop: 49}}>
+            <SideMenu />
+            <Grid.Column computer={13} tablet={16}>
               <Switch>
                 <Route exact path="/" component={Dashboard} />
                 <Route exact path="/dashboard" component={Dashboard} />
