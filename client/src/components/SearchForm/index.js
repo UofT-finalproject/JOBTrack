@@ -71,7 +71,7 @@ function SearchForm() {
                                 company: item.company.name,
                                 company_logo: "",
                                 company_url: item.refs.landing_page,
-                                created_at: "",
+                                created_at: item.publication_date,
                                 description: item.contents,
                                 how_to_apply: item.refs.landing_page,
                                 id: item.id,
