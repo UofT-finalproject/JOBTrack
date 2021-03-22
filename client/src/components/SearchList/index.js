@@ -49,15 +49,7 @@ const SearchList = () => {
     }
 
     const jobItems = state.searchedJobs.map(job => {
-        const pattern = /\D/g;
-        let m;
-        if (pattern.test(job.id)) {
-            // if we get here then API is GitHub
-            m = moment(job.created_at, "ddd MMM DD HH:mm:ss YYYY")
-        } else {
-            // it's The Muse
-            m = moment(job.created_at, "YYYY-MM-DDThh:mm:ssZ");
-        }
+        const m = moment(job.created_at);
 
         return (
             <Card key={job.id}>

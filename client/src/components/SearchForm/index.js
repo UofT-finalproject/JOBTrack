@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Form, Grid, Button, Header, Icon } from 'semantic-ui-react'
 import { SAVE_SEARCH, CLEAR_SEARCH, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
+import moment from "moment";
 import { useStoreContext } from "../../utils/GlobalState";
 import './style.css'
 
@@ -26,6 +27,7 @@ function SearchForm() {
         if (search.title || state.searchedJobs.length) {
             setClearBtn(true)
         } else setClearBtn(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [search]);
 
     const handleChange = (e, { name, value }) => setSearch({ ...search, [name]: value })
@@ -47,7 +49,6 @@ function SearchForm() {
         event.preventDefault();
         const { title, location } = search;
         if (title || location) {
-            // setSearch({ title: title, location: location });
             const { title, location } = search;
             dispatch({ type: LOADING });
             API.searchJobs(title, location, radioValue)
@@ -55,13 +56,13 @@ function SearchForm() {
                     // Extract data to common format
                     const jobData = [];
                     if (radioValue === 'gh') {
-                        console.log(res.data);
                         res.data.forEach((item) => {
+                          let m = moment(item.created_at, "ddd MMM DD HH:mm:ss YYYY")
                             let job = {
                                 company: item.hasOwnProperty('company') ? item.company : "",
                                 company_logo: item.hasOwnProperty('company_logo') ? item.company_logo : "",
                                 company_url: item.hasOwnProperty('company_url') ? item.company_url : "",
-                                created_at: item.hasOwnProperty('created_at') ? item.created_at : "",
+                                created_at: item.hasOwnProperty('created_at') ? m.format() : "",
                                 description: item.hasOwnProperty('description') ? item.description : "",
                                 how_to_apply: item.hasOwnProperty('how_to_apply') ? item.how_to_apply : "",
                                 id: item.hasOwnProperty('id') ? item.id : "",
@@ -73,13 +74,13 @@ function SearchForm() {
                             jobData.push(job)
                         })
                     } else if (radioValue === 'li') {
-                        console.log(res.data.results);
                         res.data.results.forEach((item) => {
+                          let m = moment(item.publication_date, "YYYY-MM-DDThh:mm:ssZ");
                             let job = {
                                 company: item.company.name,
                                 company_logo: "",
                                 company_url: item.refs.landing_page,
-                                created_at: item.publication_date,
+                                created_at: m.format(),
                                 description: item.contents,
                                 how_to_apply: item.refs.landing_page,
                                 id: item.id.toString(),
@@ -88,12 +89,9 @@ function SearchForm() {
                                 type: item.type,
                                 url: item.refs.landing_page,
                             }
-                            console.log(job.location);
                             jobData.push(job)
                         });
                     }
-                    console.log(jobData);
-                    //
                     dispatch({
                         type: SAVE_SEARCH,
                         searchedJobs: jobData
@@ -103,86 +101,49 @@ function SearchForm() {
         }
     }
 
-  return (
-    <div>
-      <Grid centered>
-        <Form className='search-form' onSubmit={handleSubmit}>
-        <Header as='h3' >
-          <Icon name='search plus' color='grey'/>
-          Search for a Job
-          </Header>
-          <Form.Group widths='equal' >
-            <Form.Input
-              placeholder='Job Title'
-              name='title'
-              value={title}
-              onChange={handleChange}
-            />
-            <Form.Input
-              placeholder='Location'
-              name='location'
-              value={location}
-              onChange={handleChange}
-            />
-            <Form.Button content='Search' icon='search' loading={state.loading} />
-            {clearBtn && <Button basic hidden icon='close' onClick={handleClearSearch} />}
-          </Form.Group>
-          <Form.Group inline>
-            <label>Job Site:</label>
-            <Form.Radio
-              label='LinkedIn'
-              value='li'
-              checked={radioValue === 'li'}
-              onChange={(e) => handleRadioButtonChange('li', e)}
-            />
-            <Form.Radio
-              label='GitHub'
-              value='gh'
-              checked={radioValue === 'gh'}
-              onChange={(e) => handleRadioButtonChange('gh', e)}
-            />
-          </Form.Group>
-        </Form>
-      </Grid>
-    </div>
-  )
+    const { title, location } = search;
+
     return (
         <div>
             <Grid centered>
                 <Form className="search-form" onSubmit={handleSubmit}>
-                    <Form.Group widths="equal">
-                        <Form.Input
-                            placeholder="Job Title"
-                            name="title"
-                            value={title}
-                            onChange={handleChange}
-                        />{" "}
-                        <Form.Input
-                            placeholder="Location"
-                            name="location"
-                            value={location}
-                            onChange={handleChange}
-                        />{" "}
-                        <Form.Button content="Search" icon="search" loading={state.loading} />{" "}
-                        {clearBtn && (
-                            <Button basic hidden icon="close" onClick={handleClearSearch} />
-                        )}{" "}
-                    </Form.Group>{" "}
-                    <Form.Group inline>
-                        <label> Job Site: </label>{" "}
-                        <Form.Radio
-                            label="The Muse"
-                            value="li"
-                            checked={radioValue === "li"}
-                            onChange={(e) => handleRadioButtonChange("li", e)}
-                        />{" "}
-                        <Form.Radio
-                            label="GitHub"
-                            value="gh"
-                            checked={radioValue === "gh"}
-                            onChange={(e) => handleRadioButtonChange("gh", e)}
-                        />{" "}
-                    </Form.Group>{" "}
+                  <Header as='h3' >
+                    <Icon name='search plus' color='grey'/>
+                    Search for a Job
+                  </Header>
+                  <Form.Group widths="equal">
+                      <Form.Input
+                          placeholder="Job Title"
+                          name="title"
+                          value={title}
+                          onChange={handleChange}
+                      />{" "}
+                      <Form.Input
+                          placeholder="Location"
+                          name="location"
+                          value={location}
+                          onChange={handleChange}
+                      />{" "}
+                      <Form.Button content="Search" icon="search" loading={state.loading} />{" "}
+                      {clearBtn && (
+                          <Button basic hidden icon="close" onClick={handleClearSearch} />
+                      )}{" "}
+                  </Form.Group>{" "}
+                  <Form.Group inline>
+                      <label> Job Site: </label>{" "}
+                      <Form.Radio
+                          label="The Muse"
+                          value="li"
+                          checked={radioValue === "li"}
+                          onChange={(e) => handleRadioButtonChange("li", e)}
+                      />{" "}
+                      <Form.Radio
+                          label="GitHub"
+                          value="gh"
+                          checked={radioValue === "gh"}
+                          onChange={(e) => handleRadioButtonChange("gh", e)}
+                      />{" "}
+                  </Form.Group>{" "}
                 </Form>{" "}
             </Grid>{" "}
         </div>

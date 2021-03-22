@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { Form, Segment, Header, Button, Grid, Select, Icon, Transition  } from 'semantic-ui-react'
+import React, { useState } from "react";
+import { Form, Segment, Header, Button, Grid, Select, Icon  } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import { useStoreContext } from "../../utils/GlobalState";
-import { UPDATE_JOBS, LOADING, LOADING_DONE } from '../../utils/actions';
+import { LOADING, LOADING_DONE } from '../../utils/actions';
 import { NavLink, useHistory } from "react-router-dom";
 import moment from "moment";
 import API from '../../utils/API';
@@ -42,7 +42,7 @@ const handleChange = (e, { name, value }) => {
 }
 
 const handleSubmit = () => {
-    input.created_at = moment().format("ddd MMM DD HH:mm:ss YYYY");
+    input.created_at = moment().format();
     dispatch({type: LOADING});
     API.saveJob(input)
     .then(res => 
@@ -54,7 +54,6 @@ const handleSubmit = () => {
 
   const { title, description, type, location, company, url, created_at, date_applied,
     status, notes, attachments } = input;
-
   return (<Grid centered>
     <Grid.Column computer={14} tablet={16}>
     <Segment style={{backgroundColor: '#f1f1f1'}}>

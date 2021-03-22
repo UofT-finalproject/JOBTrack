@@ -62,19 +62,9 @@ function JobsList() {
       </Table.Header>
     <Table.Body>
       {jobs.length > 0 ? (jobs.map(job => {
-          const {_id, searchId, title, company, location, 
+          const {_id, title, company, location, 
             created_at, date_applied, status, notes, attachments } = job;
-          // let strippedDescription = description ? description.replace(/(<([^>]+)>)/gi, "") : "No description";
-      
-          const pattern = /\D/g;
-          let m;
-          if (pattern.test(searchId)) {
-            // if we get here then API is GitHub
-            m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
-          } else {
-            // it's The Muse
-            m = moment(created_at, "YYYY-MM-DDThh:mm:ssZ");
-          }
+            const m = moment(created_at);
           return (
             <Table.Row key={_id} id={_id} 
                   positive = {status === 'Approved' ? true : false}                

@@ -41,12 +41,11 @@ function DetailForm() {
   ]
  
     const { status, date_applied, attachments, notes } = input;
+    const url = state.currentJob.url;
 
     return (
-      <div>
-        <Form widths='equal' onSubmit={handleSubmit} >
-            <div>
-          <Form.Group>
+        <Form unstackable onSubmit={handleSubmit} >
+          <Form.Group >
           <Form.Field
                 control={Select}
                 name='status'
@@ -72,26 +71,29 @@ function DetailForm() {
                 id='form-input-control-attachments'
                 name='attachments'
                 control={Input}
+                type="file"
                 label='Attachments'
                 placeholder='Upload Files'
                 onChange={handleChange}
                 value={attachments}
             />
-           
-            <Button
-                    onClick={() => {
-                        dispatch({type: OPEN_MODAL, modal: false});
-                        handleSubmit();
-                    }}
-                    positive
-                    floated='right'
-                    type="button" 
-                >
+            
+            <Button animated='fade'
+              onClick={() => {
+                dispatch({type: OPEN_MODAL, modal: false});
+                handleSubmit();
+              }}
+              positive
+              floated='right'
+              type="button" 
+            >
+              <Button.Content hidden>Save</Button.Content>
+              <Button.Content visible>
                 <Icon name='check' />
+              </Button.Content>
             </Button>
            
             </Form.Group>
-            </div>    
             <Form.Field
                 name='notes'
                 id='form-textarea-control-notes'
@@ -102,7 +104,6 @@ function DetailForm() {
                 value={notes}
             />
         </Form>
-      </div>
     )
   
 }

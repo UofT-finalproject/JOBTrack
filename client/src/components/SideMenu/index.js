@@ -8,7 +8,7 @@ function SideMenu() {
   const handleItemClick = (e, { name }) => setState({ activeItem: name });
   const { activeItem } = state;
   return (
-    <Menu vertical className='side-menu' style={{flex: 'auto'}}>
+    <Menu vertical className='side-menu' style={{flex: 'auto', marginLeft: 5}}>
       <Menu.Item>
         <Input icon='search' placeholder='Search in saved jobs' />
       </Menu.Item>

@@ -1,4 +1,4 @@
-import React, { Component } from "react"; //Login page updates
+import React from "react"; //Login page updates
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { Grid } from 'semantic-ui-react';
@@ -22,7 +22,7 @@ function App() {
               <Switch>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Login} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
                 <Route exact path="/add" component={AddJob} />
