@@ -1,20 +1,13 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
 import SearchForm from '../components/SearchForm';
 import SearchList from '../components/SearchList';
 
-
 function Search() {
-    
-
     return ( 
-        <Container >
-            <div>
+        <div>
             <SearchForm />
             <SearchList />
-            </div>
-            
-        </Container>
+        </div>
     )
 }
 

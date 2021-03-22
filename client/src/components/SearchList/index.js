@@ -29,7 +29,8 @@ const SearchList = () => {
             company: jobToSave.company,
             url: jobToSave.url,
             created_at: jobToSave.created_at,
-            applied: false,
+            applied: false ,
+            date_applied: '',
             status: 'None',
             notes: '',
             attachments: '',
@@ -52,11 +53,12 @@ const SearchList = () => {
         let m;
         if (pattern.test(job.id)) {
             // if we get here then API is GitHub
-            m = moment(job.created_at, "ddd MMM DD hh:mm:ss YYYY")
+            m = moment(job.created_at, "ddd MMM DD HH:mm:ss YYYY")
         } else {
             // it's The Muse
             m = moment(job.created_at, "YYYY-MM-DDThh:mm:ssZ");
         }
+
         return (
             <Card key={job.id}>
                 <Card.Content>

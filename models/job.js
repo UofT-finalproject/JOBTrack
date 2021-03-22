@@ -4,15 +4,15 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema({
   searchId: String,
   title: { type: String, required: true },
-  description: { type: String, required: true },
+  description: String,
   type: String,
   location: String,
   company: String,
   url: String,
   created_at: String,
   applied: { type: Boolean, default: false },
-  date_applied: Date,
-  status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Archived']},
+  date_applied: String,
+  status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Declined', 'Archived']},
   notes: String,
   attachments: String,
   date: { type: Date, default: Date.now }

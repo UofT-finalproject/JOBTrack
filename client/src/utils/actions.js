@@ -6,3 +6,6 @@ export const UPDATE_JOB = "UPDATE_JOB";
 export const UPDATE_JOBS = "UPDATE_JOBS";
 export const REMOVE_JOB = "REMOVE_JOB";
 export const LOADING = "LOADING";
+export const LOADING_DONE = "LOADING_DONE";
+export const OPEN_MODAL = "OPEN_MODAL";
+export const SET_CURRENT_JOB = "SET_CURRENT_JOB";
