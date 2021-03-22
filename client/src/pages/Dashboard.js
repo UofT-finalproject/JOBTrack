@@ -1,28 +1,10 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import JobsList from '../components/JobsList';
-import SideMenu from '../components/SideMenu';
-import { Container, Grid } from 'semantic-ui-react';
 
 function Dashboard() {
 
     return (
-        <div>
-            
-            <Navbar />
-            
-            <Grid columns='equal'>
-                <Grid.Row>
-                    <Grid.Column width={3}>
-                        <SideMenu />
-                    </Grid.Column>
-                    <Grid.Column width={12}>
-                        <JobsList />
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-            
-        </div>
+        <JobsList />
     )
 }
 

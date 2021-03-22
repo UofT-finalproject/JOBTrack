@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { Menu, Container, Icon } from 'semantic-ui-react';
+import React, { useEffect, useState } from 'react';
+import { NavLink } from "react-router-dom";
+import { Menu, Icon } from 'semantic-ui-react';
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
 import './style.css';
@@ -7,10 +8,15 @@ import './style.css';
 function Navbar() {
     const activeItem = 'Dashboard';
     const [date, setDate] = useState(moment().format("LL"));
-    const handleItemClick = (e, { name }) => console.log( name );
+    const handleItemClick = (e, { name }) => {};
+
+    useEffect(() => {
+      setDate(moment().format("LL"))
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     return (
-        <Menu stackable color={'grey'} inverted size='huge' >
+        <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
           <Menu.Item>
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >
@@ -18,6 +24,7 @@ function Navbar() {
             {date}
             </Menu.Item>
           <Menu.Item
+            as={ NavLink } to="/dashboard"
             position='right'
             name='dashboard'
             active={activeItem === 'features'}
@@ -28,6 +35,7 @@ function Navbar() {
           </Menu.Item>
   
           <Menu.Item
+            as={ NavLink } to="/search"
             float='right'
             name='Job Search'
             active={activeItem === 'testimonials'}

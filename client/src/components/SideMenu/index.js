@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { Menu, Input, Label, Icon } from 'semantic-ui-react';
+import React, { useState } from 'react';
+import { Menu, Input, Icon, Dropdown } from 'semantic-ui-react';
+import { NavLink } from "react-router-dom";
 import './style.css';
 
 function SideMenu() {
@@ -7,30 +8,39 @@ function SideMenu() {
   const handleItemClick = (e, { name }) => setState({ activeItem: name });
   const { activeItem } = state;
   return (
-    <Menu vertical className='side-menu' >
+    <Menu vertical className='side-menu' style={{flex: 'auto', marginLeft: 5}}>
       <Menu.Item>
-        <Input icon='search' placeholder='Search for a job...' />
+        <Input icon='search' placeholder='Search in saved jobs' />
       </Menu.Item>
 
-      <Menu.Item
-        name='profile'
-        active={activeItem === 'profile'}
+      <Dropdown item  text='Profile' >
+          <Dropdown.Menu>
+            <Dropdown.Item icon='edit' text='Edit Profile' />
+            <Dropdown.Item icon='log out' text='Logout' color='grey'/>
+          </Dropdown.Menu>
+        </Dropdown>
+
+      <Menu.Item 
+        as={ NavLink } to="/dashboard"
+        name='dashboard'
+        active={activeItem === 'dashboard'}
         onClick={handleItemClick}
       >
-        <Icon name='user' color='grey'/>
-        Profile
+        <Icon name='clipboard list' color='grey'/>
+        Dashboard
       </Menu.Item>
-
-      <Menu.Item
-        name='contact'
-        active={activeItem === 'contact'}
+      <Menu.Item 
+        as={ NavLink } to="/search"
+        name='search'
+        active={activeItem === 'search'}
         onClick={handleItemClick}
       >
-        <Icon name='share alternate' color='grey'/>
-        Contacts
+        <Icon name='search plus' color='grey'/>
+        Search new
       </Menu.Item>
 
       <Menu.Item
+        as={ NavLink } to="/add"
         name='add'
         active={activeItem === 'add'}
         onClick={handleItemClick}

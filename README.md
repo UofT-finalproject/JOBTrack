@@ -16,19 +16,27 @@
 
 ## Instructions
 1. Navigate to the application by clicking the github pages deploy link: 
- > Upon navigating to the deployed application link, you will see a log-in page. Please register an account to use the application, or use the following guest login: <insert guest login + password details>
+ > Upon navigating to the deployed application link, you will see a log-in page.
+ ![EmployeeDirectoryScreenshot](<https://i.imgur.com/3I0B7Rs.png> "Job Application Tracker Application Login")
+ > Please register an account to use the application, or use the following guest login: 
+ Email: test22@gmail.com Password: A2HAGf8cuUNhqfH 
+ ![EmployeeDirectoryScreenshot](<https://i.imgur.com/qMR5gpl.png> "Job Application Tracker Application signup")
 
-2. You may choose to filter your list of job applications by.. <insert details>
- > <insert additional details here>
 
-3. If you wish to find a specific job application, you may choose to enter the name of the job application you are searching for into the search bar. 
-  > As you type into the search bar, the list will update dynamically and filter your search results from the list accordingly.
+2. Once you log in, you will be taken to your job dashboard. 
+ > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/1WTQisc.png> "Job Application Tracker Application dashboard")
+ > On this page, you may add a job listing manually by clicking the 'Add Job' button on the side bar. You may specify specific details about the listing, provide a url, add a status to the listing, and even upload and attach job documents to a particular listing.
+ > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/dHFMuae.png> "Job Application Tracker Application Add job form")
+> On your dashboard, you may click a particular listing you have saved to bring up it's details and documents for your convenience.
+    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/wWCW59O.png> "Job Application Tracker Application dashboard")
+ 
 
-4. <more stuff>
-  > <insert more details>
+3. If you wish to browse job listings from other job sites, you may click the 'Search New' tab on the side bar. You may also select the 'Job Search' button on the navigation bar on the top of the page.
+  > Once you have navigated to the page, you will noticed two input fields. You may use these fields to search for job listings from either Github's job website, or from another job website called the 'The Muse' by using the radio button. Once you have searched for your results, you may choose to save a listing to your dashboard, or view the listing on it's respective page.
+    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/WT906vQ.png> "Job Application Tracker Application dashboard")
 
-## Screenshot
-![EmployeeDirectoryScreenshot](<insert screenshot image> "Job Application Tracker Application")
+4. You may click the Profile button on the sidebar to bring up your personal profile.
+  > You may choose to edit details on your profile.
 
 ## License
 MIT License
@@ -55,7 +63,12 @@ SOFTWARE.
 
 
 ## Contributing
--
+- Eldar Humbatov: Lead Developer - Database Setup, Front-end components, Main Functionality
+- Nagesh : Authentication Functionality
+- Omair Muhi: API Routes + Test scripts
+- Tayyaba Asad: Front-end Components
+- Dazrin Tioseco: Front-end Components
+- Ivan Đuranić: Front-end Components
 
 
 ## Our Pledge
