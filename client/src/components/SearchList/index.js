@@ -49,7 +49,7 @@ const SearchList = () => {
     }
 
     const jobItems = state.searchedJobs.map( job => {
-        const m = moment(job.created_at, "ddd MMM DD hh:mm:ss YYYY")
+        const m = moment(job.created_at, "ddd MMM DD HH:mm:ss YYYY")
         return (
             <Card key={job.id}>
                 <Card.Content>

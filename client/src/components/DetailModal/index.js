@@ -10,7 +10,7 @@ function DetailModal(props) {
   const [state, dispatch] = useStoreContext();
     const {
         title, company, description, location, created_at } = state.currentJob;
-    const m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
+    const m = moment(created_at, "ddd MMM DD HH:mm:ss YYYY")
   return (
     <Modal
         closeIcon

@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const jobSchema = new Schema({
   searchId: String,
   title: { type: String, required: true },
-  description: { type: String, required: true },
+  description: String,
   type: String,
   location: String,
   company: String,

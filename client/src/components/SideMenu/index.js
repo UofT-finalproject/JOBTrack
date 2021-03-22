@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Menu, Input, Icon, Dropdown } from 'semantic-ui-react';
 import { NavLink } from "react-router-dom";
-import logo from '../../assets/images/jobTrack-logo.png';
 import './style.css';
 
 function SideMenu() {

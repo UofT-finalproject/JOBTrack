@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Grid, Button } from 'semantic-ui-react'
+import { Form, Grid, Button, Header, Icon } from 'semantic-ui-react'
 import { SAVE_SEARCH, CLEAR_SEARCH, LOADING } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
@@ -60,6 +60,10 @@ function SearchForm() {
     <div>
       <Grid centered>
         <Form className='search-form' onSubmit={handleSubmit}>
+        <Header as='h3' >
+          <Icon name='search plus' color='grey'/>
+          Search for a Job
+          </Header>
           <Form.Group widths='equal' >
             <Form.Input
               placeholder='Job Title'

@@ -68,7 +68,7 @@ function JobsList() {
           // let strippedDescription = description ? description.replace(/(<([^>]+)>)/gi, "") : "No description";
           const m = moment(created_at, "ddd MMM DD hh:mm:ss YYYY")
           return (
-            <Table.Row key={searchId} id={_id} 
+            <Table.Row key={_id} id={_id} 
                   positive = {status === 'Approved' ? true : false}                
                   negative = {status === 'Declined' ? true : false}                
                   warning = {status === 'Applied' || status === 'Interviewed' ? true : false}                
