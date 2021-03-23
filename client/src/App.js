@@ -9,7 +9,7 @@ import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
 import ProfileInfo from "./components/ProfileInfo";
-import { Login, Register, Home } from "./components/Auth"; //Login page updates
+import { Login, Register } from "./components/Auth"; //Login page updates
 
 function App() {
   return (
