@@ -5,6 +5,7 @@ import {
     ADD_JOB,
     UPDATE_JOB,
     UPDATE_JOBS,
+    FILTER_JOBS,
     REMOVE_JOB,
     LOADING,
     OPEN_MODAL,
@@ -34,6 +35,13 @@ const reducer = (state, action) => {
         return {
           ...state, 
           savedJobs: action.savedJobs,
+          loading: false
+        };
+  
+      case FILTER_JOBS :
+        return {
+          ...state, 
+          sortedFilteredJobs: action.sortedFilteredJobs,
           loading: false
         };
   
@@ -84,7 +92,8 @@ const reducer = (state, action) => {
         savedJobs: [],
         loading: false,
         modal: false,
-        currentJob: {}
+        currentJob: {},
+        sortedFilteredJobs: []
     });
   
     return <Provider value={[state, dispatch]} {...props}/>;
