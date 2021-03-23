@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
+import Landing from "./pages/Landing";
 import { Login, Register, Home } from "./components/Auth"; //Login page updates
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
               <Switch>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route exact path="/" component={Login} />
+                <Route exact path="/" component={Landing} />
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
                 <Route exact path="/add" component={AddJob} />
