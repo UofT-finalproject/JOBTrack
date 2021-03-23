@@ -35,7 +35,8 @@
   > Once you have navigated to the page, you will noticed two input fields. You may use these fields to search for job listings from either Github's job website, or from another job website called the 'The Muse' by using the radio button. Once you have searched for your results, you may choose to save a listing to your dashboard, or view the listing on it's respective page.
     ![EmployeeDirectoryScreenshot](<https://i.imgur.com/WT906vQ.png> "Job Application Tracker Application dashboard")
 
-4. You may click the Profile button on the sidebar to bring up your personal profile.
+4. You may click the View Profile button under the Profile dropdown on the sidebar to bring up your personal profile.
+![image](https://user-images.githubusercontent.com/14916152/112086498-95fa1480-8b49-11eb-8157-ce8da7f081c6.png)
   > You may choose to edit details on your profile.
 
 ## License
