@@ -64,8 +64,8 @@ SOFTWARE.
 
 ## Contributing
 - Eldar Humbatov: Lead Developer - Database Setup, Front-end components, Main Functionality
-- Nagesh : Authentication Functionality
-- Omair Muhi: API Routes + Test scripts
+- Nagesh Kalegowda: Authentication Functionality
+- Omair Muhi: API Route + Test scripts
 - Tayyaba Asad: Front-end Components
 - Dazrin Tioseco: Front-end Components
 - Ivan Đuranić: Front-end Components
