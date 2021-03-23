@@ -8,9 +8,12 @@ import Navbar from "./components/Navbar";
 import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
+
 import ProfileInfo from "./components/ProfileInfo";
-import CareerServicesItem from './components/CareerServicesItem';
-import { Login, Register } from "./components/Auth"; //Login page updates
+import { Login, Register, Home, Logout } from "./components/Auth"; //Login page updates
+import ProtectedRouter from "./ProtectedRouter"; //Login page updates
+import Landing from "./pages/Landing";
+import CareerServicesItem from "./components/CareerServicesItem";
 
 function App() {
   return (
@@ -21,15 +24,20 @@ function App() {
           <Grid.Row style={{marginTop: 49}}>
             <SideMenu />
             <Grid.Column computer={13} tablet={16}>
-              <Switch>
+              <Switch>              
+                <Route exact path="/" component={Landing} />
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route exact path="/" component={Login} />
-                <Route exact path="/dashboard" component={Dashboard} />
+                <Route exact path="/logout" component={Logout} />
+                <ProtectedRouter exact path="/dashboard" component={Dashboard} />
+                <ProtectedRouter exact path="/search" component={Search} />
+                <ProtectedRouter exact path="/add" component={AddJob} />
+                <Route path="*" component={Home} />
+                {/* <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
-                <Route exact path="/add" component={AddJob} />
                 <Route exact path="/profile" component={ProfileInfo} />
                 <Route exact path="/links" component={CareerServicesItem} />
+                <Route exact path="/career" component={CareerServicesItem} />
               </Switch>
             </Grid.Column>
           </Grid.Row>
