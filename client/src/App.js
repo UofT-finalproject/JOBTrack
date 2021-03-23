@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
+import ProfileInfo from "./components/ProfileInfo";
 import { Login, Register, Home } from "./components/Auth"; //Login page updates
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
                 <Route exact path="/add" component={AddJob} />
+                <Route exact path="/profile" component={ProfileInfo} />
               </Switch>
             </Grid.Column>
           </Grid.Row>

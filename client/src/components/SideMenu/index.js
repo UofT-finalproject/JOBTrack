@@ -15,6 +15,11 @@ function SideMenu() {
 
       <Dropdown item  text='Profile' >
           <Dropdown.Menu>
+            <Dropdown.Item 
+            icon='user' 
+            text='View Profile'
+            as={ NavLink } to="/profile"
+             />
             <Dropdown.Item icon='edit' text='Edit Profile' />
             <Dropdown.Item icon='log out' text='Logout' color='grey'/>
           </Dropdown.Menu>
