@@ -9,12 +9,11 @@ import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
 
+import ProfileInfo from "./components/ProfileInfo";
 import { Login, Register, Home, Logout } from "./components/Auth"; //Login page updates
 import ProtectedRouter from "./ProtectedRouter"; //Login page updates
-
 import Landing from "./pages/Landing";
 import CareerServicesItem from "./components/CareerServicesItem";
-
 
 function App() {
   return (
@@ -36,7 +35,8 @@ function App() {
                 <Route path="*" component={Home} />
                 {/* <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
-                <Route exact path="/add" component={AddJob} /> */}
+                <Route exact path="/profile" component={ProfileInfo} />
+                <Route exact path="/links" component={CareerServicesItem} />
                 <Route exact path="/career" component={CareerServicesItem} />
               </Switch>
             </Grid.Column>

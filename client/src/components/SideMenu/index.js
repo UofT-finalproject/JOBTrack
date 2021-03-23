@@ -41,6 +41,13 @@ function SideMenu() {
 
       <Dropdown item text='Profile'>
           <Dropdown.Menu>
+            <Dropdown.Item 
+            icon='user' 
+            text='View Profile'
+            as={ NavLink } to="/profile"
+            active={activeItem === 'profile'}
+            onClick={handleItemClick}
+             />
             <Dropdown.Item icon='edit' text='Edit Profile' />
             <Dropdown.Item icon='log out' text='Logout' color='grey'/>
           </Dropdown.Menu>
@@ -85,6 +92,15 @@ function SideMenu() {
         Job Search Help
       </Menu.Item>
       
+      <Menu.Item
+      as={ NavLink } to="/links"
+      name='Links'
+      active={activeItem === 'links'}
+      onClick={handleItemClick}
+      >
+      <Icon name='hand pointer outline' color='grey'/>
+      Useful Links
+      </Menu.Item>
     </Menu>
   )
 }
