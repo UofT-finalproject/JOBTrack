@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
 import ProfileInfo from "./components/ProfileInfo";
+import CareerServicesItem from './components/CareerServicesItem';
 import { Login, Register } from "./components/Auth"; //Login page updates
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
                 <Route exact path="/search" component={Search} />
                 <Route exact path="/add" component={AddJob} />
                 <Route exact path="/profile" component={ProfileInfo} />
+                <Route exact path="/links" component={CareerServicesItem} />
               </Switch>
             </Grid.Column>
           </Grid.Row>
