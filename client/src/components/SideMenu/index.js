@@ -91,16 +91,6 @@ function SideMenu() {
         <Icon name='life ring outline' color='grey'/>
         Job Search Help
       </Menu.Item>
-      
-      <Menu.Item
-      as={ NavLink } to="/links"
-      name='Links'
-      active={activeItem === 'links'}
-      onClick={handleItemClick}
-      >
-      <Icon name='hand pointer outline' color='grey'/>
-      Useful Links
-      </Menu.Item>
     </Menu>
   )
 }

@@ -32,12 +32,11 @@ function App() {
                 <ProtectedRouter exact path="/dashboard" component={Dashboard} />
                 <ProtectedRouter exact path="/search" component={Search} />
                 <ProtectedRouter exact path="/add" component={AddJob} />
-                <Route path="*" component={Home} />
                 {/* <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/search" component={Search} />
+                <Route exact path="/search" component={Search} /> */}
                 <Route exact path="/profile" component={ProfileInfo} />
-                <Route exact path="/links" component={CareerServicesItem} />
                 <Route exact path="/career" component={CareerServicesItem} />
+                <Route path="*" component={Home} />
               </Switch>
             </Grid.Column>
           </Grid.Row>
