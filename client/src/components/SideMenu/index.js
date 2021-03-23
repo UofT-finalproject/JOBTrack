@@ -39,7 +39,7 @@ function SideMenu() {
            />
       </Menu.Item>
 
-      <Dropdown item >
+      <Dropdown item text='Profile'>
           <Dropdown.Menu>
             <Dropdown.Item icon='edit' text='Edit Profile' />
             <Dropdown.Item icon='log out' text='Logout' color='grey'/>
