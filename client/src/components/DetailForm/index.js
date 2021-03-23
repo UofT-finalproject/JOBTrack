@@ -41,7 +41,6 @@ function DetailForm() {
   ]
  
     const { status, date_applied, attachments, notes } = input;
-    const url = state.currentJob.url;
 
     return (
         <Form unstackable onSubmit={handleSubmit} >
