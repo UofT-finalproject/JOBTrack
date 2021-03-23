@@ -9,6 +9,7 @@ import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
 import { Login, Register } from "./components/Auth"; //Login page updates
+import CareerServicesItem from "./components/CareerServicesItem";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
                 <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} />
                 <Route exact path="/add" component={AddJob} />
+                <Route exact path="/career" component={CareerServicesItem} />
               </Switch>
             </Grid.Column>
           </Grid.Row>

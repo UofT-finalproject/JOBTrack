@@ -74,6 +74,16 @@ function SideMenu() {
         <Icon name='add square' color='grey'/>
         Add Job
       </Menu.Item>
+
+      <Menu.Item
+        as={ NavLink } to="/career"
+        name='career'
+        active={activeItem === 'career'}
+        onClick={handleItemClick}
+      >
+        <Icon name='life ring outline' color='grey'/>
+        Job Search Help
+      </Menu.Item>
       
     </Menu>
   )
