@@ -1,128 +1,118 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from 'react'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useStoreContext } from "../../../utils/GlobalState";
+import logo from '../../../assets/images/jobTrack-gr.png';
+import background from '../../../assets/images/background.jpg';
+import { LOADING, USER_AUTHENTICATED } from '../../../utils/actions';
+import { login as loginUtil }  from '../../../utils'
 
-//UI
-import { Box, Button, TextField, Typography } from "@material-ui/core";
+const LoginForm = (props) => {
+  const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: false });
+  const [state, dispatch] = useStoreContext();
 
-export class RegisterScreen extends Component {
-  state = {
-    email: "",
-    password: "",
-    first_name: "",
-    last_name: "",
-    success: false,
-    error: false,
-  };
-
-  onSignup = (e) => {
+  useEffect(() => {
+   if (state.isAuthenticated) {
+    console.log('Authenticated state: ', state.isAuthenticated);
+    props.history.push("/home");
+   }
+  }, [state.isAuthenticated])
+  
+  const onLogin = (e) => {
     e.preventDefault();
-
-    const { email, password, first_name, last_name } = this.state;
-
+    const { email, password, first_name, last_name } = login;
+    console.log(login);
     axios({
-      url: "/auth/register",
-      method: "POST",
-      data: { email, password, first_name, last_name },
-    })
-      .then((res) => {
-        window.localStorage.setItem("isAuthenticated", true);
-        if (res.status === 200) {
-          this.setState({ success: true, error: false });
-          this.props.history.push("/");
-        }
+        url: "/auth/register",
+        method: "POST",
+        data: { email, password, first_name, last_name },
       })
-      .catch(({ response }) => {
-        this.setState({ error: response.data.message, success: false });
-      });
+    .then((res) => {
+      console.log('Registered: ', res);
+      
+      if (res.status === 200) {
+        // dispatch({type: LOADING, loading: true})
+        dispatch({ type: USER_AUTHENTICATED, user: {first_name: res.data.first_name, last_name: res.data.last_name} });
+        loginUtil();
+      }
+    })
+    .catch(({ response }) => {
+      setLogin({ error: response.data.message, success: false });
+      console.log(login.error)
+    });
   };
-
-  onChange = (e) => {
+    
+  const onChange = (e) => {
     const { name, value } = e.target;
-    this.setState({
+    setLogin({...login,
       [name]: value,
       error: false,
       success: false,
     });
   };
 
-  render() {
-    const { error, success } = this.state;
-    return (
-      <div className="auth-background d-flex justify-content-center">
-        <Box boxShadow={3} className="auth-box">
-          <form onSubmit={this.onSignup}>
-            {success && "You've registered in successfully"}
-            {error}
-            <Typography variant="h5" className="font-weight-bold row">
-              Create an account
-            </Typography>
-            <div className="auth-inputs">
-              <div className="auth-field auth-flex">
-                <div className="w-50">
-                  <span className="auth-subtitle">First Name</span>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    name="first_name"
-                    onChange={this.onChange}
-                    required
-                  />
-                </div>
-                <div className="w-50 ml-4">
-                  <span className="auth-subtitle">Last Name</span>
-                  <TextField
-                    fullWidth
-                    variant="outlined"
-                    name="last_name"
-                    onChange={this.onChange}
-                    required
-                  />
-                </div>
-              </div>
-
-              <div className="auth-field">
-                <span className="auth-subtitle">E-mail Address</span>
-                <TextField
-                  type="email"
-                  fullWidth
-                  variant="outlined"
-                  name="email"
-                  onChange={this.onChange}
-                  required
+  return (
+    <div className='bg' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+    <Grid style={{ height: '100vh' }} 
+      verticalAlign='middle'
+      >
+        <Grid.Row computer={3} mobile={1}>
+          <Grid.Column width={4} only='tablet computer'></Grid.Column>
+        <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
+        <Header as='h2' color='green' textAlign='center'>
+            <Image src={logo} style={{width: 100}} /> Register new account
+        </Header>
+        <Form size='large' onSubmit={onLogin} loading={state.loading}>
+          <Segment inverted color='grey' stacked>
+                <Form.Input fluid icon='user outline'
+                name='first_name'
+                iconPosition='left' 
+                placeholder='First name'
+                onChange={onChange}
+                required
                 />
-              </div>
-              <div className="auth-field">
-                <span className="auth-subtitle">Password</span>
-                <TextField
-                  type="password"
-                  fullWidth
-                  variant="outlined"
-                  name="password"
-                  onChange={this.onChange}
-                  required
+                <Form.Input fluid icon='user'
+                name='last_name'
+                iconPosition='left' 
+                placeholder='Last name'
+                onChange={onChange}
+                required
                 />
-              </div>
-            </div>
-
-            <Button
-              fullWidth
-              className="mt-4 p-3 submit-button"
-              variant="contained"
-              type="submit"
+            <Form.Input fluid icon='at'
+              name='email'
+              iconPosition='left' 
+              placeholder='E-mail address'
+              onChange={onChange}
+              required
+            />
+            <Form.Input
+              name='password'
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              onChange={onChange}
+              type='password'
+              required
+            />
+            <Button 
+              positive 
+              fluid size='large'
+              type='submit'
+              content='Login'
             >
-              <Typography variant="h6" className="font-weight-bold">
-                Create account
-              </Typography>
             </Button>
-            <p className="mt-2">
-              Already have an account? <Link to={"/login"}>Login</Link>
-            </p>
-          </form>
-        </Box>
-      </div>
-    );
-  }
+          </Segment>
+        </Form>
+        <Message >
+            Already registered? <Link to={"/login"}>Login</Link>
+        </Message>
+        </Grid.Column>
+        </Grid.Row>
+    </Grid>
+    </div>
+  )
 }
 
-export default RegisterScreen;
+export default LoginForm

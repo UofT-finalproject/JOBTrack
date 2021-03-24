@@ -19,7 +19,7 @@ const StoreContext = createContext();
 const { Provider } = StoreContext;
 // Define reducer action cases
 const reducer = (state, action) => {
-    console.log(state, action)
+    // console.log(state, action)
     switch (action.type) {
       case SAVE_SEARCH:
         return { ...state,
@@ -58,6 +58,7 @@ const reducer = (state, action) => {
         return { 
           ...state, 
           savedJobs: [action.updatedJob, ...state.savedJobs.filter(job => job._id !== action.updatedJob._id)],
+          sortedFilteredJobs: [action.updatedJob, ...state.sortedFilteredJobs.filter(job => job._id !== action.updatedJob._id)],
           loading: false
         };
 
