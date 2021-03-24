@@ -5,11 +5,13 @@ import {
     ADD_JOB,
     UPDATE_JOB,
     UPDATE_JOBS,
+    FILTER_JOBS,
     REMOVE_JOB,
     LOADING,
     OPEN_MODAL,
     SET_CURRENT_JOB,
-    LOADING_DONE
+    LOADING_DONE,
+    USER_AUTHENTICATED
   } from "./actions";
 
 // Create Global State Redux Store to keep states to be used by components
@@ -17,6 +19,7 @@ const StoreContext = createContext();
 const { Provider } = StoreContext;
 // Define reducer action cases
 const reducer = (state, action) => {
+    // console.log(state, action)
     switch (action.type) {
       case SAVE_SEARCH:
         return { ...state,
@@ -37,6 +40,13 @@ const reducer = (state, action) => {
           loading: false
         };
   
+      case FILTER_JOBS :
+        return {
+          ...state, 
+          sortedFilteredJobs: action.sortedFilteredJobs,
+          loading: false
+        };
+  
       case ADD_JOB :
         return { 
           ...state, 
@@ -48,6 +58,7 @@ const reducer = (state, action) => {
         return { 
           ...state, 
           savedJobs: [action.updatedJob, ...state.savedJobs.filter(job => job._id !== action.updatedJob._id)],
+          sortedFilteredJobs: [action.updatedJob, ...state.sortedFilteredJobs.filter(job => job._id !== action.updatedJob._id)],
           loading: false
         };
 
@@ -69,6 +80,13 @@ const reducer = (state, action) => {
 
       case SET_CURRENT_JOB :
         return { ...state, currentJob: action.currentJob };
+
+      case USER_AUTHENTICATED :
+        return { ...state, 
+          isAuthenticated: true,
+          user: action.user,
+          loading: false
+        };
       
     default:
       return state;
@@ -84,7 +102,10 @@ const reducer = (state, action) => {
         savedJobs: [],
         loading: false,
         modal: false,
-        currentJob: {}
+        currentJob: {},
+        sortedFilteredJobs: [],
+        isAuthenticated: '',
+        user: {}
     });
   
     return <Provider value={[state, dispatch]} {...props}/>;

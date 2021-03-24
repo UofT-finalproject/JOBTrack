@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Form, Select, Input, TextArea, Button, Icon } from 'semantic-ui-react';
-import { OPEN_MODAL, SET_CURRENT_JOB, UPDATE_JOB } from '../../utils/actions';
+import { OPEN_MODAL, SET_CURRENT_JOB, UPDATE_JOB, FILTER_JOBS } from '../../utils/actions';
 import API from '../../utils/API';
 import { useStoreContext } from "../../utils/GlobalState";
 import { DateInput } from 'semantic-ui-calendar-react';
@@ -41,7 +41,6 @@ function DetailForm() {
   ]
  
     const { status, date_applied, attachments, notes } = input;
-    const url = state.currentJob.url;
 
     return (
         <Form unstackable onSubmit={handleSubmit} >

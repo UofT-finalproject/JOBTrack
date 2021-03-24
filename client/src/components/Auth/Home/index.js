@@ -1,30 +1,15 @@
 import React, { Component } from "react";
-import axios from "axios";
 
-export class index extends Component {
-  state = {
-    first_name: "",
-    last_name: "",
-  };
 
-  componentDidMount() {
-    axios
-      .get("/user/getDetails")
-      .then(({ data: { first_name, last_name } }) => {
-        this.setState({ first_name, last_name });
-      })
-      .catch((err) => console.log(err));
-  }
-
+export class Home extends Component {
   render() {
-    const { first_name, last_name } = this.state;
     return (
       <div>
-        <div>first_name {first_name}</div>
-        <div>last_name {last_name}</div>
+        <h1>Homepage</h1>
+        <a href="/login">Login</a>
       </div>
     );
   }
 }
 
-export default index;
+export default Home;
