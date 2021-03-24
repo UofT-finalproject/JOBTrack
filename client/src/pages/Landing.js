@@ -37,7 +37,6 @@ const HomepageHeading = ({ mobile }) => (
     <Image
       src={logo}
       size='big'
-      inverted
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
@@ -55,7 +54,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/dashboard" positive size='huge'>
+    <Button as={ NavLink } to="/home" positive size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -79,7 +78,6 @@ class DesktopContainer extends Component {
   render() {
     const { children } = this.props
     const { fixed } = this.state
-    const { handleLogin } = this.props
 
     return (
       <Media greaterThan='mobile'>

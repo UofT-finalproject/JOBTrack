@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { Menu, Icon } from 'semantic-ui-react';
+import { useStoreContext } from "../../utils/GlobalState";
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
 import './style.css';
@@ -9,12 +10,14 @@ function Navbar() {
     const activeItem = 'Dashboard';
     const [date, setDate] = useState(moment().format("LL"));
     const handleItemClick = (e, { name }) => {};
+    const [state, dispatch] = useStoreContext();
 
     useEffect(() => {
       setDate(moment().format("LL"))
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const { first_name, last_name } = state.user;
     return (
         <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
           <Menu.Item>
@@ -53,7 +56,7 @@ function Navbar() {
             onClick={handleItemClick}
           >
             <Icon name='user outline' />
-            John Smith
+            {first_name} {last_name}
           </Menu.Item>
         </Menu>
       )

@@ -1,38 +1,52 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useStoreContext } from "../../../utils/GlobalState";
 import logo from '../../../assets/images/jobTrack-gr.png';
-import background from '../../../assets/images/background.jpg'
+import background from '../../../assets/images/background.jpg';
+import { LOADING, USER_AUTHENTICATED } from '../../../utils/actions';
+import { login as loginUtil }  from '../../../utils'
 
 const LoginForm = (props) => {
-  const [state, setState] = useState({ first_name: "", last_name: "", success: false, error: false });
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: false });
+  const [state, dispatch] = useStoreContext();
+
+  useEffect(() => {
+    console.log(state);
+   if (state.isAuthenticated) {
+    console.log('Authenticated state: ', state.isAuthenticated);
+    props.history.push("/home");
+   }
+  }, [state.isAuthenticated])
+  
   const onLogin = (e) => {
     e.preventDefault();
-    const { email, password } = state;
+    const { email, password } = login;
     axios({
       url: "/auth/login",
       method: "POST",
       data: { email, password },
     })
     .then((res) => {
+      console.log(document.cookie);
       console.log('Authenticated: ', res);
-      setIsAuthenticated(true);
+      
       if (res.status === 200) {
-        setState({ success: true, error: false });
-        props.history.push("/dashboard");
+        // dispatch({type: LOADING, loading: true})
+        dispatch({ type: USER_AUTHENTICATED, user: {first_name: res.data.first_name, last_name: res.data.last_name} });
+        loginUtil();
       }
     })
     .catch(({ response }) => {
-      setState({ error: response.data.message, success: false });
-      console.log(state.error)
+      setLogin({ error: response.data.message, success: false });
+      console.log(login.error)
     });
   };
     
   const onChange = (e) => {
     const { name, value } = e.target;
-    setState({...state,
+    setLogin({...login,
       [name]: value,
       error: false,
       success: false,
@@ -47,10 +61,10 @@ const LoginForm = (props) => {
         <Grid.Row computer={3} mobile={1}>
           <Grid.Column width={4} only='tablet computer'></Grid.Column>
         <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
-        <Header as='h2' color='teal' textAlign='center'>
+        <Header as='h2' color='green' textAlign='center'>
             <Image src={logo} style={{width: 100}} /> Log-in to your account
         </Header>
-        <Form size='large' onSubmit={onLogin}>
+        <Form size='large' onSubmit={onLogin} loading={state.loading}>
           <Segment inverted color='grey' stacked>
             <Form.Input fluid icon='user'
               name='email'
@@ -70,11 +84,11 @@ const LoginForm = (props) => {
               required
             />
             <Button 
-              color='teal' 
+              positive 
               fluid size='large'
               type='submit'
+              content='Login'
             >
-              Login
             </Button>
           </Segment>
         </Form>

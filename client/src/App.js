@@ -9,12 +9,14 @@ import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
 import Unauthorized from './components/Unauthorized';
-
+import Home from './pages/Home';
 import ProfileInfo from "./components/ProfileInfo";
-import { Login, Register, Home, Logout } from "./components/Auth"; //Login page updates
+import { Login, Register, Logout } from "./components/Auth"; //Login page updates
 import ProtectedRouter from "./ProtectedRouter"; //Login page updates
 import Landing from "./pages/Landing";
 import CareerServicesItem from "./components/CareerServicesItem";
+import PrivateRoute from './components/PrivateRoute'
+import PublicRoute from './components/PublicRoute'
 
 function App() {
   const [user, setUser] = useState(false);
@@ -34,19 +36,21 @@ function App() {
     <Router>
       <StoreProvider>      
               <Switch>              
-              <Route exact path='/' handleLogin={handleLogin} render={props => <Landing {...props} user={user.toString()} handleLogin={handleLogin} />} />
-                <Route path="/login" component={Login} />
+              <PublicRoute restricted={false} exact path='/' component={Landing} />
+              <PublicRoute restricted={true} path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route exact path="/logout" component={Logout} />
-                <ProtectedRouter exact path="/home" user={user} handleLogout={handleLogout} component={Home} />
+                <Route path="/logout" component={Logout} />
+              <PrivateRoute exact path="/home" component={Home} />
+                {/* <ProtectedRouter exact path="/dashboard" component={Dashboard} />
+                <ProtectedRouter exact path="/search" component={Search} /> */}
                 {/* <ProtectedRouter exact path="/search" component={Search} />
                 <ProtectedRouter exact path="/add" component={AddJob} />
                 {/* <Route exact path="/dashboard" component={Dashboard} />
                 <Route exact path="/search" component={Search} /> 
                 <Route exact path="/profile" component={ProfileInfo} />
                 <Route exact path="/career" component={CareerServicesItem} /> */}
-                <Route exact path='/unauthorized' component={Unauthorized} />
-                <Route path="*" component={Home} />
+                {/* <Route exact path='/unauthorized' component={Unauthorized} /> */}
+                <Route path="*" component={Landing} />
               </Switch>
       </StoreProvider>
     </Router> 

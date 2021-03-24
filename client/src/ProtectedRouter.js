@@ -1,34 +1,14 @@
-// import React from "react";
-// import { Route, Redirect } from "react-router-dom";
-
-// const isAuthenticated = window.localStorage.getItem("isAuthenticated");
-
-// const ProtectedRoute = ({ component: Component, ...rest }) => {
-//   return (
-//     <Route
-//       {...rest}
-//       render={(props) => {
-//         if (isAuthenticated) {
-//           return <Component {...props} />;
-//         } else {
-//           return <Redirect to="/login" />;
-//         }
-//       }}
-//     />
-//   );
-// };
-
-// export default ProtectedRoute;
-
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import { useStoreContext } from "./utils/GlobalState";
 
-const ProtectedRoute = ({ component: Component, user, ...rest }) => {
-  console.log('user: ', user);
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const [state, dispatch] = useStoreContext();
+  console.log('state', state);
   return (
     <Route {...rest} render={
       props => {
-        if (user) {
+        if (state.isAuthenticated) {
           return <Component {...rest} {...props} />
         } else {
           return <Redirect to={
