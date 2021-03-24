@@ -10,3 +10,4 @@ export const LOADING = "LOADING";
 export const LOADING_DONE = "LOADING_DONE";
 export const OPEN_MODAL = "OPEN_MODAL";
 export const SET_CURRENT_JOB = "SET_CURRENT_JOB";
+export const USER_AUTHENTICATED = "USER_AUTHENTICATED";

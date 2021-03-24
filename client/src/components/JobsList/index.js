@@ -5,6 +5,7 @@ import moment from "moment";
 import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB, FILTER_JOBS } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import DetailModal from '../DetailModal';
+
 // Custom Hook for keeping sort state
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config);

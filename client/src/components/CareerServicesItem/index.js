@@ -5,7 +5,7 @@ import careerpic from "../../assets/images/careerpic.jpg";
 const CareerServicesItem = () => (
   <Item.Group relaxed>
     <Item>
-      <Item.Image size="smaller" src={careerpic} />
+      <Item.Image size="tiny" src={careerpic} />
     </Item>
 
     <Item>
