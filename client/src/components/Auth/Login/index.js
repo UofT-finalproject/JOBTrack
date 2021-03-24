@@ -1,98 +1,91 @@
-import React, { Component } from "react";
+import React, { useState } from 'react'
+import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
 import { Link } from "react-router-dom";
 import axios from "axios";
+import logo from '../../../assets/images/jobTrack-gr.png';
+import background from '../../../assets/images/background.jpg'
 
-//UI
-import { Box, Button, TextField, Typography } from "@material-ui/core";
-
-export class LoginScreen extends Component {
-  state = { first_name: "", last_name: "", success: false, error: false };
-
-  onLogin = (e) => {
+const LoginForm = (props) => {
+  const [state, setState] = useState({ first_name: "", last_name: "", success: false, error: false });
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const onLogin = (e) => {
     e.preventDefault();
-
-    const { email, password } = this.state;
-
+    const { email, password } = state;
     axios({
       url: "/auth/login",
       method: "POST",
       data: { email, password },
     })
-      .then((res) => {
-        window.localStorage.setItem("isAuthenticated", true);
-        if (res.status === 200) {
-          this.setState({ success: true, error: false });
-          this.props.history.push("/dashboard");
-        }
-      })
-      .catch(({ response }) => {
-        this.setState({ error: response.data.message, success: false });
-      });
+    .then((res) => {
+      console.log('Authenticated: ', res);
+      setIsAuthenticated(true);
+      if (res.status === 200) {
+        setState({ success: true, error: false });
+        props.history.push("/dashboard");
+      }
+    })
+    .catch(({ response }) => {
+      setState({ error: response.data.message, success: false });
+      console.log(state.error)
+    });
   };
-
-  onChange = (e) => {
+    
+  const onChange = (e) => {
     const { name, value } = e.target;
-    this.setState({
+    setState({...state,
       [name]: value,
       error: false,
       success: false,
     });
   };
 
-  render() {
-    const { error, success } = this.state;
-    return (
-      <div className="auth-background d-flex justify-content-center">
-        <form onSubmit={this.onLogin}>
-          <Box boxShadow={3} className="auth-box">
-            {success && "You've logged in successfully"}
-            {error}
-            <Typography variant="h5" className="font-weight-bold row">
-              Login
-            </Typography>
-            <div className="auth-inputs">
-              <div className="auth-field">
-                <span className="auth-subtitle">E-mail Address</span>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  type="email"
-                  name="email"
-                  onChange={this.onChange}
-                  required
-                />
-              </div>
-              <div className="auth-field">
-                <span className="auth-subtitle">Password</span>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  type="password"
-                  name="password"
-                  onChange={this.onChange}
-                  required
-                />
-              </div>
-            </div>
-            <Button
-              fullWidth
-              type="submit"
-              className="mt-4 p-3 submit-button"
-              variant="contained"
+  return (
+    <div className='bg' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+    <Grid style={{ height: '100vh' }} 
+      verticalAlign='middle'
+      >
+        <Grid.Row computer={3} mobile={1}>
+          <Grid.Column width={4} only='tablet computer'></Grid.Column>
+        <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
+        <Header as='h2' color='teal' textAlign='center'>
+            <Image src={logo} style={{width: 100}} /> Log-in to your account
+        </Header>
+        <Form size='large' onSubmit={onLogin}>
+          <Segment inverted color='grey' stacked>
+            <Form.Input fluid icon='user'
+              name='email'
+              iconPosition='left' 
+              placeholder='E-mail address'
+              onChange={onChange}
+              required
+            />
+            <Form.Input
+              name='password'
+              fluid
+              icon='lock'
+              iconPosition='left'
+              placeholder='Password'
+              onChange={onChange}
+              type='password'
+              required
+            />
+            <Button 
+              color='teal' 
+              fluid size='large'
+              type='submit'
             >
-              <Typography variant="h6" className="font-weight-bold">
-                Login
-              </Typography>
+              Login
             </Button>
-            <p className="mt-2">
-              Don’t have an account? Sign up?{" "}
-              <Link to={"/register"}>Register</Link>
-            </p>
-          </Box>
-        </form>
-      </div>
-    );
-  }
+          </Segment>
+        </Form>
+        <Message >
+            New to us? <Link to={"/register"}>Register</Link>
+        </Message>
+        </Grid.Column>
+        </Grid.Row>
+    </Grid>
+    </div>
+  )
 }
 
-export default LoginScreen;
+export default LoginForm
