@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
-import { Link } from "react-router-dom";
+import { Button, Form, Grid, Header, Image, Message, Segment, Menu, Container } from 'semantic-ui-react'
+import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useStoreContext } from "../../../utils/GlobalState";
 import logo from '../../../assets/images/jobTrack-gr.png';
@@ -56,6 +56,30 @@ const LoginForm = (props) => {
 
   return (
     <div className='bg' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
+      <div style={{height: 1}}></div>
+      <Menu 
+        fixed
+        inverted
+        pointing
+        secondary
+        size='large'
+      >
+        <Container>
+          <Menu.Item as={ NavLink } to="/">
+            Home
+          </Menu.Item>
+          <Menu.Item position='right'>
+            <Button as={ NavLink } to="/login" inverted>
+            {/* <Button onClick={handleLogin} inverted={!fixed}> */}
+              Log in
+            </Button>
+            <Button as={ NavLink } to="/register" inverted style={{ marginLeft: '0.5em' }}>
+              Sign Up
+            </Button>
+          </Menu.Item>
+        </Container>
+      </Menu>
+
     <Grid style={{ height: '100vh' }} 
       verticalAlign='middle'
       >
