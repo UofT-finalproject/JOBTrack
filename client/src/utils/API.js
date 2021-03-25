@@ -23,13 +23,11 @@ export default {
             const descriptionQuery = title ? `description=${title}` : '';
             const locationQuery = location ? `&location=${location}` : '';
             const query = `/api/search?${descriptionQuery}${locationQuery}`;
-            console.log(query);
             return axios.get(query);
         } else if (jobBoard === 'li') {
             const categoryQuery = title ? `category=${title}` : '';
             const locationQuery = location ? `&location=${location}` : '';
             const query = `/api/search/muse?${categoryQuery}${locationQuery}`;
-            console.log(query);
             return axios.get(query);
         }
     },

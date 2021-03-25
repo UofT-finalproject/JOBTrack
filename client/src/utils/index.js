@@ -1,8 +1,10 @@
 const TOKEN_KEY = 'jwt';
 
 export const login = (user) => {
+    let saveUser = {};
     localStorage.setItem(TOKEN_KEY, 's%3AUbDNXb7UnR65lcmLhqr4cO_qy4tmyBOX.SpeEDIMi969cahadYgTt4rKH44Aw8d2DIscoIsxOACs');
-    localStorage.setItem('user', JSON.stringify(user));
+    if (user) saveUser = user;
+    localStorage.setItem('user', JSON.stringify(saveUser))
 }
 
 export const logout = () => {

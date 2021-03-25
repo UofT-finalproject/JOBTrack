@@ -1,5 +1,5 @@
 import React from "react"; //Login page updates
-import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Grid } from 'semantic-ui-react';
 import Dashboard from "./Dashboard";
 import SideMenu from "../components/SideMenu"

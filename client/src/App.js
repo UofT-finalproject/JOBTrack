@@ -1,4 +1,4 @@
-import React, { useState } from "react"; //Login page updates
+import React from "react"; //Login page updates
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 import { StoreProvider } from "./utils/GlobalState";
@@ -9,19 +9,7 @@ import PrivateRoute from './components/PrivateRoute'
 import PublicRoute from './components/PublicRoute'
 
 function App() {
-  const [user, setUser] = useState(false);
-
-  const handleLogin = e => {
-    e.preventDefault();
-    setUser(true);
-    console.log('login status: ', user);
-  }
-
-  const handleLogout = e => {
-    e.preventDefault();
-    setUser(false);
-  }
-
+  
   return (
     <Router>
       <StoreProvider>      

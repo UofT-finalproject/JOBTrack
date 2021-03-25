@@ -18,6 +18,7 @@ const LoginForm = (props) => {
     console.log('Authenticated state: ', state.isAuthenticated);
     props.history.push("/home");
    }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.isAuthenticated])
   
   const onLogin = (e) => {
@@ -31,7 +32,7 @@ const LoginForm = (props) => {
     .then((res) => {
       if (res.status === 200) {
         const user = {first_name: res.data.first_name, last_name: res.data.last_name}
-        // dispatch({type: LOADING, loading: true})
+        dispatch({type: LOADING, loading: true})
         dispatch({ type: USER_AUTHENTICATED, user });
         loginUtil(user);
       }

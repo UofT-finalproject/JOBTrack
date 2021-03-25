@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from "react-router-dom";
 import { Menu, Icon } from 'semantic-ui-react';
-import { useStoreContext } from "../../utils/GlobalState";
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
 import './style.css';
 
 function Navbar() {
-    const activeItem = 'Dashboard';
     const [date, setDate] = useState(moment().format("LL"));
-    const handleItemClick = (e, { name }) => {};
-    const [state, dispatch] = useStoreContext();
+    const [activeItem, setActiveItem] = useState('Dashboard')
+    const handleItemClick = (e, { name }) => { setActiveItem(name)};
 
     useEffect(() => {
       setDate(moment().format("LL"));
@@ -20,6 +18,7 @@ function Navbar() {
     const user = JSON.parse(localStorage.getItem('user'));
     const first_name = user ? user.first_name : ''
     const last_name = user ? user.last_name : ''
+
     return (
         <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
           <Menu.Item>
@@ -31,8 +30,8 @@ function Navbar() {
           <Menu.Item
             as={ NavLink } to="/dashboard"
             position='right'
-            name='dashboard'
-            active={activeItem === 'dashboard'}
+            name='Dashboard'
+            active={activeItem === 'Dashboard'}
             onClick={handleItemClick}
           >
               <Icon name='clipboard list' />
