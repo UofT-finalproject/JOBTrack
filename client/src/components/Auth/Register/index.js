@@ -32,9 +32,10 @@ const LoginForm = (props) => {
       console.log('Registered: ', res);
       
       if (res.status === 200) {
+        const user = {first_name: res.data.first_name, last_name: res.data.last_name}
         // dispatch({type: LOADING, loading: true})
-        dispatch({ type: USER_AUTHENTICATED, user: {first_name: res.data.first_name, last_name: res.data.last_name} });
-        loginUtil();
+        dispatch({ type: USER_AUTHENTICATED, user });
+        loginUtil(user);
       }
     })
     .catch(({ response }) => {
@@ -56,7 +57,6 @@ const LoginForm = (props) => {
     <div className='bg' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
       <div style={{height: 1}}></div>
       <Menu
-        fixed
         inverted
         pointing
         secondary

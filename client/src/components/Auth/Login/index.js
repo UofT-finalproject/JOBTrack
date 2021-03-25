@@ -13,7 +13,6 @@ const LoginForm = (props) => {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    console.log(state);
    if (state.isAuthenticated) {
     console.log('Authenticated state: ', state.isAuthenticated);
     props.history.push("/home");
@@ -58,7 +57,6 @@ const LoginForm = (props) => {
     <div className='bg' style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
       <div style={{height: 1}}></div>
       <Menu 
-        fixed
         inverted
         pointing
         secondary
