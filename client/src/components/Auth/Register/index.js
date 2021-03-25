@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Container, Menu } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment, Container, Menu, Transition } from 'semantic-ui-react'
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useStoreContext } from "../../../utils/GlobalState";
@@ -11,6 +11,7 @@ import { login as loginUtil }  from '../../../utils'
 const LoginForm = (props) => {
   const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: false });
   const [state, dispatch] = useStoreContext();
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
    if (state.isAuthenticated) {
@@ -22,15 +23,12 @@ const LoginForm = (props) => {
   const onLogin = (e) => {
     e.preventDefault();
     const { email, password, first_name, last_name } = login;
-    console.log(login);
     axios({
         url: "/auth/register",
         method: "POST",
         data: { email, password, first_name, last_name },
       })
     .then((res) => {
-      console.log('Registered: ', res);
-      
       if (res.status === 200) {
         const user = {first_name: res.data.first_name, last_name: res.data.last_name}
         // dispatch({type: LOADING, loading: true})
@@ -39,8 +37,11 @@ const LoginForm = (props) => {
       }
     })
     .catch(({ response }) => {
-      setLogin({ error: response.data.message, success: false });
-      console.log(login.error)
+      if(typeof response.data !== 'object') {
+        setLogin({ error: response.data, success: false });
+        setVisible(true);
+        setTimeout(() => setVisible(false), 2000);
+      }
     });
   };
     
@@ -119,6 +120,11 @@ const LoginForm = (props) => {
               type='password'
               required
             />
+            <div style={{height: 25}}>
+            <Transition visible={visible} animation='fade' duration={500}>
+              <p>{login.error}</p>
+            </Transition>
+            </div>
             <Button 
               positive 
               fluid size='large'

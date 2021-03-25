@@ -5,7 +5,6 @@ import { useStoreContext } from "../../utils/GlobalState";
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import moment from "moment";
 import './style.css';
-import { USER_AUTHENTICATED } from '../../utils/actions';
 
 function Navbar() {
     const activeItem = 'Dashboard';
@@ -19,8 +18,8 @@ function Navbar() {
     }, [])
 
     const user = JSON.parse(localStorage.getItem('user'));
-    const first_name = user.first_name || ''
-    const last_name = user.last_name || ''
+    const first_name = user ? user.first_name : ''
+    const last_name = user ? user.last_name : ''
     return (
         <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
           <Menu.Item>

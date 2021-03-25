@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Menu, Container } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment, Menu, Container, Transition } from 'semantic-ui-react'
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useStoreContext } from "../../../utils/GlobalState";
@@ -9,8 +9,9 @@ import { LOADING, USER_AUTHENTICATED } from '../../../utils/actions';
 import { login as loginUtil }  from '../../../utils'
 
 const LoginForm = (props) => {
-  const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: false });
+  const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: '' });
   const [state, dispatch] = useStoreContext();
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
    if (state.isAuthenticated) {
@@ -39,8 +40,11 @@ const LoginForm = (props) => {
       }
     })
     .catch(({ response }) => {
-      setLogin({ error: response.data.message, success: false });
-      console.log(login.error)
+      if(typeof response.data !== 'object') {
+        setLogin({ error: response.data, success: false });
+        setVisible(true);
+        setTimeout(() => setVisible(false), 2000);
+      }
     });
   };
     
@@ -48,7 +52,7 @@ const LoginForm = (props) => {
     const { name, value } = e.target;
     setLogin({...login,
       [name]: value,
-      error: false,
+      error: '',
       success: false,
     });
   };
@@ -106,6 +110,11 @@ const LoginForm = (props) => {
               type='password'
               required
             />
+            <div style={{height: 25}}>
+            <Transition visible={visible} animation='fade' duration={500}>
+              <p>{login.error}</p>
+            </Transition>
+            </div>
             <Button 
               positive 
               fluid size='large'

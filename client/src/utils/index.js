@@ -8,6 +8,7 @@ export const login = (user) => {
 export const logout = () => {
     localStorage.removeItem(TOKEN_KEY);
     localStorage.removeItem('user');
+    window.location.replace('/');
 }
 
 export const isLogin = () => {

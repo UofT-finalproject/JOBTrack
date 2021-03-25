@@ -7,9 +7,7 @@ import Navbar from "../components/Navbar";
 import Search from "./Search";
 import { StoreProvider } from "../utils/GlobalState";
 import AddJob from "../components/AddJob";
-
 import ProfileInfo from "../components/ProfileInfo";
-import Landing from "./Landing";
 import CareerServicesItem from "../components/CareerServicesItem";
 import { Logout } from "../components/Auth";
 
