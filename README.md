@@ -11,15 +11,15 @@
 ## About
   Searching for a job? Don't remember what jobs you've applied to and which ones you haven't? Can't keep up with your upcoming interviews? Say no more! JOBTrack is an application that allows a user to help keep track of the jobs they've applied to. This app offers a smooth, clean and easy-to-use user interface to help users focus on organizing their applied jobs and upcoming interviews. We hope JOBTrack helps you keep organized and find your dream job as soon as possible! 
 
-* Link to app: <application link here!>
+* Link to app: http://jobtrack-search.herokuapp.com/
 * Link to Github repository: https://github.com/UofT-finalproject/JOBTrack
 
 ## Instructions
 1. Navigate to the application by clicking the github pages deploy link: 
- > Upon navigating to the deployed application link, you will see a log-in page.
- ![EmployeeDirectoryScreenshot](<https://i.imgur.com/3I0B7Rs.png> "Job Application Tracker Application Login")
+ > Upon navigating to the deployed application link, you will be greeted with the landing page. To get started, you will have to register an account and log in. You can do this by clicking either the 'Log in' or 'Sign up' buttons on the top left of the landing page.
+ ![EmployeeDirectoryScreenshot](https://i.imgur.com/BI2iffF.png "Job Application Tracker Application Login")
  > Please register an account to use the application, or use the following guest login: 
- Email: test22@gmail.com Password: A2HAGf8cuUNhqfH 
+  > Email: test22@gmail.com Password: A2HAGf8cuUNhqfH 
  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/qMR5gpl.png> "Job Application Tracker Application signup")
 
 

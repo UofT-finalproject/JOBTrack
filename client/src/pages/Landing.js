@@ -2,7 +2,7 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import jobTrackLogo from '../assets/images/jobTrack-logo.png';
+//import jobTrackLogo from '../assets/images/jobTrack-logo.png';
 import background from "../assets/images/background.jpg";
 import logo from "../assets/images/jobTrack-gr.png"
 import {
@@ -16,7 +16,6 @@ import {
   List,
   Menu,
   Segment,
-  Sidebar,
   Visibility,
 } from 'semantic-ui-react'
 
@@ -38,21 +37,21 @@ const HomepageHeading = ({ mobile }) => (
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
-        marginLeft: 50,
-        marginTop: mobile ? '1.5em' : '2em',
+        marginLeft: 75,
+        marginTop: mobile ? '1.5em' : '4.5em',
       }}
     />
     <Header
       as='h2'
-      content='Simplify your search with jobTrack'
+      content='Simplify your search, with jobTrack.'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
+        marginTop: mobile ? '0.5em' : '0.5em',
       }}
     />
-    <Button as={ NavLink } to="/home" positive size='huge'>
+    <Button as={ NavLink } to="/home" positive size='huge' style={{ marginTop: '0em' }}>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -194,13 +193,8 @@ MobileContainer.propTypes = {
 }*/
 
 const ResponsiveContainer = ({ children, handleLogin }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
   <MediaContextProvider>
     <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -214,7 +208,7 @@ const Landing = ({ children, handleLogin }) => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+            <Header as='h3' style={{ fontSize: '2em', marginTop: '2em' }}>
               We make your job search simple
             </Header>
             <p style={{ fontSize: '1.33em' }}>
@@ -263,7 +257,7 @@ const Landing = ({ children, handleLogin }) => (
 
     <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
+        <Header as='h3' style={{ fontSize: '2em', marginTop: '1em' }}>
           Experts say jobTrack is the best way to keep your job search organized
         </Header>
         <p style={{ fontSize: '1.33em' }}>
@@ -283,14 +277,14 @@ const Landing = ({ children, handleLogin }) => (
         <Header as='h3' style={{ fontSize: '2em' }}>
           Start tracking your jobs today!
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+        <p style={{ fontSize: '1.33em', paddingBottom: '2em' }}>
           Using our app, you will have the easiest user experience to help you find your dream job as soon as possible.
         </p>
       </Container>
     </Segment>
 
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
+    <Segment inverted vertical style={{ padding: '3em 2em' }}>
+      <Container style={{ marginTop: '2em' }}>
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
