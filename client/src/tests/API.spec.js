@@ -11,3 +11,16 @@ describe('test searchJobs with The Muse API', () => {
             })
     });
 });
+
+describe('test searchJobs with GitHub API', () => {
+    it('Check for time-out', () => {
+        return API.searchJobs('Software Engineer', 'San Francisco', 'gh')
+            .then(res => {
+                res.data.forEach((job) => {
+                    const pattern = /\D/g;
+                    // check if ID returned is alpha-numeric
+                    expect(pattern.test(job.id)).toBeTruthy();
+                })
+            })
+    });
+});
