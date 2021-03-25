@@ -215,7 +215,7 @@ ResponsiveContainer.propTypes = {
 
 const Landing = ({ children, handleLogin }) => (
   <ResponsiveContainer handleLogin={handleLogin}>
-    <Segment style={{ padding: '8em 8em' }} vertical>
+    <Segment style={{ padding: '2em 1em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -266,7 +266,7 @@ const Landing = ({ children, handleLogin }) => (
       </Grid>
     </Segment>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
           Experts say jobTrack is the best way to keep your job search organized

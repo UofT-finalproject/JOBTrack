@@ -59,7 +59,7 @@ const handleSubmit = () => {
     <Segment style={{backgroundColor: '#f1f1f1'}}>
     <Form onSubmit={handleSubmit} loading={state.loading}>
       <Header as='h2'>
-        <Icon name='calendar plus outline' color='grey'/>
+        <Icon name='calendar plus outline' color='green'/>
         Add new Job
       </Header>
       <Form.Group widths='equal'>

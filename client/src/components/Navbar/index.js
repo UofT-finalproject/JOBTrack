@@ -21,7 +21,12 @@ function Navbar() {
 
     return (
         <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
-          <Menu.Item>
+          <Menu.Item 
+            as={ NavLink } exact to="/"
+            name='Home'
+            active={activeItem === 'Home'}
+            onClick={handleItemClick}
+          >
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >
           <Menu.Item position='right'>
@@ -56,7 +61,7 @@ function Navbar() {
             active={activeItem === 'profile'}
             onClick={handleItemClick}
           >
-            <Icon name='user outline' />
+            <Icon name='user outline' color='green' />
             {first_name} {last_name}
           </Menu.Item>
           <Menu.Item

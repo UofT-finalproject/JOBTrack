@@ -108,7 +108,7 @@ function SearchForm() {
             <Grid centered>
                 <Form className="search-form" onSubmit={handleSubmit}>
                   <Header as='h3' >
-                    <Icon name='search plus' color='grey'/>
+                    <Icon name='search plus' color='green'/>
                     Search for a Job
                   </Header>
                   <Form.Group widths="equal">

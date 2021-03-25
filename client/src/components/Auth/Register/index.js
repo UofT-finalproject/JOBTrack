@@ -86,7 +86,7 @@ const LoginForm = (props) => {
           <Grid.Column width={4} only='tablet computer'></Grid.Column>
         <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
         <Header as='h2' color='green' textAlign='center'>
-            <Image src={logo} style={{width: 100}} /> Register new account
+            <Image src={logo} style={{width: 100, marginRight: 0}} /> Register new account
         </Header>
         <Form size='large' onSubmit={onLogin} loading={state.loading}>
           <Segment inverted color='grey' stacked>
