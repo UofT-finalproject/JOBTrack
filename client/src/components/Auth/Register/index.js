@@ -123,7 +123,7 @@ const LoginForm = (props) => {
               positive 
               fluid size='large'
               type='submit'
-              content='Login'
+              content='Sign Up'
             >
             </Button>
           </Segment>
