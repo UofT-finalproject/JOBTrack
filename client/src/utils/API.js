@@ -1,5 +1,4 @@
 import axios from "axios";
-const BASE_API_URL = '';
 
 export default {
     // Gets all saved jobs
@@ -23,13 +22,13 @@ export default {
         if (jobBoard === 'gh') {
             const descriptionQuery = title ? `description=${title}` : '';
             const locationQuery = location ? `&location=${location}` : '';
-            const query = `${BASE_API_URL}/api/search?${descriptionQuery}${locationQuery}`;
+            const query = `/api/search?${descriptionQuery}${locationQuery}`;
             console.log(query);
             return axios.get(query);
         } else if (jobBoard === 'li') {
             const categoryQuery = title ? `category=${title}` : '';
             const locationQuery = location ? `&location=${location}` : '';
-            const query = `${BASE_API_URL}/api/search/muse?${categoryQuery}${locationQuery}`;
+            const query = `/api/search/muse?${categoryQuery}${locationQuery}`;
             console.log(query);
             return axios.get(query);
         }
