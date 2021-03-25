@@ -12,7 +12,7 @@
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build",
-    "test": "eslint server.js && npx mocha ./tests/index-spec.js --exit"
+    "test": "npx mocha ./tests/index-spec.js --exit"
   },
   "keywords": [
     "node",
@@ -29,29 +29,25 @@
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^4.1.2",
-    "eslint": "^7.22.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-react": "^7.23.1",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
+    "chai": "^4.2.0",
     "connect-mongo": "^3.2.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
     "if-env": "^1.0.4",
+    "mocha": "^8.2.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.0",
     "morgan": "^1.10.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
-    "semantic-ui-calendar-react": "^0.15.3",
-    "chai": "^4.2.0",
-    "mocha": "^8.2.1"
+    "semantic-ui-calendar-react": "^0.15.3"
   },
   "engines": {
     "node": ">=14.15.1",
