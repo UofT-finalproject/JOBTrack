@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Keep track of applied jobs",
   "private": true,
-  "proxy": "http://localhost:process.env.PORT/",
+  "proxy": "http://localhost:3001/",
   "dependencies": {
     "@artsy/fresnel": "^1.3.1",
     "moment": "^2.29.1",
