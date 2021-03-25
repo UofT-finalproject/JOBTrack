@@ -9,7 +9,7 @@ deploy:
   provider: heroku
   api_key:
     secure: A24h4W01ChbqXSWNFYVilRzpa0ad1NJMlTwOZKwtMcEd1abIplE3Xu/2D5JeY2J2P7n0/IMIap3XbTdmM1/dvQhWDhfqCHiiGVEuMyAwfByqnNugvmaT7qfyK1RV2/+0pfQzgNpza0sFP/6N8ywmYQqZGiDFlKkbYedaAGqscbY5naqYJXFGY0qRq82ZO2lQZf+6+mRfgZDZygHGzmauz28bBbE/YP9thUd/VE5xNV+yJkLb6MJFSjKcUXSlYH1szEC+E9QZIPYKyj2C4lQZ0ypwFOSkaR6a76wnDijC2SoBJg0hOQO0a1RBGcX13cvIX+el+YqtWG4SXNgl35aHcjecBvV8IA4N6l1EqORUuT70cpG5CzdvPTRKK/j+6m+KxBTP0Qb4aQZyQo8pUBIbU6vqrjvNa8nwF7BtsqHc5VVE3h2mcJycYno0iDZ1wIVdUd0lVbM2IDHRKKUQtKu+uKu1pbojoldDqd7Zt6eU1S4UnMNt50Ara+zvHQyKzVAo/v1jUoQBZfUb+UlyGt07UtfGvQ1prsYsUFGT+MiTDTrp+b2jqYGKlj1/n2DQfHQ68xqcuC8PmqVg0GOjPo2BNJAT/gzWElpnSxNPozeWK6zyfogMl1EJbN/w9IhY/G9Ve39NaenMbvkC9ljSOEy7mTB7vpBjY8V0IjcpC6+Ehzw=
-  app: JOBTrack
+  app: jobtrack-search
   on:
     repo: UofT-finalproject/JOBTrack
     branch: main
