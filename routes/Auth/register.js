@@ -8,19 +8,12 @@ const passport = require("../../Auth");
 register.post("/register", (req, res) => {
   passport.authenticate("local-register", function (error, user, info) {
     if (error) {
-      return res.status(500).json({
-        message: error || "Something happend",
-        error: error.message || "Server error",
-      });
+      return res.status(401).send(error);
     }
     req.logIn(user, function (error, data) {
       if (error) {
-        return res.status(500).json({
-          message: error || "Something happend",
-          error: error.message || "Server error",
-        });
-      }
-      return res.json(user);
+        return res.status(401).json(error);
+      } else return res.json(user);
     });
   })(req, res);
 });

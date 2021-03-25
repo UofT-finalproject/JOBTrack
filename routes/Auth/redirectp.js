@@ -13,9 +13,4 @@ redirectp.get('/', authCheck, (req, res) => {
   res.render('You are logged in Sucessfuly!', { user: req.user });
 });
 
-// // auth logout
-// router.get('/logout', (req, res) => {
-//   req.logout();
-//   res.redirect('/');
-// });
 module.exports = redirectp;
