@@ -14,11 +14,10 @@ login.post("/login", function (req, res) {
     req.logIn(user, function (error, data) {
       if (error) {
         return res.status(401).send(error);
-      }
+      } else return res.json(user);
     });
 
     user.isAuthenticated = true;
-    return res.json(user);
   })(req, res);
 });
 
