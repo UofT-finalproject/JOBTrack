@@ -12,7 +12,7 @@
         "install": "cd client && npm install",
         "build": "cd client && npm run build",
         "heroku-postbuild": "npm run build",
-        "test": "npx mocha ./tests/index-spec.js --exit"
+        "test": "jest --config ./jest.config.json"
     },
     "keywords": [
         "node",
@@ -28,7 +28,9 @@
     "author": "Eldar, Nagesh, Dazrin, Tayyaba, Ivan, Omair, UofT Students",
     "license": "MIT",
     "devDependencies": {
+        "@babel/preset-env": "^7.13.12",
         "concurrently": "^4.1.2",
+        "jest": "^26.6.3",
         "nodemon": "^1.18.7"
     },
     "dependencies": {
