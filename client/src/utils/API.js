@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASE_API_URL = 'http://localhost:3000';
+const BASE_API_URL = '';
 
 export default {
     // Gets all saved jobs

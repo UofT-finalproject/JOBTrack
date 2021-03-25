@@ -2,7 +2,9 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import logo from '../assets/images/jobTrack-logo.png';
+import jobTrackLogo from '../assets/images/jobTrack-logo.png';
+import background from "../assets/images/background.jpg";
+import logo from "../assets/images/jobTrack-gr.png"
 import {
   Button,
   Container,
@@ -18,8 +20,6 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
-
-
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
     mobile: 0,
@@ -29,6 +29,7 @@ const { MediaContextProvider, Media } = createMedia({
 })
 
 const HomepageHeading = ({ mobile }) => (
+  
   <Container text>
     <Image
       src={logo}
@@ -51,7 +52,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/login" primary size='huge' positive>
+    <Button as={ NavLink } to="/home" positive size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -79,10 +80,10 @@ class DesktopContainer extends Component {
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
+          <div style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
           <Segment
-            inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
             <Menu
@@ -98,6 +99,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
                 <Menu.Item position='right'>
                   <Button as={ NavLink } to="/login" inverted={!fixed}>
+                  {/* <Button onClick={handleLogin} inverted={!fixed}> */}
                     Log in
                   </Button>
                   <Button as={ NavLink } to="/register" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
@@ -108,6 +110,7 @@ class DesktopContainer extends Component {
             </Menu>
             <HomepageHeading />
           </Segment>
+          </div>
         </Visibility>
 
         {children}
@@ -190,9 +193,14 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }*/
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ children, handleLogin }) => (
+  /* Heads up!
+   * For large applications it may not be best option to put all page into these containers at
+   * they will be rendered twice for SSR.
+   */
   <MediaContextProvider>
-    <DesktopContainer>{children}</DesktopContainer>
+    <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
+    <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -200,8 +208,8 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const Landing = () => (
-  <ResponsiveContainer>
+const Landing = ({ children, handleLogin }) => (
+  <ResponsiveContainer handleLogin={handleLogin}>
     <Segment style={{ padding: '8em 8em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
@@ -230,7 +238,7 @@ const Landing = () => (
         </Grid.Row>
       </Grid>
     </Segment>
-
+    
     <Segment style={{ padding: '0em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
