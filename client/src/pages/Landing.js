@@ -2,6 +2,7 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
+import logo from '../assets/images/jobTrack-logo.png';
 import {
   Button,
   Container,
@@ -17,7 +18,7 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
-const src = "https://i.imgur.com/kT94ezi.png";
+
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -27,21 +28,17 @@ const { MediaContextProvider, Media } = createMedia({
   },
 })
 
-/* Heads up!
- * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
- * components for such things.
- */
 const HomepageHeading = ({ mobile }) => (
   <Container text>
     <Image
-      src={src}
-      size='massive'
-      inverted
+      src={logo}
+      size='big'
+      fluid
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
+        marginLeft: 50,
+        marginTop: mobile ? '1.5em' : '2em',
       }}
     />
     <Header
@@ -54,7 +51,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/login" primary size='huge'>
+    <Button as={ NavLink } to="/login" primary size='huge' positive>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -65,10 +62,6 @@ HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
 }
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
 class DesktopContainer extends Component {
   state = {}
 
@@ -127,6 +120,7 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
 
+/*
 class MobileContainer extends Component {
   state = {}
 
@@ -194,16 +188,11 @@ class MobileContainer extends Component {
 
 MobileContainer.propTypes = {
   children: PropTypes.node,
-}
+}*/
 
 const ResponsiveContainer = ({ children }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
   <MediaContextProvider>
     <DesktopContainer>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -236,7 +225,7 @@ const Landing = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button as={ NavLink } to="/search" size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -273,9 +262,6 @@ const Landing = () => (
           All the experts are talking about the massive impact that jobTrack is having on a global scale.
           It's clear to see that there has been a huge shift in terms of a phenomenal decrease in unemployment since jobTrack has risen in popularity.
         </p>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
 
         <Divider
           as='h4'
@@ -292,9 +278,6 @@ const Landing = () => (
         <p style={{ fontSize: '1.33em' }}>
           Using our app, you will have the easiest user experience to help you find your dream job as soon as possible.
         </p>
-        <Button as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
       </Container>
     </Segment>
 
@@ -305,28 +288,28 @@ const Landing = () => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as='a'><a href='mailto:groupone.finalproject@gmail.com'>Contact Us</a></List.Item>
+                <List.Item as='a'><a href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</a></List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Job APIs' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a'>
+                <a href='https://jobs.github.com/'>Github Jobs</a>
+                </List.Item>
+                <List.Item as='a'><a href='https://www.themuse.com/search'>The Muse</a></List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+                Front-End Library
               </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
+              <List link inverted>
+              <List.Item as='a'>
+              <a href='https://react.semantic-ui.com/'>Semantic UI React</a>
+              </List.Item>
+              </List>
             </Grid.Column>
           </Grid.Row>
         </Grid>

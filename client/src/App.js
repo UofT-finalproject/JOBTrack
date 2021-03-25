@@ -8,7 +8,6 @@ import Navbar from "./components/Navbar";
 import Search from "./pages/Search";
 import { StoreProvider } from "./utils/GlobalState";
 import AddJob from "./components/AddJob";
-
 import ProfileInfo from "./components/ProfileInfo";
 import { Login, Register, Home, Logout } from "./components/Auth"; //Login page updates
 import ProtectedRouter from "./ProtectedRouter"; //Login page updates
