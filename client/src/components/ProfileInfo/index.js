@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { Header, Button, Grid, Select, Icon, Container, Image, Table, Checkbox, Feed, Card  } from 'semantic-ui-react'
+import React from "react";
+import { Header, Button, Grid, Icon, Container, Image, Table, Checkbox, Feed, Card  } from 'semantic-ui-react'
 /*import { DateInput } from 'semantic-ui-calendar-react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { LOADING, LOADING_DONE } from '../../utils/actions';
@@ -43,7 +42,7 @@ const ProfileInfo = () => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <a>
+      <a href="https://jobs.github.com/" >
         <Icon name='user' />
         contactsProp Contacts
       </a>
@@ -60,7 +59,7 @@ const ProfileInfo = () => (
           <Feed.Content>
             <Feed.Date content='1 day ago' />
             <Feed.Summary>
-              You added <a>Full-Stack Developer</a> to your <a>Saved Jobs.</a>
+              You added <a href="https://bootcamp.learn.utoronto.ca/coding/">Full-Stack Developer</a> to your <a href="https://bootcamp.learn.utoronto.ca/coding/">Saved Jobs.</a>
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
@@ -70,7 +69,7 @@ const ProfileInfo = () => (
           <Feed.Content>
             <Feed.Date content='3 days ago' />
             <Feed.Summary>
-              You added <a>Molly Malone</a> as a contact.
+              You added <a href="https://bootcamp.learn.utoronto.ca/coding/">Molly Malone</a> as a contact.
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
@@ -80,7 +79,7 @@ const ProfileInfo = () => (
           <Feed.Content>
             <Feed.Date content='4 days ago' />
             <Feed.Summary>
-              You set <a>Front-End Developer</a> status to Applied.
+              You set <a href="https://bootcamp.learn.utoronto.ca/coding/">Front-End Developer</a> status to Applied.
             </Feed.Summary>
           </Feed.Content>
         </Feed.Event>
