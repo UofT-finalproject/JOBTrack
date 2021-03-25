@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Form, Grid, Header, Image, Message, Segment, Container, Menu } from 'semantic-ui-react'
+import { Button, Form, Grid, Header, Image, Message, Segment, Container, Menu, Transition } from 'semantic-ui-react'
 import { Link, NavLink } from "react-router-dom";
 import axios from "axios";
 import { useStoreContext } from "../../../utils/GlobalState";
@@ -11,36 +11,38 @@ import { login as loginUtil }  from '../../../utils'
 const LoginForm = (props) => {
   const [login, setLogin] = useState({email: '', password: '', first_name: "", last_name: "", success: false, error: false });
   const [state, dispatch] = useStoreContext();
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
    if (state.isAuthenticated) {
     console.log('Authenticated state: ', state.isAuthenticated);
     props.history.push("/home");
    }
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.isAuthenticated])
   
   const onLogin = (e) => {
     e.preventDefault();
     const { email, password, first_name, last_name } = login;
-    console.log(login);
     axios({
         url: "/auth/register",
         method: "POST",
         data: { email, password, first_name, last_name },
       })
     .then((res) => {
-      console.log('Registered: ', res);
-      
       if (res.status === 200) {
         const user = {first_name: res.data.first_name, last_name: res.data.last_name}
-        // dispatch({type: LOADING, loading: true})
+        dispatch({type: LOADING, loading: true})
         dispatch({ type: USER_AUTHENTICATED, user });
         loginUtil(user);
       }
     })
     .catch(({ response }) => {
-      setLogin({ error: response.data.message, success: false });
-      console.log(login.error)
+      if(typeof response.data !== 'object') {
+        setLogin({ error: response.data, success: false });
+        setVisible(true);
+        setTimeout(() => setVisible(false), 2000);
+      }
     });
   };
     
@@ -84,7 +86,7 @@ const LoginForm = (props) => {
           <Grid.Column width={4} only='tablet computer'></Grid.Column>
         <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
         <Header as='h2' color='green' textAlign='center'>
-            <Image src={logo} style={{width: 100}} /> Register new account
+            <Image src={logo} style={{width: 100, marginRight: 0}} /> Register new account
         </Header>
         <Form size='large' onSubmit={onLogin} loading={state.loading}>
           <Segment inverted color='grey' stacked>
@@ -119,6 +121,11 @@ const LoginForm = (props) => {
               type='password'
               required
             />
+            <div style={{height: 25}}>
+            <Transition visible={visible} animation='fade' duration={500}>
+              <p>{login.error}</p>
+            </Transition>
+            </div>
             <Button 
               positive 
               fluid size='large'

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, Input, Icon, Dropdown } from 'semantic-ui-react';
-import { Link, NavLink, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
 import './style.css';
 import { FILTER_JOBS } from '../../utils/actions';

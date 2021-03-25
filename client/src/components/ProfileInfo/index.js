@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { NavLink, useHistory } from "react-router-dom";
-import { Header, Button, Grid, Select, Icon, Container, Image, Table, Checkbox, Feed, Card  } from 'semantic-ui-react'
+import React from "react";
+import { Header, Button, Grid, Icon, Container, Image, Table, Checkbox, Feed, Card  } from 'semantic-ui-react'
 /*import { DateInput } from 'semantic-ui-calendar-react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { LOADING, LOADING_DONE } from '../../utils/actions';
@@ -43,7 +42,7 @@ const ProfileInfo = () => (
       </Card.Description>
     </Card.Content>
     <Card.Content extra>
-      <a>
+      <a href="https://jobs.github.com/" >
         <Icon name='user' />
         contactsProp Contacts
       </a>
