@@ -2,6 +2,8 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
+import background from "../assets/images/background.jpg";
+import logo from "../assets/images/jobTrack-gr.png"
 import {
   Button,
   Container,
@@ -17,8 +19,6 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 
-const src = "https://i.imgur.com/kT94ezi.png";
-
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
     mobile: 0,
@@ -32,11 +32,11 @@ const { MediaContextProvider, Media } = createMedia({
  * components for such things.
  */
 const HomepageHeading = ({ mobile }) => (
+  
   <Container text>
     <Image
-      src={src}
-      size='massive'
-      inverted
+      src={logo}
+      size='big'
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
@@ -54,7 +54,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/login" primary size='huge'>
+    <Button as={ NavLink } to="/home" positive size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -86,10 +86,10 @@ class DesktopContainer extends Component {
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
+          <div style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
           <Segment
-            inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
             <Menu
@@ -105,6 +105,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
                 <Menu.Item position='right'>
                   <Button as={ NavLink } to="/login" inverted={!fixed}>
+                  {/* <Button onClick={handleLogin} inverted={!fixed}> */}
                     Log in
                   </Button>
                   <Button as={ NavLink } to="/register" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
@@ -115,6 +116,7 @@ class DesktopContainer extends Component {
             </Menu>
             <HomepageHeading />
           </Segment>
+          </div>
         </Visibility>
 
         {children}
@@ -196,13 +198,13 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const ResponsiveContainer = ({ children }) => (
+const ResponsiveContainer = ({ children, handleLogin }) => (
   /* Heads up!
    * For large applications it may not be best option to put all page into these containers at
    * they will be rendered twice for SSR.
    */
   <MediaContextProvider>
-    <DesktopContainer>{children}</DesktopContainer>
+    <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
@@ -211,9 +213,9 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const Landing = () => (
-  <ResponsiveContainer>
-    <Segment style={{ padding: '8em 8em' }} vertical>
+const Landing = ({ children, handleLogin }) => (
+  <ResponsiveContainer handleLogin={handleLogin}>
+    <Segment style={{ padding: '2em 1em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -241,7 +243,7 @@ const Landing = () => (
         </Grid.Row>
       </Grid>
     </Segment>
-
+    
     <Segment style={{ padding: '0em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
@@ -264,7 +266,7 @@ const Landing = () => (
       </Grid>
     </Segment>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
           Experts say jobTrack is the best way to keep your job search organized
@@ -283,7 +285,7 @@ const Landing = () => (
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <a href='https://jobs.github.com/'>Case Studies</a>
         </Divider>
 
         <Header as='h3' style={{ fontSize: '2em' }}>

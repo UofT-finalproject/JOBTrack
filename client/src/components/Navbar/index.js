@@ -6,18 +6,27 @@ import moment from "moment";
 import './style.css';
 
 function Navbar() {
-    const activeItem = 'Dashboard';
     const [date, setDate] = useState(moment().format("LL"));
-    const handleItemClick = (e, { name }) => {};
+    const [activeItem, setActiveItem] = useState('Dashboard')
+    const handleItemClick = (e, { name }) => { setActiveItem(name)};
 
     useEffect(() => {
-      setDate(moment().format("LL"))
+      setDate(moment().format("LL"));
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const user = JSON.parse(localStorage.getItem('user'));
+    const first_name = user ? user.first_name : ''
+    const last_name = user ? user.last_name : ''
+
     return (
         <Menu stackable fixed='top' color={'grey'} inverted size='huge'>
-          <Menu.Item>
+          <Menu.Item 
+            as={ NavLink } exact to="/"
+            name='Home'
+            active={activeItem === 'Home'}
+            onClick={handleItemClick}
+          >
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >
           <Menu.Item position='right'>
@@ -26,8 +35,8 @@ function Navbar() {
           <Menu.Item
             as={ NavLink } to="/dashboard"
             position='right'
-            name='dashboard'
-            active={activeItem === 'features'}
+            name='Dashboard'
+            active={activeItem === 'Dashboard'}
             onClick={handleItemClick}
           >
               <Icon name='clipboard list' />
@@ -38,7 +47,7 @@ function Navbar() {
             as={ NavLink } to="/search"
             float='right'
             name='Job Search'
-            active={activeItem === 'testimonials'}
+            active={activeItem === 'Job Search'}
             onClick={handleItemClick}
           >
               <Icon name='search plus' />
@@ -46,14 +55,22 @@ function Navbar() {
           </Menu.Item>
   
           <Menu.Item
+            as={ NavLink } to="/profile"
             float='right'
-            name='sign-in'
-            active={activeItem === 'sign-in'}
-            user
+            name='profile'
+            active={activeItem === 'profile'}
             onClick={handleItemClick}
           >
-            <Icon name='user outline' />
-            John Smith
+            <Icon name='user outline' color='green' />
+            {first_name} {last_name}
+          </Menu.Item>
+          <Menu.Item
+            as={ NavLink } to="/logout"
+            float='right'
+            name='logout'
+            active={activeItem === 'logout'}
+          >
+            <Icon name='sign-out' />
           </Menu.Item>
         </Menu>
       )
