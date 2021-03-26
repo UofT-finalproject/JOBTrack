@@ -37,7 +37,6 @@ const SearchList = () => {
             attachments: '',
             user: user ? user._id : ''
         };
-        console.log('saving user: ', newJob.user);
         dispatch({ type: LOADING });
         API.saveJob(newJob)
             .then(res => {
