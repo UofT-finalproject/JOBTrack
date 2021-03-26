@@ -30,7 +30,12 @@ const LoginForm = (props) => {
     })
     .then((res) => {
       if (res.status === 200) {
-        const user = {first_name: res.data.first_name, last_name: res.data.last_name}
+        const user = {
+          first_name: res.data.first_name, 
+          last_name: res.data.last_name, 
+          _id: res.data._id,
+          email: res.data.email
+        }
         dispatch({type: LOADING, loading: true})
         dispatch({ type: USER_AUTHENTICATED, user });
         loginUtil(user);
@@ -79,7 +84,10 @@ const LoginForm = (props) => {
         </Container>
       </Menu>
 
-    <Grid style={{ height: '100vh' }} 
+    <Grid style={{ 
+      height: '100vh',
+      //marginLeft: '30em',
+     }} 
       verticalAlign='middle'
       >
         <Grid.Row computer={3} mobile={1}>
