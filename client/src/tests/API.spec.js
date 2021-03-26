@@ -41,3 +41,28 @@ describe('Unit-tests for searchJobs()', () => {
             })
     });
 });
+
+describe('validate route passed to axios', () => {
+    it('Test getSavedJobs()', () => {
+        const userId = 'user123';
+        const resp = {};
+        // use mock'd axios module to return empty data
+        axios.get.mockResolvedValue(resp);
+        return API.getSavedJobs(userId)
+            .then(res => {
+                // Validate route passed to AXIOS
+                expect(axios.get).toHaveBeenCalledWith('/api/jobs?user=user123');
+            })
+    });
+    it('Test deleteJob()', () => {
+        const jobId = 'software_engineer123';
+        const resp = {};
+        // use mock'd axios module to return empty data
+        axios.delete.mockResolvedValue(resp);
+        return API.deleteJob(jobId)
+            .then(res => {
+                // Validate route passed to AXIOS
+                expect(axios.delete).toHaveBeenCalledWith('/api/jobs/software_engineer123');
+            })
+    });
+})
