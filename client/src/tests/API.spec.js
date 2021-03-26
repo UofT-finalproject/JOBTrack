@@ -1,6 +1,3 @@
-// To get import statments working see reply from
-// Natan Williams to this stackoverflow post:
-// https://stackoverflow.com/questions/58613492/how-to-resolve-cannot-use-import-statement-outside-a-module-in-jest
 import API from '../utils/API';
 import axios from 'axios';
 
