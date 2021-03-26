@@ -17,27 +17,31 @@
 ## Instructions
 1. Navigate to the application by clicking the github pages deploy link: 
  > Upon navigating to the deployed application link, you will be greeted with the landing page. To get started, you will have to register an account and log in. You can do this by clicking either the 'Log in' or 'Sign up' buttons on the top left of the landing page.
- ![EmployeeDirectoryScreenshot](https://i.imgur.com/BI2iffF.png "Job Application Tracker Application Login")
+  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/BI2iffF.png> "Job Application Tracker Application Landing")
+ ![EmployeeDirectoryScreenshot](<https://i.imgur.com/dDMR41Y.png> "Job Application Tracker Application Login")
  > Please register an account to use the application, or use the following guest login: 
   > Email: test22@gmail.com Password: A2HAGf8cuUNhqfH 
- ![EmployeeDirectoryScreenshot](<https://i.imgur.com/qMR5gpl.png> "Job Application Tracker Application signup")
+ ![EmployeeDirectoryScreenshot](<https://i.imgur.com/diJmhA8.png> "Job Application Tracker Application signup")
 
 
 2. Once you log in, you will be taken to your job dashboard. 
- > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/1WTQisc.png> "Job Application Tracker Application dashboard")
+ > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/5f6nMeg.png> "Job Application Tracker Application dashboard")
  > On this page, you may add a job listing manually by clicking the 'Add Job' button on the side bar. You may specify specific details about the listing, provide a url, add a status to the listing, and even upload and attach job documents to a particular listing.
- > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/dHFMuae.png> "Job Application Tracker Application Add job form")
+ > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/D2pjDak.png> "Job Application Tracker Application Add job form")
 > On your dashboard, you may click a particular listing you have saved to bring up it's details and documents for your convenience.
-    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/wWCW59O.png> "Job Application Tracker Application dashboard")
+  >  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/6NaospD.png> "Job Application Tracker Application Job details modal")
  
 
 3. If you wish to browse job listings from other job sites, you may click the 'Search New' tab on the side bar. You may also select the 'Job Search' button on the navigation bar on the top of the page.
   > Once you have navigated to the page, you will noticed two input fields. You may use these fields to search for job listings from either Github's job website, or from another job website called the 'The Muse' by using the radio button. Once you have searched for your results, you may choose to save a listing to your dashboard, or view the listing on it's respective page.
-    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/WT906vQ.png> "Job Application Tracker Application dashboard")
+    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/ZDJUSQl.png> "Job Application Tracker Application dashboard")
 
 4. You may click the View Profile button under the Profile dropdown on the sidebar to bring up your personal profile.
 ![image](https://user-images.githubusercontent.com/14916152/112086498-95fa1480-8b49-11eb-8157-ce8da7f081c6.png)
   > You may choose to edit details on your profile.
+
+5. You may additionally choose to click the Job Search Help tab to look at some useful links to aid you on your job search.
+![jobTrackScreenshot](<https://i.imgur.com/9d4ae8p.png> "Job Application Tracker Application Useful Links")
 
 ## License
 MIT License
