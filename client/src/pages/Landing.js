@@ -17,6 +17,7 @@ import {
   Menu,
   Segment,
   Visibility,
+  Sidebar
 } from 'semantic-ui-react'
 
 const { MediaContextProvider, Media } = createMedia({
@@ -37,7 +38,7 @@ const HomepageHeading = ({ mobile }) => (
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
-        marginLeft: 75,
+        marginLeft: mobile ? '0em' : '1em',
         marginTop: mobile ? '1.5em' : '4.5em',
       }}
     />
@@ -122,7 +123,7 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
 
-/*
+
 class MobileContainer extends Component {
   state = {}
 
@@ -190,11 +191,12 @@ class MobileContainer extends Component {
 
 MobileContainer.propTypes = {
   children: PropTypes.node,
-}*/
+}
 
 const ResponsiveContainer = ({ children, handleLogin }) => (
   <MediaContextProvider>
     <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
+    <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
