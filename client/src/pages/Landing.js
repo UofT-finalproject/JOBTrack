@@ -123,7 +123,7 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
 
-/*
+
 class MobileContainer extends Component {
   state = {}
 
@@ -191,7 +191,7 @@ class MobileContainer extends Component {
 
 MobileContainer.propTypes = {
   children: PropTypes.node,
-}*/
+}
 
 const ResponsiveContainer = ({ children, handleLogin }) => (
   /* Heads up!
