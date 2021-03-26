@@ -34,25 +34,24 @@ const HomepageHeading = ({ mobile }) => (
     <Image
       src={logo}
       size='big'
-      fluid
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
-        marginLeft: mobile ? '0em' : '1em',
-        marginTop: mobile ? '1.5em' : '4.5em',
+        marginBottom: 0,
+        marginTop: mobile ? '1.5em' : '3em',
       }}
     />
     <Header
       as='h2'
-      content='Simplify your search, with jobTrack.'
+      content='Simplify your search with jobTrack'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '0.5em',
+        marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/home" positive size='huge' style={{ marginTop: '0em' }}>
+    <Button as={ NavLink } to="/home" positive size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -149,11 +148,12 @@ class MobileContainer extends Component {
             <Menu.Item as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
+            <Menu.Item as='a' 
+              href="https://mycareerspot.org/"
+              target="blank"
+            >Careers</Menu.Item>
+            <Menu.Item as={ NavLink } to="/login">Log in</Menu.Item>
+            <Menu.Item as={ NavLink } to="/register">Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -210,7 +210,7 @@ const Landing = ({ children, handleLogin }) => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em', marginTop: '2em' }}>
+            <Header as='h3' style={{ fontSize: '2em' }}>
               We make your job search simple
             </Header>
             <p style={{ fontSize: '1.33em' }}>
@@ -229,7 +229,7 @@ const Landing = ({ children, handleLogin }) => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button as={ NavLink } to="/search" size='huge'>Check Them Out</Button>
+            <Button as={ NavLink } to="/home" size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -250,7 +250,7 @@ const Landing = ({ children, handleLogin }) => (
             </Header>
             <p style={{ fontSize: '1.33em' }}>
               <Image avatar src='https://i.imgur.com/7TDjPKd.png' />
-              <b>Nan</b> <i>Senior Front-End Developer</i>
+              <b>Nan</b> <i>Front-End Developer</i>
             </p>
           </Grid.Column>
         </Grid.Row>
@@ -260,11 +260,11 @@ const Landing = ({ children, handleLogin }) => (
     <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
         <Header as='h3' style={{ fontSize: '2em', marginTop: '1em' }}>
-          Experts say jobTrack is the best way to keep your job search organized
+          Users say jobTrack is the best way to keep your job search organized
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          All the experts are talking about the massive impact that jobTrack is having on a global scale.
-          It's clear to see that there has been a huge shift in terms of a phenomenal decrease in unemployment since jobTrack has risen in popularity.
+          All the users are talking about the impact that jobTrack is having on careers.
+          It's nice to see that there has been a shift in unemployment since jobTrack has risen in popularity.
         </p>
 
         <Divider
@@ -292,17 +292,15 @@ const Landing = ({ children, handleLogin }) => (
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'><a href='mailto:groupone.finalproject@gmail.com'>Contact Us</a></List.Item>
-                <List.Item as='a'><a href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</a></List.Item>
+                <List.Item as='a' href='mailto:groupone.finalproject@gmail.com'>Contact Us</List.Item>
+                <List.Item as='a' href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='Job APIs' />
               <List link inverted>
-                <List.Item as='a'>
-                <a href='https://jobs.github.com/'>Github Jobs</a>
-                </List.Item>
-                <List.Item as='a'><a href='https://www.themuse.com/search'>The Muse</a></List.Item>
+                <List.Item as='a' href='https://jobs.github.com/'>Github Jobs</List.Item>
+                <List.Item as='a' href='https://www.themuse.com/search'>The Muse</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
@@ -310,9 +308,7 @@ const Landing = ({ children, handleLogin }) => (
                 Front-End Library
               </Header>
               <List link inverted>
-              <List.Item as='a'>
-              <a href='https://react.semantic-ui.com/'>Semantic UI React</a>
-              </List.Item>
+              <List.Item as='a' href='https://react.semantic-ui.com/'>Semantic UI React</List.Item>
               </List>
             </Grid.Column>
           </Grid.Row>

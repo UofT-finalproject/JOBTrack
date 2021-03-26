@@ -11,7 +11,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 
 const passport = require("./Auth");
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 require("dotenv").config();
 
 // Connect to the Mongo DB

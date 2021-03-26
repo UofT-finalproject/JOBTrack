@@ -1,28 +1,5 @@
 import React from "react";
-import { Header, Button, Grid, Icon, Container, Image, Table, Checkbox, Feed, Card  } from 'semantic-ui-react'
-/*import { DateInput } from 'semantic-ui-calendar-react';
-import { useStoreContext } from "../../utils/GlobalState";
-import { LOADING, LOADING_DONE } from '../../utils/actions';
-import { NavLink, useHistory } from "react-router-dom";
-import moment from "moment";
-import API from '../../utils/API';
-
-const EditProfile = () => {
-    const [input, setInput] = useState(
-      {
-        Name: '',
-        description: '',
-        type: '',
-        location: '',
-        company: '',
-        url: '',
-        created_at: moment().format('DD/MM/YYYY'),
-        applied: false ,
-        date_applied: '',
-        status: 'None',
-        notes: '',
-        attachments: '',mer
-      });*/
+import { Header, Grid, Icon, Container, Image, Card  } from 'semantic-ui-react'
 
 const ProfileInfo = () => (
   <div>

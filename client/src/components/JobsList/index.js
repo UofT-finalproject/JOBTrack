@@ -62,9 +62,10 @@ function JobsList() {
   }, []);
 
   // Helper function to get saved jobs from server API
-  const loadJobs = () => {
+  const loadJobs = async () => {
+    const userId = await JSON.parse(localStorage.getItem('user'))._id
     dispatch({type: LOADING})
-    API.getSavedJobs()
+    API.getSavedJobs(userId)
     .then(res => {
       dispatch({
         type: UPDATE_JOBS,

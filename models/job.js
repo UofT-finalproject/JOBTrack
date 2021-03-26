@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const jobSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   searchId: String,
   title: { type: String, required: true },
   description: String,
@@ -17,8 +16,8 @@ const jobSchema = new Schema({
   notes: String,
   attachments: String,
   date: { type: Date, default: Date.now },
-  user: [{ type: Schema.Types.ObjectId, ref: 'User',
-   required: true}]
+  user: { type: Schema.Types.ObjectId, ref: 'User',
+   required: true}
 });
 
 const Job = mongoose.model("Job", jobSchema);
