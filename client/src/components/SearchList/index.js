@@ -18,6 +18,7 @@ const SearchList = () => {
 
     const handleSave = (e) => {
         const id = e.target.id;
+        const user = JSON.parse(localStorage.getItem('user'));
         setClickedButtonId(id);
         const jobToSave = state.searchedJobs.filter(job => job.id === id).pop();
         const newJob = {
@@ -34,7 +35,9 @@ const SearchList = () => {
             status: 'None',
             notes: '',
             attachments: '',
+            user: user ? user._id : ''
         };
+        console.log('saving user: ', newJob.user);
         dispatch({ type: LOADING });
         API.saveJob(newJob)
             .then(res => {

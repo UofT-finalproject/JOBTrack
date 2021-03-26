@@ -18,8 +18,7 @@ const userSchema = new Schema(
     last_name: {
       type: String,
       required: true,
-    },
-    job: [{ type: Schema.Types.ObjectId, ref: 'Job' }]
+    }
   },
 );
 
