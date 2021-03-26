@@ -79,7 +79,9 @@ const LoginForm = (props) => {
           </Menu.Item>
         </Container>
       </Menu>
-    <Grid style={{ height: '100vh', marginLeft: '30em'  }} 
+    <Grid style={{ height: '100vh',
+     //marginLeft: '30em'
+      }} 
       verticalAlign='middle'
       >
         <Grid.Row computer={3} mobile={1}>
