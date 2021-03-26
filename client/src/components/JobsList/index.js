@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Table, Button, Icon } from 'semantic-ui-react';
 import API from '../../utils/API';
 import moment from "moment";
-import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB } from '../../utils/actions';
+import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB, FILTER_JOBS } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import DetailModal from '../DetailModal';
 // Custom Hook for keeping sort state
@@ -45,7 +45,7 @@ const useSortableData = (items, config = null) => {
 function JobsList() {
   const [state, dispatch] = useStoreContext();
   const [clickedButtonId, setClickedButtonId] = useState('');
-  const { items, requestSort, sortConfig } = useSortableData(state.savedJobs);
+  const { items, requestSort, sortConfig } = useSortableData(state.sortedFilteredJobs);
 
   // Generate classname for sort order icon in table header
   const getClassNamesFor = (name) => {
@@ -68,6 +68,10 @@ function JobsList() {
       dispatch({
         type: UPDATE_JOBS,
         savedJobs: res.data
+      });
+      dispatch({
+        type: FILTER_JOBS,
+        sortedFilteredJobs: res.data
       })
     });
   }

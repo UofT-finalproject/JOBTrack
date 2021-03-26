@@ -49,6 +49,7 @@ function Navbar() {
             float='right'
             name='sign-in'
             active={activeItem === 'sign-in'}
+            user
             onClick={handleItemClick}
           >
             <Icon name='user outline' />
