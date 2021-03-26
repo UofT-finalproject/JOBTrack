@@ -79,14 +79,14 @@ const LoginForm = (props) => {
           </Menu.Item>
         </Container>
       </Menu>
-    <Grid style={{ height: '100vh' }} 
+    <Grid style={{ height: '100vh', marginLeft: '30em'  }} 
       verticalAlign='middle'
       >
         <Grid.Row computer={3} mobile={1}>
           <Grid.Column width={4} only='tablet computer'></Grid.Column>
         <Grid.Column style={{ maxWidth: 450 }} tablet={8} mobile={16}>
-        <Header as='h2' color='green' textAlign='center'>
-            <Image src={logo} style={{width: 100, marginRight: 0}} /> Register new account
+        <Header as='h2' color='green' textAlign='center' style={{ fontSize: 20 }}>
+            <Image src={logo} style={{width: 100, marginRight: '2em'}} /> Register your account
         </Header>
         <Form size='large' onSubmit={onLogin} loading={state.loading}>
           <Segment inverted color='grey' stacked>

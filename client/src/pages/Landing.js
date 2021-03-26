@@ -2,6 +2,7 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
+//import jobTrackLogo from '../assets/images/jobTrack-logo.png';
 import background from "../assets/images/background.jpg";
 import logo from "../assets/images/jobTrack-gr.png"
 import {
@@ -15,7 +16,6 @@ import {
   List,
   Menu,
   Segment,
-  Sidebar,
   Visibility,
 } from 'semantic-ui-react'
 
@@ -27,34 +27,31 @@ const { MediaContextProvider, Media } = createMedia({
   },
 })
 
-/* Heads up!
- * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
- * components for such things.
- */
 const HomepageHeading = ({ mobile }) => (
   
   <Container text>
     <Image
       src={logo}
       size='big'
+      fluid
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
-        marginBottom: 0,
-        marginTop: mobile ? '1.5em' : '3em',
+        marginLeft: 75,
+        marginTop: mobile ? '1.5em' : '4.5em',
       }}
     />
     <Header
       as='h2'
-      content='Simplify your search with jobTrack'
+      content='Simplify your search, with jobTrack.'
       inverted
       style={{
         fontSize: mobile ? '1.5em' : '1.7em',
         fontWeight: 'normal',
-        marginTop: mobile ? '0.5em' : '1.5em',
+        marginTop: mobile ? '0.5em' : '0.5em',
       }}
     />
-    <Button as={ NavLink } to="/home" positive size='huge'>
+    <Button as={ NavLink } to="/home" positive size='huge' style={{ marginTop: '0em' }}>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -65,10 +62,6 @@ HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
 }
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
 class DesktopContainer extends Component {
   state = {}
 
@@ -129,6 +122,7 @@ DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
 
+/*
 class MobileContainer extends Component {
   state = {}
 
@@ -196,16 +190,11 @@ class MobileContainer extends Component {
 
 MobileContainer.propTypes = {
   children: PropTypes.node,
-}
+}*/
 
 const ResponsiveContainer = ({ children, handleLogin }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
   <MediaContextProvider>
     <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
-    <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
 
@@ -219,7 +208,7 @@ const Landing = ({ children, handleLogin }) => (
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
-            <Header as='h3' style={{ fontSize: '2em' }}>
+            <Header as='h3' style={{ fontSize: '2em', marginTop: '2em' }}>
               We make your job search simple
             </Header>
             <p style={{ fontSize: '1.33em' }}>
@@ -238,7 +227,7 @@ const Landing = ({ children, handleLogin }) => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button as={ NavLink } to="/search" size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -268,16 +257,13 @@ const Landing = ({ children, handleLogin }) => (
 
     <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
+        <Header as='h3' style={{ fontSize: '2em', marginTop: '1em' }}>
           Experts say jobTrack is the best way to keep your job search organized
         </Header>
         <p style={{ fontSize: '1.33em' }}>
           All the experts are talking about the massive impact that jobTrack is having on a global scale.
           It's clear to see that there has been a huge shift in terms of a phenomenal decrease in unemployment since jobTrack has risen in popularity.
         </p>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
 
         <Divider
           as='h4'
@@ -291,44 +277,41 @@ const Landing = ({ children, handleLogin }) => (
         <Header as='h3' style={{ fontSize: '2em' }}>
           Start tracking your jobs today!
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+        <p style={{ fontSize: '1.33em', paddingBottom: '2em' }}>
           Using our app, you will have the easiest user experience to help you find your dream job as soon as possible.
         </p>
-        <Button as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
       </Container>
     </Segment>
 
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
+    <Segment inverted vertical style={{ padding: '3em 2em' }}>
+      <Container style={{ marginTop: '2em' }}>
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as='a'><a href='mailto:groupone.finalproject@gmail.com'>Contact Us</a></List.Item>
+                <List.Item as='a'><a href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</a></List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Job APIs' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a'>
+                <a href='https://jobs.github.com/'>Github Jobs</a>
+                </List.Item>
+                <List.Item as='a'><a href='https://www.themuse.com/search'>The Muse</a></List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+                Front-End Library
               </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
+              <List link inverted>
+              <List.Item as='a'>
+              <a href='https://react.semantic-ui.com/'>Semantic UI React</a>
+              </List.Item>
+              </List>
             </Grid.Column>
           </Grid.Row>
         </Grid>
