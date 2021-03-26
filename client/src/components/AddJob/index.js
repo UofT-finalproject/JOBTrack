@@ -41,10 +41,11 @@ const handleChange = (e, { name, value }) => {
   setInput({ ...input, [name]: value })
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
+  const userId = await JSON.parse(localStorage.getItem('user'))._id
     input.created_at = moment().format();
     dispatch({type: LOADING});
-    API.saveJob(input)
+    API.saveJob({ ...input, user: userId })
     .then(res => 
       {dispatch({ type: LOADING_DONE })
       history.push('/dashboard')
