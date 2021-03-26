@@ -7,8 +7,8 @@ import axios from 'axios';
 jest.mock('axios');
 
 // Code adapted from: https://jestjs.io/docs/mock-functions
-describe('Unit-tests for searchJobs()', () => {
-    it('Test searchJobs() with Muse API', () => {
+describe('Unit-tests for client API calls', () => {
+    it('Test axios.get() in searchJobs() with Muse API', () => {
         const museJob = [{ timed_out: true }];
         const resp = { data: museJob };
         // use mock'd axios module to return fake data
@@ -24,7 +24,7 @@ describe('Unit-tests for searchJobs()', () => {
                 expect(res.data).toEqual(museJob);
             })
     });
-    it('Test searchJobs() with GitHub API', () => {
+    it('Test axios.get() in searchJobs() with GitHub API', () => {
         const ghJob = [{ id: 'abc-123' }];
         const resp = { data: ghJob };
         // use mock'd axios module to return fake data
@@ -40,10 +40,7 @@ describe('Unit-tests for searchJobs()', () => {
                 expect(res.data).toEqual(ghJob);
             })
     });
-});
-
-describe('validate route passed to axios', () => {
-    it('Test getSavedJobs()', () => {
+    it('Test axios.get() in getSavedJobs()', () => {
         const userId = 'user123';
         const resp = {};
         // use mock'd axios module to return empty data
@@ -54,7 +51,7 @@ describe('validate route passed to axios', () => {
                 expect(axios.get).toHaveBeenCalledWith('/api/jobs?user=user123');
             })
     });
-    it('Test deleteJob()', () => {
+    it('Test axios.delete() in deleteJob()', () => {
         const jobId = 'software_engineer123';
         const resp = {};
         // use mock'd axios module to return empty data
@@ -65,4 +62,15 @@ describe('validate route passed to axios', () => {
                 expect(axios.delete).toHaveBeenCalledWith('/api/jobs/software_engineer123');
             })
     });
-})
+    it('Test axios.post() in saveJob()', () => {
+        const job = { name: 'software engineer', company: 'google' };
+        const resp = {};
+        // use mock'd axios module to return empty data
+        axios.post.mockResolvedValue(resp);
+        return API.saveJob(job)
+            .then(res => {
+                // Validate route passed to AXIOS
+                expect(axios.post).toHaveBeenCalledWith('/api/jobs', { name: 'software engineer', company: 'google' });
+            })
+    });
+});
