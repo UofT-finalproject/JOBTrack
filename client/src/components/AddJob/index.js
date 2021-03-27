@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Form, Segment, Header, Button, Grid, Select, Icon  } from 'semantic-ui-react'
+import { Form, Segment, Header, Button, Grid, Select, Icon, Card, List, Input  } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { LOADING, LOADING_DONE } from '../../utils/actions';
@@ -31,7 +31,8 @@ const AddJob = () => {
       date_applied: '',
       status: 'None',
       notes: '',
-      attachments: '',
+      attachments: [],
+      file: ''
     });
 
 const [state, dispatch] = useStoreContext();
@@ -39,6 +40,16 @@ let history = useHistory();
 
 const handleChange = (e, { name, value }) => {
   setInput({ ...input, [name]: value })
+}
+const handleUpload = async (e) => {
+  dispatch({type: LOADING})
+  // setInput({ ...input, [name]: value });
+  const file = (e.target.files)[0];
+  setInput({ ...input, file: e.target.value});
+  await API.uploadFile(file).then(url => {
+    setInput({ ...input, attachments: [url, ...input.attachments]});
+    dispatch({type: LOADING_DONE, loading: false})
+  })
 }
 
 const handleSubmit = async () => {
@@ -54,7 +65,29 @@ const handleSubmit = async () => {
   }
 
   const { title, description, type, location, company, url, created_at, date_applied,
-    status, notes, attachments } = input;
+    status, notes, attachments, file } = input;
+    const fileList = attachments.map((link, i) => {
+      // Making file Icon class depending on file type
+      const type = link.split('.').pop();
+      let fileIcon = '';
+      switch(type) {
+        case 'pdf': fileIcon = ' pdf';
+        break;
+        case 'docx': fileIcon = ' word';
+        break;
+        case 'jpg' : fileIcon = ' image';
+        break;
+        default: fileIcon = ' alternate';
+      }
+
+      return (<List.Item key={i}>
+      <List.Icon name={`file${fileIcon}`} color='grey' />
+      <List.Content>
+        <a href={link} target='blank'>{ link.split('/').pop()}</a>
+      </List.Content>
+    </List.Item>)
+    })
+
   return (<Grid centered>
     <Grid.Column computer={14} tablet={16}>
     <Segment style={{backgroundColor: '#f1f1f1'}}>
@@ -129,14 +162,27 @@ const handleSubmit = async () => {
         value={notes}
         />
       </Form.Field>
-      <Form.Field>
-        <label>Attachments:</label>
-        <input type="file" placeholder='Attachments' 
-        name="attachments"
-        onChange={handleChange}
-        value={attachments}
-        />
-      </Form.Field>
+      <Form.Group>
+        <Form.Field width={6} >
+          <label>Upload File:</label>
+          <Input type="file" placeholder='Attachments'
+          loading={state.loading}
+          name="file"
+          onChange={handleUpload}
+          value={file}
+          />
+        </Form.Field>
+        <Card width={10}>
+          <Card.Content>
+            <Card.Header>Attachments</Card.Header>
+            <Card.Description>
+              <List>
+                {fileList}
+              </List>
+            </Card.Description>
+          </Card.Content>
+        </Card>
+      </Form.Group>
       <div>
         <Button icon labelPosition='left'
           as={ NavLink } to="/dashboard"

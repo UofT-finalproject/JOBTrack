@@ -1,9 +1,12 @@
 const express = require("express");
+const aws = require('aws-sdk');
 const cors = require('cors');
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+
+aws.config.region = 'us-east-2';
 
 //Updates for Passport
 const logger = require("morgan");

@@ -16,7 +16,7 @@ const CareerServicesItem = () => (
       <Segment style={{ padding: '2em 2em' }} vertical>
     <Grid container stackable verticalAlign='middle'>
       <Grid.Row>
-        <Grid.Column width={20}>
+        <Grid.Column width={16}>
     <Header as='h1' style={{ fontSize: '2em' }}>
     <Image src={careerpic} />Find Helpful Links From Career Services Below:
     </Header>
