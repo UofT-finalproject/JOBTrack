@@ -34,20 +34,18 @@ export default {
 
     uploadFile: function initUpload(file){
         return new Promise( (resolve, reject) => {
-            // const files = document.getElementById('file-input').files;
-        // const file = files[0];
         // Function to carry out the actual PUT request to S3 using the signed request from the app.
         function uploadFile(file, signedRequest, url){
             const xhr = new XMLHttpRequest();
             xhr.open('PUT', signedRequest);
             xhr.onreadystatechange = () => {
             if(xhr.readyState === 4){
-                if(xhr.status === 200){
-                    console.log('uploading file...');
-                }
-                else{
-                alert('Could not upload file.');
-                }
+              if(xhr.status === 200){
+                  console.log('uploaded file');
+              }
+              else{
+              reject('Could not upload file.');
+              }
             }
             };
             xhr.send(file);
@@ -57,7 +55,6 @@ export default {
         // If request successful, continue to upload the file using this signed
         // request.
         function getSignedRequest(file){
-            console.log('sending request to server')
             const xhr = new XMLHttpRequest();
             const fileName = encodeURIComponent(file.name);
             const fileType = encodeURIComponent(file.type)
@@ -67,20 +64,17 @@ export default {
                 if(xhr.status === 200){
                   const response = JSON.parse(xhr.responseText);
                   uploadFile(file, response.signedRequest, response.url);
-                  console.log('received url ', response.signedRequest, response.url)
                   resolve(response.url) 
                 }
                 else{
-                  resolve('Could not get signed URL.');
+                  reject('Could not get signed URL.');
                 }
               }
             };
             xhr.send();
           }
-
         // Send request to upload file
         getSignedRequest(file);
-    }
-        )
-    }    
+    })
+  }    
 }

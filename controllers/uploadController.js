@@ -16,7 +16,6 @@ module.exports = {
         ACL: 'public-read'
         };
     
-        console.log('s3Params', s3Params);
         s3.getSignedUrl('putObject', s3Params, (err, data) => {
         if(err){
             console.log(err);
@@ -26,7 +25,6 @@ module.exports = {
             signedRequest: data,
             url: `https://${S3_BUCKET_NAME}.s3.amazonaws.com/${fileName}`
         };
-        console.log('server return data: ', returnData)
         res.write(JSON.stringify(returnData));
         res.end();
         });

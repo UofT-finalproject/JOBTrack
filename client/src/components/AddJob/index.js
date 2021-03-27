@@ -6,6 +6,7 @@ import { LOADING, LOADING_DONE } from '../../utils/actions';
 import { NavLink, useHistory } from "react-router-dom";
 import moment from "moment";
 import API from '../../utils/API';
+import FileListContainer from "../FileList/FileListContainer";
 
 const statusOptions = [
   { key: 'n', text: 'None', value: 'None' },
@@ -43,13 +44,15 @@ const handleChange = (e, { name, value }) => {
 }
 const handleUpload = async (e) => {
   dispatch({type: LOADING})
-  // setInput({ ...input, [name]: value });
   const file = (e.target.files)[0];
   setInput({ ...input, file: e.target.value});
-  await API.uploadFile(file).then(url => {
-    setInput({ ...input, attachments: [url, ...input.attachments]});
-    dispatch({type: LOADING_DONE, loading: false})
-  })
+  await API.uploadFile(file)
+    .then(url => {
+      console.log('attachements:',input.attachments);
+      setInput({ ...input, attachments: [url, ...input.attachments]});
+      dispatch({type: LOADING_DONE, loading: false})
+    })
+    .catch(err => console.log(err));
 }
 
 const handleSubmit = async () => {
@@ -66,31 +69,9 @@ const handleSubmit = async () => {
 
   const { title, description, type, location, company, url, created_at, date_applied,
     status, notes, attachments, file } = input;
-    const fileList = attachments.map((link, i) => {
-      // Making file Icon class depending on file type
-      const type = link.split('.').pop();
-      let fileIcon = '';
-      switch(type) {
-        case 'pdf': fileIcon = ' pdf';
-        break;
-        case 'docx': fileIcon = ' word';
-        break;
-        case 'jpg' : fileIcon = ' image';
-        break;
-        default: fileIcon = ' alternate';
-      }
-
-      return (<List.Item key={i}>
-      <List.Icon name={`file${fileIcon}`} color='grey' />
-      <List.Content>
-        <a href={link} target='blank'>{ link.split('/').pop()}</a>
-      </List.Content>
-    </List.Item>)
-    })
-
   return (<Grid centered>
     <Grid.Column computer={14} tablet={16}>
-    <Segment style={{backgroundColor: '#f1f1f1'}}>
+    <Segment style={{backgroundColor: '#f1f1f1', marginTop: 10}}>
     <Form onSubmit={handleSubmit} loading={state.loading}>
       <Header as='h2'>
         <Icon name='calendar plus outline' color='green'/>
@@ -163,7 +144,7 @@ const handleSubmit = async () => {
         />
       </Form.Field>
       <Form.Group>
-        <Form.Field width={6} >
+        <Form.Field width={14} >
           <label>Upload File:</label>
           <Input type="file" placeholder='Attachments'
           loading={state.loading}
@@ -172,18 +153,24 @@ const handleSubmit = async () => {
           value={file}
           />
         </Form.Field>
-        <Card width={10}>
+        <Card fluid>
           <Card.Content>
             <Card.Header>Attachments</Card.Header>
             <Card.Description>
               <List>
-                {fileList}
+                <FileListContainer attachments={attachments}/>
               </List>
             </Card.Description>
           </Card.Content>
+          <Card.Content extra>
+            <a>
+              <Icon name='warning circle' />
+              Size Limit per file 10MB, Files are stored for 90 days only
+            </a>
+          </Card.Content>
         </Card>
       </Form.Group>
-      <div>
+      <div style={{ marginTop: 10 }}>
         <Button icon labelPosition='left'
           as={ NavLink } to="/dashboard"
         >

@@ -34,7 +34,7 @@ const SearchList = () => {
             date_applied: '',
             status: 'None',
             notes: '',
-            attachments: '',
+            attachments: [],
             user: user ? user._id : ''
         };
         dispatch({ type: LOADING });
