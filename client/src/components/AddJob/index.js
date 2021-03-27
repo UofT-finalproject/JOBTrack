@@ -147,11 +147,15 @@ const handleSubmit = async () => {
         <Form.Field width={14} >
           <label>Upload File:</label>
           <Input type="file" placeholder='Attachments'
+          icon='upload'
           loading={state.loading}
           name="file"
           onChange={handleUpload}
           value={file}
           />
+          <label style={{fontWeight: 200, color: 'grey'}}>
+            Upload Supporting Documents: Resumer, Cover Letter etc.
+          </label>
         </Form.Field>
         <Card fluid>
           <Card.Content>

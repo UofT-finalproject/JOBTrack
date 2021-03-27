@@ -106,8 +106,12 @@ function DetailForm() {
               <Input type="file" placeholder='Attachments'
               loading={state.loading}
               name="file"
+              icon='upload'
               onChange={handleUpload}
               />
+              <label style={{fontWeight: 200, color: 'grey'}}>
+                Upload Supporting Documents: Resumer, Cover Letter etc.
+              </label>
             </Form.Field>
             <Card fluid>
               <Card.Content>
