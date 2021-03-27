@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Menu, Input, Icon, Dropdown } from 'semantic-ui-react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { useStoreContext } from "../../utils/GlobalState";
 import './style.css';
 import { FILTER_JOBS } from '../../utils/actions';
 
-function SideMenu() {
+function SideMenu(props) {
   const [menuItem, setMenuItem ] = useState('')
   const [search, setSearch ] = useState('');
   const [state, dispatch] = useStoreContext();
@@ -28,6 +28,8 @@ function SideMenu() {
   const handleItemClick = (e, { name }) => setMenuItem({ activeItem: name });
   const { activeItem } = menuItem;
   
+  let history = useHistory();
+
   return (
     <Menu vertical className='side-menu' style={{flex: 'auto', marginLeft: 5}}>
       <Menu.Item>
@@ -48,8 +50,13 @@ function SideMenu() {
             active={activeItem === 'profile'}
             onClick={handleItemClick}
              />
-            <Dropdown.Item icon='edit' text='Edit Profile' />
-            <Dropdown.Item icon='log out' text='Logout' color='grey'/>
+          {
+            // TODO: Make edit profile section a modal that can be opened by this sidemenu item
+            //<Dropdown.Item icon='edit' text='Edit Profile' />
+          }
+            <Dropdown.Item icon='log out' text='Logout' color='grey'
+              onClick={() => history.push('logout')}
+            />
           </Dropdown.Menu>
         </Dropdown>
 
@@ -90,16 +97,6 @@ function SideMenu() {
       >
         <Icon name='life ring outline' color='grey'/>
         Job Search Help
-      </Menu.Item>
-      
-      <Menu.Item
-      as={ NavLink } to="/links"
-      name='Links'
-      active={activeItem === 'links'}
-      onClick={handleItemClick}
-      >
-      <Icon name='hand pointer outline' color='grey'/>
-      Useful Links
       </Menu.Item>
     </Menu>
   )

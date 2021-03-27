@@ -2,6 +2,9 @@ import { createMedia } from '@artsy/fresnel'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
+//import jobTrackLogo from '../assets/images/jobTrack-logo.png';
+import background from "../assets/images/background.jpg";
+import logo from "../assets/images/jobTrack-gr.png"
 import {
   Button,
   Container,
@@ -13,11 +16,9 @@ import {
   List,
   Menu,
   Segment,
-  Sidebar,
   Visibility,
+  Sidebar
 } from 'semantic-ui-react'
-
-const src = "https://i.imgur.com/kT94ezi.png";
 
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
@@ -27,16 +28,12 @@ const { MediaContextProvider, Media } = createMedia({
   },
 })
 
-/* Heads up!
- * HomepageHeading uses inline styling, however it's not the best practice. Use CSS or styled
- * components for such things.
- */
 const HomepageHeading = ({ mobile }) => (
+  
   <Container text>
     <Image
-      src={src}
-      size='massive'
-      inverted
+      src={logo}
+      size='big'
       style={{
         fontSize: mobile ? '2em' : '4em',
         fontWeight: 'normal',
@@ -54,7 +51,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={ NavLink } to="/login" primary size='huge'>
+    <Button as={ NavLink } to="/home" positive size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -65,10 +62,6 @@ HomepageHeading.propTypes = {
   mobile: PropTypes.bool,
 }
 
-/* Heads up!
- * Neither Semantic UI nor Semantic UI React offer a responsive navbar, however, it can be implemented easily.
- * It can be more complicated, but you can create really flexible markup.
- */
 class DesktopContainer extends Component {
   state = {}
 
@@ -86,10 +79,10 @@ class DesktopContainer extends Component {
           onBottomPassed={this.showFixedMenu}
           onBottomPassedReverse={this.hideFixedMenu}
         >
+          <div style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}>
           <Segment
-            inverted
             textAlign='center'
-            style={{ minHeight: 700, padding: '1em 0em' }}
+            style={{ minHeight: '100vh', padding: '1em 0em' }}
             vertical
           >
             <Menu
@@ -105,6 +98,7 @@ class DesktopContainer extends Component {
                 </Menu.Item>
                 <Menu.Item position='right'>
                   <Button as={ NavLink } to="/login" inverted={!fixed}>
+                  {/* <Button onClick={handleLogin} inverted={!fixed}> */}
                     Log in
                   </Button>
                   <Button as={ NavLink } to="/register" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
@@ -115,6 +109,7 @@ class DesktopContainer extends Component {
             </Menu>
             <HomepageHeading />
           </Segment>
+          </div>
         </Visibility>
 
         {children}
@@ -126,6 +121,7 @@ class DesktopContainer extends Component {
 DesktopContainer.propTypes = {
   children: PropTypes.node,
 }
+
 
 class MobileContainer extends Component {
   state = {}
@@ -152,11 +148,12 @@ class MobileContainer extends Component {
             <Menu.Item as='a' active>
               Home
             </Menu.Item>
-            <Menu.Item as='a'>Work</Menu.Item>
-            <Menu.Item as='a'>Company</Menu.Item>
-            <Menu.Item as='a'>Careers</Menu.Item>
-            <Menu.Item as='a'>Log in</Menu.Item>
-            <Menu.Item as='a'>Sign Up</Menu.Item>
+            <Menu.Item as='a' 
+              href="https://mycareerspot.org/"
+              target="blank"
+            >Careers</Menu.Item>
+            <Menu.Item as={ NavLink } to="/login">Log in</Menu.Item>
+            <Menu.Item as={ NavLink } to="/register">Sign Up</Menu.Item>
           </Sidebar>
 
           <Sidebar.Pusher dimmed={sidebarOpened}>
@@ -196,13 +193,9 @@ MobileContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const ResponsiveContainer = ({ children }) => (
-  /* Heads up!
-   * For large applications it may not be best option to put all page into these containers at
-   * they will be rendered twice for SSR.
-   */
+const ResponsiveContainer = ({ children, handleLogin }) => (
   <MediaContextProvider>
-    <DesktopContainer>{children}</DesktopContainer>
+    <DesktopContainer handleLogin={handleLogin}>{children}</DesktopContainer>
     <MobileContainer>{children}</MobileContainer>
   </MediaContextProvider>
 )
@@ -211,9 +204,9 @@ ResponsiveContainer.propTypes = {
   children: PropTypes.node,
 }
 
-const Landing = () => (
-  <ResponsiveContainer>
-    <Segment style={{ padding: '8em 8em' }} vertical>
+const Landing = ({ children, handleLogin }) => (
+  <ResponsiveContainer handleLogin={handleLogin}>
+    <Segment style={{ padding: '2em 1em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -236,12 +229,12 @@ const Landing = () => (
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button as={ NavLink } to="/home" size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
-
+    
     <Segment style={{ padding: '0em' }} vertical>
       <Grid celled='internally' columns='equal' stackable>
         <Grid.Row textAlign='center'>
@@ -257,25 +250,22 @@ const Landing = () => (
             </Header>
             <p style={{ fontSize: '1.33em' }}>
               <Image avatar src='https://i.imgur.com/7TDjPKd.png' />
-              <b>Nan</b> <i>Senior Front-End Developer</i>
+              <b>Nan</b> <i>Front-End Developer</i>
             </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
 
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '2em 0em' }} vertical>
       <Container text>
-        <Header as='h3' style={{ fontSize: '2em' }}>
-          Experts say jobTrack is the best way to keep your job search organized
+        <Header as='h3' style={{ fontSize: '2em', marginTop: '1em' }}>
+          Users say jobTrack is the best way to keep your job search organized
         </Header>
         <p style={{ fontSize: '1.33em' }}>
-          All the experts are talking about the massive impact that jobTrack is having on a global scale.
-          It's clear to see that there has been a huge shift in terms of a phenomenal decrease in unemployment since jobTrack has risen in popularity.
+          All the users are talking about the impact that jobTrack is having on careers.
+          It's nice to see that there has been a shift in unemployment since jobTrack has risen in popularity.
         </p>
-        <Button as='a' size='large'>
-          Read More
-        </Button>
 
         <Divider
           as='h4'
@@ -283,50 +273,43 @@ const Landing = () => (
           horizontal
           style={{ margin: '3em 0em', textTransform: 'uppercase' }}
         >
-          <a href='#'>Case Studies</a>
+          <a href='https://jobs.github.com/'>Case Studies</a>
         </Divider>
 
         <Header as='h3' style={{ fontSize: '2em' }}>
           Start tracking your jobs today!
         </Header>
-        <p style={{ fontSize: '1.33em' }}>
+        <p style={{ fontSize: '1.33em', paddingBottom: '2em' }}>
           Using our app, you will have the easiest user experience to help you find your dream job as soon as possible.
         </p>
-        <Button as='a' size='large'>
-          I'm Still Quite Interested
-        </Button>
       </Container>
     </Segment>
 
-    <Segment inverted vertical style={{ padding: '5em 0em' }}>
-      <Container>
+    <Segment inverted vertical style={{ padding: '3em 2em' }}>
+      <Container style={{ marginTop: '2em' }}>
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
               <Header inverted as='h4' content='About' />
               <List link inverted>
-                <List.Item as='a'>Sitemap</List.Item>
-                <List.Item as='a'>Contact Us</List.Item>
-                <List.Item as='a'>Religious Ceremonies</List.Item>
-                <List.Item as='a'>Gazebo Plans</List.Item>
+                <List.Item as='a' href='mailto:groupone.finalproject@gmail.com'>Contact Us</List.Item>
+                <List.Item as='a' href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={3}>
-              <Header inverted as='h4' content='Services' />
+              <Header inverted as='h4' content='Job APIs' />
               <List link inverted>
-                <List.Item as='a'>Banana Pre-Order</List.Item>
-                <List.Item as='a'>DNA FAQ</List.Item>
-                <List.Item as='a'>How To Access</List.Item>
-                <List.Item as='a'>Favorite X-Men</List.Item>
+                <List.Item as='a' href='https://jobs.github.com/'>Github Jobs</List.Item>
+                <List.Item as='a' href='https://www.themuse.com/search'>The Muse</List.Item>
               </List>
             </Grid.Column>
             <Grid.Column width={7}>
               <Header as='h4' inverted>
-                Footer Header
+                Front-End Library
               </Header>
-              <p>
-                Extra space for a call to action inside the footer that could help re-engage users.
-              </p>
+              <List link inverted>
+              <List.Item as='a' href='https://react.semantic-ui.com/'>Semantic UI React</List.Item>
+              </List>
             </Grid.Column>
           </Grid.Row>
         </Grid>

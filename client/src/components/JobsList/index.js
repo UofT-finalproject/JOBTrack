@@ -5,6 +5,7 @@ import moment from "moment";
 import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB, FILTER_JOBS } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import DetailModal from '../DetailModal';
+
 // Custom Hook for keeping sort state
 const useSortableData = (items, config = null) => {
   const [sortConfig, setSortConfig] = useState(config);
@@ -61,9 +62,10 @@ function JobsList() {
   }, []);
 
   // Helper function to get saved jobs from server API
-  const loadJobs = () => {
+  const loadJobs = async () => {
+    const userId = await JSON.parse(localStorage.getItem('user'))._id
     dispatch({type: LOADING})
-    API.getSavedJobs()
+    API.getSavedJobs(userId)
     .then(res => {
       dispatch({
         type: UPDATE_JOBS,

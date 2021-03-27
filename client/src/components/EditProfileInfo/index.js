@@ -1,7 +1,13 @@
-import React from 'react'
+/*import React from 'react'
+
+// TODO:
+// Make form section on ProfileInfo component a modal here
+// Route sidebar EditProfile item to this modal component
+// Connect this component to global state 
+// Make submit save global state
+
 import { Form, Button, Header, Icon, Image, Modal } from 'semantic-ui-react'
 const style = <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/semantic-ui@2.4.1/dist/semantic.min.css'/>
-//TODO: finish creating edit modal and capture input to update ProfileInfo 
 const Edit = () => {
     const [input, setInput] = useState(
       {
@@ -21,6 +27,7 @@ const Edit = () => {
 
 const EditModal = () => {
     return (
+        <div>{style}
     <Modal trigger={<Button>Edit Profile</Button>}>
     <Modal.Header>Profile Picture</Modal.Header>
     <Modal.Content image>
@@ -58,7 +65,5 @@ const EditModal = () => {
       </Button>
     </Modal.Actions>
   </Modal>
-    )
-}
-
-export default () => (<div>{style}<EditModal/></div>)
+  </div>
+    )}*/

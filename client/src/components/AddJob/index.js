@@ -41,10 +41,11 @@ const handleChange = (e, { name, value }) => {
   setInput({ ...input, [name]: value })
 }
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
+  const userId = await JSON.parse(localStorage.getItem('user'))._id
     input.created_at = moment().format();
     dispatch({type: LOADING});
-    API.saveJob(input)
+    API.saveJob({ ...input, user: userId })
     .then(res => 
       {dispatch({ type: LOADING_DONE })
       history.push('/dashboard')
@@ -59,7 +60,7 @@ const handleSubmit = () => {
     <Segment style={{backgroundColor: '#f1f1f1'}}>
     <Form onSubmit={handleSubmit} loading={state.loading}>
       <Header as='h2'>
-        <Icon name='calendar plus outline' color='grey'/>
+        <Icon name='calendar plus outline' color='green'/>
         Add new Job
       </Header>
       <Form.Group widths='equal'>
