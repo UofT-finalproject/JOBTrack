@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Table, Button, Icon } from 'semantic-ui-react';
+import { Table, Button, Icon, List } from 'semantic-ui-react';
 import API from '../../utils/API';
 import moment from "moment";
 import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB, FILTER_JOBS } from '../../utils/actions';
@@ -97,6 +97,8 @@ function JobsList() {
       loadJobs()})
     .catch(err => console.log(err));
   }
+
+  
   
   // JSX for table of jobs using Semantic UI
   // Each table header has onClick handler to request Sorting by header and order
@@ -136,7 +138,7 @@ function JobsList() {
               <Icon name={'sort' + getClassNamesFor('date_applied')} onClick={() => requestSort('date_applied')} />
               Date Applied</Table.HeaderCell>
             <Table.HeaderCell colSpan={2}>Notes</Table.HeaderCell>
-            <Table.HeaderCell>Attachments</Table.HeaderCell>
+            <Table.HeaderCell colSpan={2}>Attachments</Table.HeaderCell>
             <Table.HeaderCell>Actions</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -146,6 +148,29 @@ function JobsList() {
               const {_id, title, company, location, 
                 created_at, date_applied, status, notes, attachments } = job;
                 const m = moment(created_at);
+                
+                  const fileList = attachments.map((link, i) => {
+                  // Making file Icon class depending on file type
+                  const type = link.split('.').pop();
+                  let fileIcon = '';
+                  switch(type) {
+                    case 'pdf': fileIcon = ' pdf';
+                    break;
+                    case 'docx': fileIcon = ' word';
+                    break;
+                    case 'jpg' : fileIcon = ' image';
+                    break;
+                    default: fileIcon = ' alternate';
+                  }
+
+                  return (<List.Item key={i} style={{ display: 'flex'}}>
+                  <List.Icon name={`file${fileIcon}`} color='grey' />
+                  <List.Content>
+                    <a href={link} target='blank'>{ link.split('/').pop()}</a>
+                  </List.Content>
+                </List.Item>)
+                })
+
               return (
                 <Table.Row key={_id} id={_id} 
                       positive = {status === 'Approved' ? true : false}                
@@ -161,7 +186,7 @@ function JobsList() {
                     <Table.Cell colSpan={2}>{status}</Table.Cell>
                     <Table.Cell colSpan={2}>{ date_applied }</Table.Cell>
                     <Table.Cell colSpan={2}>{ notes }</Table.Cell>
-                    <Table.Cell>{attachments}</Table.Cell>
+                    <Table.Cell colSpan={2}>{fileList}</Table.Cell>
                     <Table.Cell>
                     <Button icon id={_id} onClick={handleDelete} loading={(clickedButtonId === _id) && state.loading}>
                         <Icon name ='delete' id={_id} />
