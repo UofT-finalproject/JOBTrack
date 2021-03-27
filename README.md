@@ -1,7 +1,8 @@
-# JOBTrack <img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/>
+# jobTrack <img alt="MongoDB" src ="https://img.shields.io/badge/MongoDB-%234ea94b.svg?&style=for-the-badge&logo=mongodb&logoColor=white"/> <img alt="Express.js" src="https://img.shields.io/badge/express.js%20-%23404d59.svg?&style=for-the-badge"/> <img alt="React" src="https://img.shields.io/badge/react%20-%2320232a.svg?&style=for-the-badge&logo=react&logoColor=%2361DAFB"/> <img alt="NodeJS" src="https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white"/>
 
 # Table of Contents
 * [About](#about)
+* [Team](#team)
 * [Instructions](#instructions)
 * [Screenshot](#screenshot)
 * [License](#license)
@@ -9,13 +10,35 @@
 * [Contributing](#Contributing)
 
 ## About
-  Searching for a job? Don't remember what jobs you've applied to and which ones you haven't? Can't keep up with your upcoming interviews? Say no more! JOBTrack is an application that allows a user to help keep track of the jobs they've applied to. This app offers a smooth, clean and easy-to-use user interface to help users focus on organizing their applied jobs and upcoming interviews. We hope JOBTrack helps you keep organized and find your dream job as soon as possible! 
+  Searching for a job? Don't remember what jobs you've applied to and which ones you haven't? Can't keep up with your upcoming interviews? Say no more! jobTrack is an application that allows a user to help keep track of the jobs they've applied to. This app offers a clean and simple user interface to aid users in their job search, as well as help them focus on organizing their applied jobs and upcoming interviews. With jobTrack, we are committed to help you simplify your search. We hope jobTrack helps you to find your dream job as soon as possible!
 
-* Link to app: http://jobtrack-search.herokuapp.com/
-* Link to Github repository: https://github.com/UofT-finalproject/JOBTrack
+  
+* [Link to deployed heroku application](http://jobtrack-search.herokuapp.com/)
+* [Link to Github repository](https://github.com/UofT-finalproject/JOBTrack)
+
+## Team
+  > [Eldar Humbatov](https://github.com/elogonme):
+ - Lead Developer - Database Setup, Front-end components, Main functionality
+
+  > [Nagesh Kalegowda](https://github.com/nagck):
+ - User database model, Database code, Login authentication + Sign-up functionality
+
+ > [Omair Muhi](https://github.com/omair-muhi):
+ - API Routes, Test scripts
+
+  > [Dazrin Tioseco](https://github.com/dazrin):
+ - Front-end Components, Landing Page, Profile Page
+
+> [Tayyaba Asad](https://github.com/tasad667023):
+ - Login page, Slide presentation design
+ 
+> [Ivan Đuranić](https://github.com/ivanduranic):
+ - Front-end Components, 404 Page
+
+
 
 ## Instructions
-1. Navigate to the application by clicking the github pages deploy link: 
+1. Navigate to the application by clicking the heroku deploy link: http://jobtrack-search.herokuapp.com/
  > Upon navigating to the deployed application link, you will be greeted with the landing page. To get started, you will have to register an account and log in. You can do this by clicking either the 'Log in' or 'Sign up' buttons on the top left of the landing page.
   ![EmployeeDirectoryScreenshot](<https://i.imgur.com/BI2iffF.png> "Job Application Tracker Application Landing")
  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/dDMR41Y.png> "Job Application Tracker Application Login")
@@ -68,12 +91,12 @@ SOFTWARE.
 
 
 ## Contributing
-- Eldar Humbatov: Lead Developer - Database Setup, Front-end components, Main Functionality
-- Nagesh Kalegowda: Authentication Functionality
-- Omair Muhi: API Route + Test scripts
-- Tayyaba Asad: Front-end Components
-- Dazrin Tioseco: Front-end Components
-- Ivan Đuranić: Front-end Components
+- [Eldar Humbatov](https://github.com/elogonme): Lead Developer - Database Setup, Front-end components, Main Functionality
+- [Nagesh Kalegowda](https://github.com/nagck): User model, Database code, Authentication Functionality
+- [Omair Muhi](https://github.com/omair-muhi): API Routes, Test scripts
+- [Dazrin Tioseco](https://github.com/dazrin): Front-end Components, Landing Page, Profile Page
+- [Tayyaba Asad](https://github.com/tasad667023): Login page, Slide presentation design
+- [Ivan Đuranić](): Front-end Components, 404 Page
 
 
 ## Our Pledge
