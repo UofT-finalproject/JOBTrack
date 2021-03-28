@@ -14,7 +14,7 @@ const jobSchema = new Schema({
   date_applied: String,
   status: { type: String, enum: ['None', 'Applied', 'Interviewed', 'Approved', 'Declined', 'Archived']},
   notes: String,
-  attachments: String,
+  attachments: [String],
   date: { type: Date, default: Date.now },
   user: { type: Schema.Types.ObjectId, ref: 'User',
    required: true}

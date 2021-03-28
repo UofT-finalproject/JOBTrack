@@ -5,6 +5,7 @@ import moment from "moment";
 import { LOADING, OPEN_MODAL, UPDATE_JOBS, SET_CURRENT_JOB, FILTER_JOBS } from '../../utils/actions';
 import { useStoreContext } from "../../utils/GlobalState";
 import DetailModal from '../DetailModal';
+import FileListContainer from '../FileList/FileListContainer';
 
 // Custom Hook for keeping sort state
 const useSortableData = (items, config = null) => {
@@ -97,13 +98,13 @@ function JobsList() {
       loadJobs()})
     .catch(err => console.log(err));
   }
-  
+
   // JSX for table of jobs using Semantic UI
   // Each table header has onClick handler to request Sorting by header and order
   // Each row has handler to triger Job Detail Modal to open
   return (
     <div>
-      <Table celled fixed striped selectable >
+      <Table celled fixed striped selectable>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell colSpan={2}
@@ -136,7 +137,7 @@ function JobsList() {
               <Icon name={'sort' + getClassNamesFor('date_applied')} onClick={() => requestSort('date_applied')} />
               Date Applied</Table.HeaderCell>
             <Table.HeaderCell colSpan={2}>Notes</Table.HeaderCell>
-            <Table.HeaderCell>Attachments</Table.HeaderCell>
+            <Table.HeaderCell colSpan={2} textAlign='left'>Attachments</Table.HeaderCell>
             <Table.HeaderCell>Actions</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
@@ -146,6 +147,7 @@ function JobsList() {
               const {_id, title, company, location, 
                 created_at, date_applied, status, notes, attachments } = job;
                 const m = moment(created_at);
+
               return (
                 <Table.Row key={_id} id={_id} 
                       positive = {status === 'Approved' ? true : false}                
@@ -155,13 +157,14 @@ function JobsList() {
                     onClick={handleClick}>
                   <Table.Cell  colSpan={2}>{title}</Table.Cell>
                     <Table.Cell colSpan={2}>{company}</Table.Cell>
-                    {/* <Table.Cell singleLine colSpan={3}>{strippedDescription}</Table.Cell> */}
                     <Table.Cell colSpan={2}>{location}</Table.Cell>
                     <Table.Cell colSpan={2}>{m.format('ll')}<br/>{m.fromNow()}</Table.Cell>
                     <Table.Cell colSpan={2}>{status}</Table.Cell>
                     <Table.Cell colSpan={2}>{ date_applied }</Table.Cell>
                     <Table.Cell colSpan={2}>{ notes }</Table.Cell>
-                    <Table.Cell>{attachments}</Table.Cell>
+                    <Table.Cell colSpan={2}>
+                      <FileListContainer attachments={attachments}/>
+                    </Table.Cell>
                     <Table.Cell>
                     <Button icon id={_id} onClick={handleDelete} loading={(clickedButtonId === _id) && state.loading}>
                         <Icon name ='delete' id={_id} />
@@ -170,7 +173,7 @@ function JobsList() {
                 </Table.Row>)
             }
             )) : (
-              <Table.Row><Table.Cell colSpan={13}>No saved jobs yet...</Table.Cell></Table.Row>
+              <Table.Row><Table.Cell colSpan={16}>No saved jobs yet...</Table.Cell></Table.Row>
             )}
         </Table.Body>
       </Table>

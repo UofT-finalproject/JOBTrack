@@ -50,10 +50,7 @@ function SideMenu(props) {
             active={activeItem === 'profile'}
             onClick={handleItemClick}
              />
-          {
-            // TODO: Make edit profile section a modal that can be opened by this sidemenu item
-            //<Dropdown.Item icon='edit' text='Edit Profile' />
-          }
+            <Dropdown.Item icon='edit' text='Edit Profile' />
             <Dropdown.Item icon='log out' text='Logout' color='grey'
               onClick={() => history.push('logout')}
             />
