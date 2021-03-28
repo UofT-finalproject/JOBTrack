@@ -25,7 +25,7 @@ function Navbar() {
             as={ NavLink } exact to="/"
             name='Home'
             active={activeItem === 'Home'}
-            onClick={handleItemClick}
+            onClick={ () => window.location.replace('/') }
           >
             <img src={logoWhite} size='huge' className='logo-nav' alt='logo' />
           </Menu.Item >

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Form, Segment, Header, Button, Grid, Select, Icon  } from 'semantic-ui-react'
+import { Form, Segment, Header, Button, Grid, Select, Icon, Card, List, Input  } from 'semantic-ui-react'
 import { DateInput } from 'semantic-ui-calendar-react';
 import { useStoreContext } from "../../utils/GlobalState";
 import { LOADING, LOADING_DONE } from '../../utils/actions';
 import { NavLink, useHistory } from "react-router-dom";
 import moment from "moment";
 import API from '../../utils/API';
+import FileListContainer from "../FileList/FileListContainer";
 
 const statusOptions = [
   { key: 'n', text: 'None', value: 'None' },
@@ -31,7 +32,8 @@ const AddJob = () => {
       date_applied: '',
       status: 'None',
       notes: '',
-      attachments: '',
+      attachments: [],
+      file: ''
     });
 
 const [state, dispatch] = useStoreContext();
@@ -39,6 +41,18 @@ let history = useHistory();
 
 const handleChange = (e, { name, value }) => {
   setInput({ ...input, [name]: value })
+}
+const handleUpload = async (e) => {
+  dispatch({type: LOADING})
+  const file = (e.target.files)[0];
+  setInput({ ...input, file: e.target.value});
+  await API.uploadFile(file)
+    .then(url => {
+      console.log('attachements:',input.attachments);
+      setInput({ ...input, attachments: [url, ...input.attachments]});
+      dispatch({type: LOADING_DONE, loading: false})
+    })
+    .catch(err => console.log(err));
 }
 
 const handleSubmit = async () => {
@@ -54,10 +68,10 @@ const handleSubmit = async () => {
   }
 
   const { title, description, type, location, company, url, created_at, date_applied,
-    status, notes, attachments } = input;
+    status, notes, attachments, file } = input;
   return (<Grid centered>
     <Grid.Column computer={14} tablet={16}>
-    <Segment style={{backgroundColor: '#f1f1f1'}}>
+    <Segment style={{backgroundColor: '#f1f1f1', marginTop: 10}}>
     <Form onSubmit={handleSubmit} loading={state.loading}>
       <Header as='h2'>
         <Icon name='calendar plus outline' color='green'/>
@@ -129,15 +143,38 @@ const handleSubmit = async () => {
         value={notes}
         />
       </Form.Field>
-      <Form.Field>
-        <label>Attachments:</label>
-        <input type="file" placeholder='Attachments' 
-        name="attachments"
-        onChange={handleChange}
-        value={attachments}
-        />
-      </Form.Field>
-      <div>
+      <Form.Group>
+        <Form.Field width={14} >
+          <label>Upload File:</label>
+          <Input type="file" placeholder='Attachments'
+          icon='upload'
+          loading={state.loading}
+          name="file"
+          onChange={handleUpload}
+          value={file}
+          />
+          <label style={{fontWeight: 200, color: 'grey'}}>
+            Upload Supporting Documents: Resumer, Cover Letter etc.
+          </label>
+        </Form.Field>
+        <Card fluid>
+          <Card.Content>
+            <Card.Header>Attachments</Card.Header>
+            <Card.Description>
+              <List>
+                <FileListContainer attachments={attachments}/>
+              </List>
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <a>
+              <Icon name='warning circle' />
+              Size Limit per file 10MB, Files are stored for 90 days only
+            </a>
+          </Card.Content>
+        </Card>
+      </Form.Group>
+      <div style={{ marginTop: 10 }}>
         <Button icon labelPosition='left'
           as={ NavLink } to="/dashboard"
         >

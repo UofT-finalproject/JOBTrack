@@ -67,10 +67,19 @@ class DesktopContainer extends Component {
 
   hideFixedMenu = () => this.setState({ fixed: false })
   showFixedMenu = () => this.setState({ fixed: true })
+  showLogin = () => this.setState({ login: true })
+
+  componentDidMount(){
+    let isLoggedIn = localStorage.getItem('user');
+    if (!isLoggedIn) {
+      this.setState({ isLoggedIn: true });
+    } else this.setState({ isLoggedIn: false });
+  }
 
   render() {
     const { children } = this.props
     const { fixed } = this.state
+    const { isLoggedIn } = this.state
 
     return (
       <Media greaterThan='mobile'>
@@ -97,10 +106,15 @@ class DesktopContainer extends Component {
                   Home
                 </Menu.Item>
                 <Menu.Item position='right'>
-                  <Button as={ NavLink } to="/login" inverted={!fixed}>
-                  {/* <Button onClick={handleLogin} inverted={!fixed}> */}
-                    Log in
-                  </Button>
+                  { isLoggedIn ? (
+                    <Button as={ NavLink } to="/login" inverted={!fixed}>
+                      Log in
+                    </Button>
+                  ) : (
+                    <Button as={ NavLink } to="/logout" inverted={!fixed}>
+                      Log out
+                    </Button>
+                  )}
                   <Button as={ NavLink } to="/register" inverted={!fixed} primary={fixed} style={{ marginLeft: '0.5em' }}>
                     Sign Up
                   </Button>

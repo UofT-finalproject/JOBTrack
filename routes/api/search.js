@@ -5,10 +5,6 @@ const searchController = require("../../controllers/searchController");
 router.route("/")
     .get(searchController.findAll);
 
-// Matches with "/api/jobs/:id"
-// router
-//   .route("/:id")
-//   .get(searchController.findById)
 router.route("/muse")
     .get(searchController.findAllMuse);
 
