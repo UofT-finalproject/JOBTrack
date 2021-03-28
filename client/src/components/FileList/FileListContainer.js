@@ -20,12 +20,12 @@ const FileListContainer = ({attachments}) => {
             default: fileIcon = 'file alternate';
             }
 
-            return (<List.Item key={i} style={{ display: 'flex'}}>
-            <List.Icon name={`${fileIcon}`} color='grey' />
-            <List.Content>
-            <a href={link} target='blank'>{ link.split('/').pop()}</a>
-            </List.Content>
-        </List.Item>)
+            return (<List.Item key={i} style={{ display: 'flex'}} onClick={e => e.stopPropagation()}>
+                        <List.Icon name={`${fileIcon}`} color='grey'  />
+                        <List.Content>
+                        <a href={link} target='blank' >{ link.split('/').pop()}</a>
+                        </List.Content>
+                    </List.Item>)
         })
     }
 
