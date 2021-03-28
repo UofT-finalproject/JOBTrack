@@ -48,7 +48,6 @@ const handleUpload = async (e) => {
   setInput({ ...input, file: e.target.value});
   await API.uploadFile(file)
     .then(url => {
-      console.log('attachements:',input.attachments);
       setInput({ ...input, attachments: [url, ...input.attachments]});
       dispatch({type: LOADING_DONE, loading: false})
     })
@@ -167,10 +166,10 @@ const handleSubmit = async () => {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <a>
+            <p>
               <Icon name='warning circle' />
               Size Limit per file 10MB, Files are stored for 90 days only
-            </a>
+            </p>
           </Card.Content>
         </Card>
       </Form.Group>

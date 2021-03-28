@@ -123,10 +123,10 @@ function DetailForm() {
                 </Card.Description>
               </Card.Content>
               <Card.Content extra>
-                <a>
+                <p>
                   <Icon name='warning circle' />
                   Size Limit per file 10MB, Files are stored for 90 days only
-                </a>
+                </p>
               </Card.Content>
             </Card>
           </Form.Group>
