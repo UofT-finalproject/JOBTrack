@@ -60,7 +60,7 @@ class ProfileInfo extends Component {
         <div>
         <Container style={{ marginTop: '2em' }}>
         <Grid>
-        <Grid.Column floated='center' width={5}>
+        <Grid.Column width={5}>
         <Header as='h1'>My Profile</Header>
         <Card>
           <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} circular />
