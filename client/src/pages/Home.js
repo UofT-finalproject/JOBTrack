@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Grid } from 'semantic-ui-react';
 import Dashboard from "./Dashboard";
 import SideMenu from "../components/SideMenu"
+import SideMenuMobile from "../components/SideMenuMobile"
 import Navbar from "../components/Navbar";
 import Search from "./Search";
 import { StoreProvider } from "../utils/GlobalState";
@@ -16,6 +17,7 @@ import NavBarMobile from '../components/NavBarMobile';
 const { MediaContextProvider, Media } = createMedia({
   breakpoints: {
     sm: 0,
+    mm: 600,
     md: 768,
     lg: 1024,
     xl: 1192,
@@ -27,16 +29,28 @@ function Home() {
     <Router>
       <StoreProvider>
         <MediaContextProvider>
-        <Media at="sm">
+        <Media lessThan="md">
           <NavBarMobile />
         </Media>
         <Media greaterThanOrEqual="md">
           <Navbar />
         </Media>
-            
           <Grid >
             <Grid.Row style={{marginTop: 49}}>
-              <SideMenu />
+              <Grid.Column computer={3} tablet={16}>
+              <Media lessThan="mm">
+                <SideMenuMobile stackable={true}/>
+              </Media>
+              <Media at="mm">
+                <SideMenuMobile />
+              </Media>
+              <Media at="md">
+                <SideMenuMobile />
+              </Media>
+              <Media greaterThanOrEqual="lg">
+                <SideMenu />
+              </Media>
+              </Grid.Column>
               <Grid.Column computer={13} tablet={16}>
                 <Switch>              
                   <Route exact path="/dashboard" component={Dashboard} />

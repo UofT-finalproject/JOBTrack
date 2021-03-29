@@ -1,11 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Dropdown, Icon, Menu } from 'semantic-ui-react'
 import logoWhite from '../../assets/images/jobTrack-white.png';
 import { NavLink, useHistory } from "react-router-dom";
 import moment from "moment";
 import './style.css';
-
-// TODO: Update <Search> usage after its will be implemented
 
 const NavBarMobile = () => {
   const [activeItem, setActiveItem] = useState('Dashboard');
