@@ -10,28 +10,47 @@ import AddJob from "../components/AddJob";
 import ProfileInfo from "../components/ProfileInfo";
 import CareerServicesItem from "../components/CareerServicesItem";
 import { Logout } from "../components/Auth";
+import { createMedia } from "@artsy/fresnel";
+import NavBarMobile from '../components/NavBarMobile';
+
+const { MediaContextProvider, Media } = createMedia({
+  breakpoints: {
+    sm: 0,
+    md: 768,
+    lg: 1024,
+    xl: 1192,
+  },
+});
 
 function Home() {
   return (
     <Router>
-      <StoreProvider>      
-        <Grid >
-            <Navbar />
-          <Grid.Row style={{marginTop: 49}}>
-            <SideMenu />
-            <Grid.Column computer={13} tablet={16}>
-              <Switch>              
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/search" component={Search} />
-                <Route exact path="/add" component={AddJob} />
-                <Route exact path="/profile" component={ProfileInfo} />
-                <Route exact path="/career" component={CareerServicesItem} />
-                <Route exact path="/logout" component={Logout} />
-                <Route path="/" component={Dashboard} />
-              </Switch>
-            </Grid.Column>
-          </Grid.Row>
-        </Grid>
+      <StoreProvider>
+        <MediaContextProvider>
+        <Media at="sm">
+          <NavBarMobile />
+        </Media>
+        <Media greaterThanOrEqual="md">
+          <Navbar />
+        </Media>
+            
+          <Grid >
+            <Grid.Row style={{marginTop: 49}}>
+              <SideMenu />
+              <Grid.Column computer={13} tablet={16}>
+                <Switch>              
+                  <Route exact path="/dashboard" component={Dashboard} />
+                  <Route exact path="/search" component={Search} />
+                  <Route exact path="/add" component={AddJob} />
+                  <Route exact path="/profile" component={ProfileInfo} />
+                  <Route exact path="/career" component={CareerServicesItem} />
+                  <Route exact path="/logout" component={Logout} />
+                  <Route path="/" component={Dashboard} />
+                </Switch>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+        </MediaContextProvider>
       </StoreProvider>
     </Router> 
   );

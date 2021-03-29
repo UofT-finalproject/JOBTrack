@@ -31,7 +31,7 @@ function Navbar() {
           </Menu.Item >
           <Menu.Item position='right'>
             {date}
-            </Menu.Item>
+          </Menu.Item>
           <Menu.Item
             as={ NavLink } to="/dashboard"
             position='right'
