@@ -123,7 +123,9 @@ class ProfileInfo extends Component {
             <Form.Button content='Submit' />
         
         </Form>
-        <Segment.Group name={submittedName, submittedEmail, submittedAbout} >
+        <Segment.Group
+        //  name={submittedName, submittedEmail, submittedAbout}
+          >
           <Segment>Name: {name}</Segment>
           <Segment>Email: {email}</Segment>
           <Segment>Occupation: {occupation}</Segment>
