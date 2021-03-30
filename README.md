@@ -17,51 +17,69 @@
 * [Link to Github repository](https://github.com/UofT-finalproject/JOBTrack)
 
 ## Team
-  > [Eldar Humbatov](https://github.com/elogonme):
- - Lead Developer - Database Setup, Front-end components, Main functionality
+  > [Eldar Humbatov](https://github.com/elogonme)
+ - Lead Developer
+   - Database Setup, Front-end components, Main functionality
 
-  > [Nagesh Kalegowda](https://github.com/nagck):
- - User database model, Database code, Login authentication + Sign-up functionality
+  > [Nagesh Kalegowda](https://github.com/nagck)
+ - Back-end Developer
+   - User database model, Database code, Login authentication + Sign-up functionality
 
- > [Omair Muhi](https://github.com/omair-muhi):
- - API Routes, Test scripts
+ > [Omair Muhi](https://github.com/omair-muhi)
+ - Back-end Developer
+   - API Routes, Test scripts
 
   > [Dazrin Tioseco](https://github.com/dazrin):
- - Front-end Components, Landing Page, Profile Page
+ - Front-end Developer
+   - Front-end Components, Landing Page, Profile Page
 
 > [Tayyaba Asad](https://github.com/tasad667023):
- - Login page, Slide presentation design
+ - Front-end Developer
+   - Login page, Slide presentation design
  
 > [Ivan Đuranić](https://github.com/ivanduranic):
- - Front-end Components, 404 Page
+ - Front-end Developer
+   - Front-end Components, 404 Page
 
 
 
 ## Instructions
 1. Navigate to the application by clicking the heroku deploy link: http://jobtrack-search.herokuapp.com/
  > Upon navigating to the deployed application link, you will be greeted with the landing page. To get started, you will have to register an account and log in. You can do this by clicking either the 'Log in' or 'Sign up' buttons on the top left of the landing page.
-  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/BI2iffF.png> "Job Application Tracker Application Landing")
- ![EmployeeDirectoryScreenshot](<https://i.imgur.com/dDMR41Y.png> "Job Application Tracker Application Login")
+  ![jobTrackScreenshot](<https://i.imgur.com/HOg9n4P.png> "Job Application Tracker Application Landing")
+
  > Please register an account to use the application, or use the following guest login: 
   > Email: test22@gmail.com Password: A2HAGf8cuUNhqfH 
- ![EmployeeDirectoryScreenshot](<https://i.imgur.com/diJmhA8.png> "Job Application Tracker Application signup")
+ ![jobTrackScreenshot](<https://i.imgur.com/tzgSJOt.png> "Job Application Tracker Application signup")
+
+ > The application will automatically log you in once you have signed up, but if you already have an account, you may click the log in button and you may enter your details in the log-in form shown below:
+  >  ![jobTrackScreenshot](<https://i.imgur.com/Kn426CD.png> "Job Application Tracker Application Login")
 
 
-2. Once you log in, you will be taken to your job dashboard. 
- > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/5f6nMeg.png> "Job Application Tracker Application dashboard")
- > On this page, you may add a job listing manually by clicking the 'Add Job' button on the side bar. You may specify specific details about the listing, provide a url, add a status to the listing, and even upload and attach job documents to a particular listing.
- > ![EmployeeDirectoryScreenshot](<https://i.imgur.com/D2pjDak.png> "Job Application Tracker Application Add job form")
-> On your dashboard, you may click a particular listing you have saved to bring up it's details and documents for your convenience.
-  >  ![EmployeeDirectoryScreenshot](<https://i.imgur.com/6NaospD.png> "Job Application Tracker Application Job details modal")
+2. Once you log in or sign up, you will be taken to your job dashboard. 
+ > ![jobTrackScreenshot](<https://i.imgur.com/Fi0Kwka.png> "Job Application Tracker Application dashboard")
+ > You may add a job listing manually by clicking the 'Add Job' button on the side bar. You may specify specific details about the listing, provide a url, add a status to the listing, and even upload and attach supporting job documents for a particular listing.
+ > ![jobTrackScreenshot](<https://i.imgur.com/Q0WyFvr.png> "Job Application Tracker Application Add job form")
+ > Once you have filled out the information and added your documents, you may click the submit button. Once you do, you will be able to see the job listings you've added on your dashboard. 
+ > ![jobTrackScreenshot](<https://i.imgur.com/q5tRACt.png> "Job Application Tracker Application Dashboard with job")
+ > In order to help keep you organized, when you have saved multiple jobs to your dashboard, you may click the headers on the table to sort your job listings by that header.
+  > ![jobTrackScreenshot](<https://i.imgur.com/OOqnrWn.png> "Job Application Tracker Application Dashboard with sorted jobs")
+  >  Alternatively, you may use the search bar on the sidebar located on the left-hand side of the screen to search for a specific job on your dashboard. Your dashboard will hide irrelevant results automatically.
+  > ![jobTrackScreenshot](<https://i.imgur.com/98tzCih.png> "Job Application Tracker Application Dashboard with sorted jobs")
+> You may click a job listing you've saved on your dashboard to bring up it's details and documents for your convenience. Additionally, you may update, add, and save any details about the job application you've saved. Simply update the fields as needed and click the green checkmark to save your updates.
+  >  ![jobTrackScreenshot](<https://i.imgur.com/BXdjZMG.png> "Job Application Tracker Application Job details modal")
  
 
-3. If you wish to browse job listings from other job sites, you may click the 'Search New' tab on the side bar. You may also select the 'Job Search' button on the navigation bar on the top of the page.
-  > Once you have navigated to the page, you will noticed two input fields. You may use these fields to search for job listings from either Github's job website, or from another job website called the 'The Muse' by using the radio button. Once you have searched for your results, you may choose to save a listing to your dashboard, or view the listing on it's respective page.
-    ![EmployeeDirectoryScreenshot](<https://i.imgur.com/ZDJUSQl.png> "Job Application Tracker Application dashboard")
+3. You may either click the 'Search New' tab on the side bar, or the 'Job Search' button on the navigation bar on the top of the page if you wish to browse job listings from other job sites.
+  > Once you have navigated to the page, you will notice two input fields. You may use these fields to query results from either Github's job API, or from The Muse's job API by using the radio button. Once you have searched for your results, you may choose to save a listing to your dashboard, or view the listing on it's respective page.
+    ![jobTrackScreenshot](<https://i.imgur.com/AibkXy7.png> "Job Application Tracker Application dashboard")
+  
+  > Once you click the save button, a message will appear to confirmed that you've saved the listing to your dashboard. 
+      ![jobTrackScreenshot](<https://i.imgur.com/pJyRHy6.png> "Job Application Tracker Application dashboard")
 
 4. You may click the View Profile button under the Profile dropdown on the sidebar to bring up your personal profile.
-![image](https://user-images.githubusercontent.com/14916152/112086498-95fa1480-8b49-11eb-8157-ce8da7f081c6.png)
-  > You may choose to edit details on your profile.
+  > You may choose to edit details on your profile by using the input fields found on the page. Simply click the submit button to update your profile information.
+![jobTrackScreenshot](https://i.imgur.com/NQWM1UC.png)
 
 5. You may additionally choose to click the Job Search Help tab to look at some useful links to aid you on your job search.
 ![jobTrackScreenshot](<https://i.imgur.com/9d4ae8p.png> "Job Application Tracker Application Useful Links")
@@ -92,11 +110,11 @@ SOFTWARE.
 
 ## Contributing
 - [Eldar Humbatov](https://github.com/elogonme): Lead Developer - Database Setup, Front-end components, Main Functionality
-- [Nagesh Kalegowda](https://github.com/nagck): User model, Database code, Authentication Functionality
-- [Omair Muhi](https://github.com/omair-muhi): API Routes, Test scripts
-- [Dazrin Tioseco](https://github.com/dazrin): Front-end Components, Landing Page, Profile Page
-- [Tayyaba Asad](https://github.com/tasad667023): Login page, Slide presentation design
-- [Ivan Đuranić](): Front-end Components, 404 Page
+- [Nagesh Kalegowda](https://github.com/nagck): Back-end Developer - User model, Database code, Authentication Functionality
+- [Omair Muhi](https://github.com/omair-muhi): Back-end Developer - API Routes, Test scripts
+- [Dazrin Tioseco](https://github.com/dazrin): Front-end Developer - Front-end Components, Landing Page, Profile Page
+- [Tayyaba Asad](https://github.com/tasad667023): Front-end Developer - Login page, Slide presentation design
+- [Ivan Đuranić](https://github.com/ivanduranic): Front-end Developer - Front-end Components, 404 Page
 
 
 ## Our Pledge
