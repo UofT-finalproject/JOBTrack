@@ -28,6 +28,7 @@ function DetailForm() {
     API.updateJob(updatedJob._id, updatedJob)
     .then(res => {
         dispatch({type: UPDATE_JOB, updatedJob: updatedJob});
+        console.log(updatedJob);
     })
     .catch(err => console.log(err))
   }
@@ -53,9 +54,8 @@ function DetailForm() {
     { key: 'd', text: 'Declined', value: 'Declined' },
     { key: 'ar', text: 'Archived', value: 'Archived' },
   ]
- 
     const { status, date_applied, attachments, notes } = input;
-
+    
     return (
       <Form onSubmit={handleSubmit} >
         <Form.Group >
@@ -118,7 +118,9 @@ function DetailForm() {
                 <Card.Header>Attachments</Card.Header>
                 <Card.Description>
                   <List>
-                    <FileListContainer attachments={attachments}/>
+                    <FileListContainer 
+                      attachments={attachments}
+                      />
                   </List>
                 </Card.Description>
               </Card.Content>

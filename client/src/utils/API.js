@@ -58,7 +58,7 @@ export default {
             const xhr = new XMLHttpRequest();
             const fileName = encodeURIComponent(file.name);
             const fileType = encodeURIComponent(file.type)
-            xhr.open('GET', `/api/upload?file-name=${fileName}&file-type=${fileType}`);
+            xhr.open('GET', `/api/s3?file-name=${fileName}&file-type=${fileType}`);
             xhr.onreadystatechange = () => {
               if(xhr.readyState === 4){
                 if(xhr.status === 200){
@@ -76,5 +76,9 @@ export default {
         // Send request to upload file
         getSignedRequest(file);
     })
-  }    
+  },
+  
+  deleteFile: function(key) {
+    return axios.delete(`/api/s3/${key}`);
+  },
 }

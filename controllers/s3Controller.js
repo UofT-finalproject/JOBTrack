@@ -28,5 +28,23 @@ module.exports = {
         res.write(JSON.stringify(returnData));
         res.end();
         });
+    },
+
+    delete: function (req, res) {
+        const s3 = new aws.S3();
+        let S3params = { Bucket: S3_BUCKET_NAME, Key: req.params.key };
+        return new Promise((resolve, reject) => {
+            s3.createBucket({
+                Bucket: S3_BUCKET_NAME        /* Put your bucket name */
+            }, function () {
+                s3.deleteObject(S3params, function (err, data) {
+                    if (err) console.log(err);
+                    else {
+                        console.log("Successfully deleted file from bucket");
+                        res.status(204).end();
+                    }
+                })
+            })
+        })
     }
 }
