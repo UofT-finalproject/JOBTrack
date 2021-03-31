@@ -39,6 +39,7 @@ const HomepageHeading = ({ mobile }) => (
         fontWeight: 'normal',
         marginBottom: 0,
         marginTop: mobile ? '1.5em' : '3em',
+        //marginLeft: mobile ? '1.5em' : '0.7em'
       }}
     />
     <Header

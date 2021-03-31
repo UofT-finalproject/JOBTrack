@@ -43,7 +43,7 @@ class ProfileInfo extends Component {
   
       this.setState({ submittedName: name, submittedEmail: email, submittedAbout: about, submittedOccupation: occupation })
     }
-  
+
     render() {
       const {
         name,
@@ -55,7 +55,9 @@ class ProfileInfo extends Component {
         submittedAbout,
         submittedOccupation,
     } = this.state
-  
+
+    const user = JSON.parse(localStorage.getItem('user'));
+    const username = user.first_name + ' ' + user.last_name;
       return (
         <div>
         <Container style={{ marginTop: '2em' }}>
@@ -65,7 +67,7 @@ class ProfileInfo extends Component {
         <Card>
           <Image src='https://react.semantic-ui.com/images/avatar/large/matthew.png' wrapped ui={false} circular />
           <Card.Content>
-            <Card.Header>{submittedName}</Card.Header>
+            <Card.Header>{submittedName ? submittedName : username}</Card.Header>
             <Card.Meta>
               <span className='occupation'>{submittedOccupation}</span>
             </Card.Meta>
