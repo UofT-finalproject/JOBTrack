@@ -39,6 +39,7 @@ const HomepageHeading = ({ mobile }) => (
         fontWeight: 'normal',
         marginBottom: 0,
         marginTop: mobile ? '1.5em' : '3em',
+        //marginLeft: mobile ? '1.5em' : '0.7em'
       }}
     />
     <Header
@@ -220,7 +221,7 @@ ResponsiveContainer.propTypes = {
 
 const Landing = ({ children, handleLogin }) => (
   <ResponsiveContainer handleLogin={handleLogin}>
-    <Segment style={{ padding: '2em 1em' }} vertical>
+    <Segment style={{ padding: '2em 1em', marginTop: '1.5em' }} vertical>
       <Grid container stackable verticalAlign='middle'>
         <Grid.Row>
           <Grid.Column width={8}>
@@ -300,7 +301,7 @@ const Landing = ({ children, handleLogin }) => (
     </Segment>
 
     <Segment inverted vertical style={{ padding: '3em 2em' }}>
-      <Container style={{ marginTop: '2em' }}>
+      <Container style={{ marginTop: '0em' }}>
         <Grid divided inverted stackable>
           <Grid.Row>
             <Grid.Column width={3}>
@@ -310,19 +311,31 @@ const Landing = ({ children, handleLogin }) => (
                 <List.Item as='a' href='https://github.com/UofT-finalproject/JOBTrack'>Github Repo</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={3}>
-              <Header inverted as='h4' content='Job APIs' />
+            <Grid.Column width={4}>
+              <Header inverted as='h4' content='Our Team' />
               <List link inverted>
+                <List.Item as='a' href='https://github.com/elogonme'>Eldar Humbatov</List.Item>
+                <List.Item as='a' href='https://github.com/omair-muhi'>Omair Muhi</List.Item>
+                <List.Item as='a' href='https://github.com/nagck'>Nagesh Kalegowda</List.Item>
+                <List.Item as='a' href='https://github.com/dazrin'>Dazrin Tioseco</List.Item>
+                <List.Item as='a' href='https://github.com/tasad667023/'>Tayyaba Asad</List.Item>
+                <List.Item as='a' href='https://github.com/ivanduranic'>Ivan Duranic</List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={4}>
+              <Header inverted as='h4' content='Technologies + APIs' />
+              <List link inverted>
+                <List.Item as='a' href='https://react.semantic-ui.com/'>Semantic UI React</List.Item>
                 <List.Item as='a' href='https://jobs.github.com/'>Github Jobs</List.Item>
                 <List.Item as='a' href='https://www.themuse.com/search'>The Muse</List.Item>
               </List>
             </Grid.Column>
-            <Grid.Column width={7}>
-              <Header as='h4' inverted>
-                Front-End Library
-              </Header>
+
+            <Grid.Column width={4}>
+              <Header inverted as='h4' content='Copyright' />
               <List link inverted>
-              <List.Item as='a' href='https://react.semantic-ui.com/'>Semantic UI React</List.Item>
+              <List.Item as='a' href='https://jobtrack-search.herokuapp.com/'>©2020 by jobTrack</List.Item>
+              
               </List>
             </Grid.Column>
           </Grid.Row>
