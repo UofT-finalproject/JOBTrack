@@ -4,21 +4,22 @@ import API from "../../utils/API";
 import { useStoreContext } from "../../utils/GlobalState";
 import { SET_CURRENT_JOB, UPDATE_JOB } from "../../utils/actions";
 
-const FileListContainer = ({ attachments }) => {
+const FileListContainer = ({ attachments, id }) => {
   const [state, dispatch] = useStoreContext();
   let fileList = [];
 
   const handleDelete = (e, link, index) => {
     e.stopPropagation();
+    if (state.currentJob._id !== id) return;
     let newAttachments = [...state.currentJob.attachments];
     API.deleteFile(link.split("/").pop()).then(() => {
       newAttachments.splice(index, 1);
-      let updatedJob = { ...state.updatedJob, attachments: newAttachments };
+      let updatedJob = { ...state.currentJob, attachments: newAttachments };
       dispatch({ type: UPDATE_JOB, updatedJob: updatedJob });
       dispatch({ type: SET_CURRENT_JOB, currentJob: updatedJob });
-      console.log(state.currentJob.attachments);
     });
   };
+
   let fileIcon = "";
   if (attachments.length > 0) {
     fileList = attachments.map((link, i) => {
@@ -32,6 +33,9 @@ const FileListContainer = ({ attachments }) => {
           fileIcon = "file word";
           break;
         case "jpg":
+          fileIcon = "file image";
+          break;
+        case "jpeg":
           fileIcon = "file image";
           break;
         case "png":

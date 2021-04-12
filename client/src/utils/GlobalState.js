@@ -19,7 +19,7 @@ const StoreContext = createContext();
 const { Provider } = StoreContext;
 // Define reducer action cases
 const reducer = (state, action) => {
-  // console.log(state, action)
+  // console.log(state, action);
   switch (action.type) {
     case SAVE_SEARCH:
       return { ...state, searchedJobs: action.searchedJobs, loading: false };

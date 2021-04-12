@@ -31,10 +31,10 @@ function DetailForm() {
   const [state, dispatch] = useStoreContext();
 
   useEffect(() => {
-    const { status, date_applied, attachments, notes } = state.currentJob;
-    setInput({ status, date_applied, attachments, notes });
+    const { status, date_applied, attachments, notes, _id } = state.currentJob;
+    setInput({ status, date_applied, attachments, notes, _id });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [state.currentJob]);
 
   const handleChange = (e, { name, value }) => {
     setInput({ ...input, [name]: value });
@@ -48,7 +48,6 @@ function DetailForm() {
     API.updateJob(updatedJob._id, updatedJob)
       .then((res) => {
         dispatch({ type: UPDATE_JOB, updatedJob: updatedJob });
-        console.log(updatedJob);
       })
       .catch((err) => console.log(err));
   };
@@ -74,7 +73,7 @@ function DetailForm() {
     { key: "d", text: "Declined", value: "Declined" },
     { key: "ar", text: "Archived", value: "Archived" },
   ];
-  const { status, date_applied, attachments, notes } = input;
+  const { status, date_applied, attachments, notes, _id } = input;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -140,7 +139,7 @@ function DetailForm() {
             <Card.Header>Attachments</Card.Header>
             <Card.Description>
               <List>
-                <FileListContainer attachments={attachments} />
+                <FileListContainer attachments={attachments} id={_id} />
               </List>
             </Card.Description>
           </Card.Content>
