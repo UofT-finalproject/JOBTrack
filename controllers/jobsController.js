@@ -3,7 +3,6 @@ const db = require("../models");
 // Defining methods for the jobsController
 module.exports = {
   findAll: function(req, res) {
-    console.log(req.query);
     db.Job
       .find(req.query)
       .sort({ date: -1 })
